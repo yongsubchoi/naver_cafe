@@ -6,7 +6,7 @@
     }
 
     public function index() {
-      $data['content'] = 'hello world!';
+      $data['content'] = 'main sector';
       // $this->load->view('posts/index_view', $data);
       $this->layouts->view('posts/index_view', $data);
     }
