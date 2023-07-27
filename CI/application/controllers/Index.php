@@ -5,7 +5,7 @@
     }
 
     public function index() {
-      
+      $this->load->view('posts/index_view');
     }
   }
 ?>
