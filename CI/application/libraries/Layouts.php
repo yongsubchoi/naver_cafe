@@ -10,6 +10,7 @@ class Layouts {
 
     public function view($view, $data = array()) {
         $this->CI->load->view('layouts/header', $data);
+        $this->CI->load->view('layouts/sideBar', $data);
         $this->CI->load->view($view, $data);
         $this->CI->load->view('layouts/footer', $data);
     }
