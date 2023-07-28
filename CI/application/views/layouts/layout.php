@@ -36,17 +36,20 @@
   </div>
 
   <!-- 메인 부분 -->
-  <div class="main_section">
+  <main class="main_section">
     <!-- 사이드바 부분 -->
     <div class="side_bar_section">
       <!-- 사이드바 -->
       <div class="side_bar">
-        사이드바 부분
+        <div class="cafe_info">카페정보/나의활동</div>
+        <div class="write_btn">게시글작성</div>
+        <div class="board_category">게시판분류</div>
+        <div class="lastest_posts">최근댓닷글</div>
       </div>
     </div>
     
     <?= $content ?>
-  </div>
+  </main>
 
   <footer>
     <div></div>
