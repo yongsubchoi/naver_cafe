@@ -27,6 +27,8 @@ header {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-right: 10px;
+  color: #FFFEFE;
 }
 .cafe_door {
   width: 100%;

@@ -2,5 +2,5 @@
   <div class="main_posts">
     <?php echo $content; ?>
   </div>
-</div>
+
 
