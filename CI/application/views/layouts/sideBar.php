@@ -1,3 +1,4 @@
+<!-- 메인 부분 -->
 <div class="main_section">
   <!-- 사이드바 부분 -->
   <div class="side_bar_section">
