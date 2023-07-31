@@ -1,0 +1,161 @@
+body {
+  box-sizing: border-box;
+  margin: 0;
+  width: 100vw;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 58px;
+  background-color: #D9D9D9;
+}
+/** 컨테이너 부분 */
+.container {
+  width: 458px;
+  height: 726px;
+  background-color: #B3B3B3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+/** 회원가입 폼 부분 */
+.signUp_form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+/* 회원가입 상단 텍스트 */
+.signUp_logo {
+  color: #FFF;
+  font-family: Inter;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+/* 회원가입 업로드 사진 */
+.signUp_upload_pic {
+  width: 170px;
+  height: 170px;
+  border-radius: 100px;
+  background: #D9D9D9;
+  position: relative;
+  overflow: hidden;
+}
+/* 회원가입 업로드 사진 + 부분 */
+.signUp_upload_pic label {
+  position: absolute;
+  top: 0px;
+  left: 43px;
+  padding: 8px;
+  background-color: #D9D9D9;
+  cursor: pointer;
+  color: #A7A4A4;
+  font-family: Inter;
+  font-size: 100px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  border-radius: 100px;
+}
+.signUp_upload_pic_style {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 60px;
+}
+/* 회원가입 사진 업로드 미리보기 */
+#preview_image {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+}
+#profile_picture {
+  display: none;
+}
+/* 회원가입 id 입력란 */
+.signUp_input_id {
+  width: 344px;
+  height: 48px;
+  border-radius: 5px;
+  background: #D9D9D9;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+/* 회원가입 pwd 입력란 */
+.signUp_input_pwd {
+  width: 344px;
+  height: 48px;
+  border-radius: 5px;
+  background: #D9D9D9;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+/* 회원가입 pwd 확인 입력란 */
+.signUp_input_pwd_check {
+  width: 344px;
+  height: 48px;
+  border-radius: 5px;
+  background: #D9D9D9;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 7px;
+}
+/* 회원가입 이메일 입력란 */
+.signUp_input_email {
+  width: 344px;
+  height: 48px;
+  border-radius: 5px;
+  background: #D9D9D9;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+/* 회원가입 질문 답변 입력란 */
+.signUp_input_answer {
+  width: 344px;
+  height: 48px;
+  border-radius: 5px;
+  background: #D9D9D9;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 7px;
+}
+/* 회원가입 버튼 */
+.signUp_btn {
+  width: 154px;
+  height: 48px;
+  border-radius: 5px;
+  background: #D9D9D9;
+}
+/* 회원가입 버튼박스 */
+.signUp_btn_style {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 18px;
+}
