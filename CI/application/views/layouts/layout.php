@@ -12,8 +12,8 @@
     <div class="login_signUp_style">
       <div></div>
       <div>
-        <span>로그인</span>
-        <span>회원가입</span>
+        <a href="userMgmt/Login">로그인</a>
+        <a href="userMgmt/SignUp">회원가입</a>
       </div>
     </div>
     <!-- 카페 대문 부분 -->

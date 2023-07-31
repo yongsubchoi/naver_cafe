@@ -30,6 +30,10 @@ header {
   margin-right: 10px;
   color: #FFFEFE;
 }
+.login_signUp_style a {
+  color: #FFFEFE;
+  text-decoration: none;
+}
 .cafe_door {
   width: 100%;
   height: 180px;

@@ -20,6 +20,19 @@ body {
   justify-content: space-around;
   align-items: center;
 }
+/* 뒤로가기 버튼 */
+.back_btn {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.back_btn button {
+  margin: 0;
+  padding: 0;
+}
 /** 회원가입 폼 부분 */
 .signUp_form {
   width: 100%;
@@ -28,6 +41,9 @@ body {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+}
+.signUp_form input {
+  border: 0;
 }
 /* 회원가입 상단 텍스트 */
 .signUp_logo {
@@ -105,6 +121,7 @@ body {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  margin-top: 7px;
 }
 /* 회원가입 pwd 확인 입력란 */
 .signUp_input_pwd_check {
@@ -130,6 +147,19 @@ body {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  margin-top: 7px;
+}
+.signUp_input_question {
+  width: 344px;
+  height: 48px;
+  border-radius: 5px;
+  background: #D9D9D9;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 7px;
 }
 /* 회원가입 질문 답변 입력란 */
 .signUp_input_answer {
@@ -150,6 +180,12 @@ body {
   height: 48px;
   border-radius: 5px;
   background: #D9D9D9;
+  border: 0;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.signUp_btn:hover{
+  background-color: #A7A7A7;
 }
 /* 회원가입 버튼박스 */
 .signUp_btn_style {
