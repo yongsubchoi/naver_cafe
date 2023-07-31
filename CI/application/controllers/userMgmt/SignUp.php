@@ -53,5 +53,12 @@ class SignUp extends CI_Controller
     }
   }
 
+  public function checkUsername() {
+    $username = $this->input->post('username');
+
+    $query = $this->SignUp_model->getWhere($username);
+    $response = array('exists' => $query->num_rows() > 0);
+    echo json_encode($response);
+  }
 }
 ?>
