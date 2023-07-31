@@ -10,5 +10,10 @@
       
       return $query->result_array();
     }
+
+    public function getWhere($username) {
+      $query = $this->db->get_where('users', array('username'=>$username));
+      return $query;
+    }
   }
 ?>

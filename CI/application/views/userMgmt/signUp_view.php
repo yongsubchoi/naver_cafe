@@ -16,7 +16,7 @@
 
     <div class="signUp_form">
       <div class="signUp_logo">회원가입</div>
-
+      
       <?php echo validation_errors(); ?>
       <?php echo form_open('userMgmt/SignUp/index') ?>
       <div class="signUp_upload_pic_style">
@@ -30,6 +30,7 @@
 
       <div>
         <input type="text" name="username" placeholder="아이디" class="signUp_input_id" required>
+        <div id="username_status"></div>
       </div>
       <div>
         <input type="password" name="password_hash" id="password_hash" placeholder="비밀번호" class="signUp_input_pwd"

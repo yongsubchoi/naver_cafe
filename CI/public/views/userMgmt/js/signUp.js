@@ -5,7 +5,7 @@ document.getElementById("profile_picture").addEventListener("change", function()
   reader.onload = function(e) {
     document.getElementById("preview_image").style.display = "block";
     document.getElementById("preview_image").setAttribute("src", e.target.result);
-    document.getElementById("plus_icon").style.display = "none"; // '+' 아이콘 숨기기
+    // document.getElementById("plus_icon").style.display = "none"; // '+' 아이콘 숨기기
   };
   reader.readAsDataURL(this.files[0]);
 });
