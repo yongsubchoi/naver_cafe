@@ -167,6 +167,21 @@ div {
   line-height: normal;
   margin-top: 7px;
 }
+#check_userEmail_btn {
+  position: absolute;
+  right: 0;
+  top: 55%;
+  transform: translateY(-50%);
+  width: auto;
+  height: 40px;
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  background-color: #B3B3B3;
+  border-radius: 5px;
+}
 .signUp_input_question {
   width: 344px;
   height: 48px;

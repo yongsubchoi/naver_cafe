@@ -56,7 +56,15 @@ class SignUp extends CI_Controller
   public function checkUsername() {
     $username = $this->input->post('username');
 
-    $query = $this->SignUp_model->getWhere($username);
+    $query = $this->SignUp_model->getWhere('username', $username);
+    $response = array('exists' => $query->num_rows() > 0);
+    echo json_encode($response);
+  }
+
+  public function checkUserEmail() {
+    $email = $this->input->post('email');
+
+    $query = $this->SignUp_model->getWhere('email', $email);
     $response = array('exists' => $query->num_rows() > 0);
     echo json_encode($response);
   }

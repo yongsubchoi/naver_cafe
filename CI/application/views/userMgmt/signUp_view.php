@@ -29,12 +29,11 @@
       </div>
 
       <div>
-        <div id="username_status"></div>
         <div>
           <input type="text" name="username" id="username" placeholder="아이디" class="signUp_input_id" required>
           <button type="button" id="check_username_btn">중복확인</button>
         </div>
-
+        <div id="username_status"></div>
       </div>
       <div>
         <input type="password" name="password_hash" id="password_hash" placeholder="비밀번호" class="signUp_input_pwd"
@@ -46,7 +45,11 @@
         <div id="password_status"></div>
       </div>
       <div>
-        <input type="email" name="email" placeholder="e-mail" class="signUp_input_email" required>
+        <div>
+          <input type="email" name="email" id="email" placeholder="e-mail" class="signUp_input_email" required>
+          <button type="button" id="check_userEmail_btn">중복확인</button>
+        </div>
+        <div id="userEmail_status"></div>
       </div>
       <div>
         <select name="security_question_id" class="signUp_input_question" required>
@@ -69,5 +72,6 @@
 
 <script src="<?php echo base_url('public/views/userMgmt/js/signUp.js'); ?>"></script>
 <script src="<?php echo base_url('public/views/userMgmt/js/checkUsername.js'); ?>"></script>
+<script src="<?php echo base_url('public/views/userMgmt/js/checkUserEmail.js'); ?>"></script>
 
 </html>
