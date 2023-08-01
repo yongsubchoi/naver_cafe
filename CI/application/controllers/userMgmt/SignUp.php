@@ -39,7 +39,8 @@ class SignUp extends CI_Controller
         'email' => $email,
         'security_question_id' => $security_question_id,
         'security_answer' => $security_answer,
-        'profile_picture_path' => $profile_picture_path
+        'profile_picture_path' => $profile_picture_path,
+        'created_at' => date('Y-m-d H:i:s')
       );
       $query = $this->SignUp_model->getWhere('username', $username);
       if ($query->num_rows() > 0) {
