@@ -41,7 +41,7 @@ class SignUp extends CI_Controller
         'security_answer' => $security_answer,
         'profile_picture_path' => $profile_picture_path
       );
-      $query = $this->SignUp_model->getWhere($username);
+      $query = $this->SignUp_model->getWhere('username', $username);
       if ($query->num_rows() > 0) {
         echo "<script>alert('이미 존재하는 아이디입니다.')</script>";
         // 폼 유효성 검사 실패 시
@@ -53,6 +53,7 @@ class SignUp extends CI_Controller
     }
   }
 
+  // username 중복 체크를 위한 함수
   public function checkUsername() {
     $username = $this->input->post('username');
 
@@ -61,6 +62,7 @@ class SignUp extends CI_Controller
     echo json_encode($response);
   }
 
+  // email 중복 체크를 위한 함수
   public function checkUserEmail() {
     $email = $this->input->post('email');
 
