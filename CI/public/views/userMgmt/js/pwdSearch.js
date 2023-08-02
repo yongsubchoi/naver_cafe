@@ -13,12 +13,14 @@ document.getElementById("check_answer_btn").addEventListener("click", function (
         if (response.match) {
           // 일치하는 경우
           document.getElementById("question_status").style.display = "none";
+          // 사용자 인증 성공 시 비밀번호 입력 폼 활성화
           document.getElementById("password_hash").removeAttribute("disabled");
           document.getElementById("password_hash_check").removeAttribute("disabled");
           document.getElementsByClassName("change_pwd_btn")[0].removeAttribute("disabled");
         } else {
           // 일치하지 않는 경우
           document.getElementById("question_status").style.display = "block";
+          // 사용자 인증 실패 시 비밀번호 입력 폼 비활성화
           document.getElementById("password_hash").setAttribute("disabled", "disabled");
           document.getElementById("password_hash_check").setAttribute("disabled", "disabled");
           document.getElementsByClassName("change_pwd_btn")[0].setAttribute("disabled", "disabled");
@@ -29,9 +31,7 @@ document.getElementById("check_answer_btn").addEventListener("click", function (
     }
   };
 
-  // 이 부분에서 서버 주소를 직접 설정해야 합니다.
-  // 예를 들어, localhost의 경우 아래와 같이 설정할 수 있습니다.
-  var serverURL = "http://localhost/userMgmt/PwdSearch/check_answer";
+  var serverURL = "http://localhost/index.php/userMgmt/PwdSearch/check_answer";
   xhr.open("POST", serverURL, true);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.send(
@@ -43,3 +43,10 @@ document.getElementById("check_answer_btn").addEventListener("click", function (
     encodeURIComponent(security_answer)
   );
 });
+
+// 페이지 로드 시 비밀번호 입력 폼 비활성화
+window.onload = function () {
+  document.getElementById("password_hash").setAttribute("disabled", "disabled");
+  document.getElementById("password_hash_check").setAttribute("disabled", "disabled");
+  document.getElementsByClassName("change_pwd_btn")[0].setAttribute("disabled", "disabled");
+};
