@@ -13,7 +13,6 @@ class SignUp extends CI_Controller
   public function index()
   {
     // * 회원가입 기능 구현
-    // $profile_picture_path = $this->input->post('profile_picture_path');
     $username = $this->input->post('username');
     $password = $this->input->post('password_hash');
     $email = $this->input->post('email');
@@ -34,9 +33,9 @@ class SignUp extends CI_Controller
       $this->load->view('userMgmt/signUp_view', $data);
     } else {
       // 폼 유효성 검사 성공 시
-      
-      $profile_picture_path = $this->saveProfilePicture();
 
+      $profile_picture_path = $this->saveProfilePicture();
+      // DB에 보낼 데이터
       $dbData = array(
         'username' => $username,
         'password_hash' => $hashedPassword,
@@ -59,23 +58,27 @@ class SignUp extends CI_Controller
     }
   }
 
-  private function saveProfilePicture() {
+  private function saveProfilePicture()
+  {
     $profile_picture_path = NULL;
-    
+
     if (!empty($_FILES['profile_picture_path']['name'])) {
+
       $path = 'C:/workspace/naver_cafe/CI/uploads/profile_pictures';
       $filename = $this->input->post('profile_picture_path');
+      $allowedTypes = ['jpg', 'png'];
+      $maxFileSize = 2048;
 
       $this->load->library('upload');
-      //* 업로드 경로 설정
+      // 업로드 경로 설정
       $this->upload->set_upload_path($path);
-      //* 업로드 파일 허용 타입
-      $this->upload->set_allowed_types(['jpg', 'png']);
-      //* 업로드 파일 최대 용량 설정
-      $this->upload->set_max_filesize(2048);
-      //* 경로에 중복된 이름이 있을 시 파일 명 뒤에 숫자 1을 증가시켜 고유성 확보
+      // 업로드 파일 허용 타입
+      $this->upload->set_allowed_types($allowedTypes);
+      // 업로드 파일 최대 용량 설정
+      $this->upload->set_max_filesize($maxFileSize);
+      // 경로에 중복된 이름이 있을 시 파일 명 뒤에 숫자 1을 증가시켜 고유성 확보
       $this->upload->set_filename($path, $filename);
-      
+
       if ($this->upload->do_upload('profile_picture_path')) {
         // 업로드에 성공하면 파일명을 변수에 저장한다.
         $profile_picture_path = $this->upload->data('file_name');
@@ -90,7 +93,8 @@ class SignUp extends CI_Controller
   }
 
   // username 중복 체크를 위한 함수
-  public function checkUsername() {
+  public function checkUsername()
+  {
     $username = $this->input->post('username');
 
     $query = $this->SignUp_model->getWhere('username', $username);
@@ -99,7 +103,8 @@ class SignUp extends CI_Controller
   }
 
   // email 중복 체크를 위한 함수
-  public function checkUserEmail() {
+  public function checkUserEmail()
+  {
     $email = $this->input->post('email');
 
     $query = $this->SignUp_model->getWhere('email', $email);
@@ -107,7 +112,9 @@ class SignUp extends CI_Controller
     echo json_encode($response);
   }
 
-  public function check_profile_picture($str) {
+  // 프로필 사진이 비어도 안비어도 TURE 반환
+  public function check_profile_picture($str)
+  {
     if (!empty($_FILES['profile_picture_path']['name'])) {
       return TRUE;
     } else {
