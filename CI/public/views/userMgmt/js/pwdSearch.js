@@ -21,9 +21,9 @@ document.getElementById("check_answer_btn").addEventListener("click", function (
           // 일치하지 않는 경우
           document.getElementById("question_status").style.display = "block";
           // 사용자 인증 실패 시 비밀번호 입력 폼 비활성화
-          document.getElementById("password_hash").setAttribute("disabled", "disabled");
-          document.getElementById("password_hash_check").setAttribute("disabled", "disabled");
-          document.getElementsByClassName("change_pwd_btn")[0].setAttribute("disabled", "disabled");
+          document.getElementById("password_hash").setAttribute("disabled", true);
+          document.getElementById("password_hash_check").setAttribute("disabled", true);
+          document.getElementsByClassName("change_pwd_btn")[0].setAttribute("disabled", true);
         }
       } else {
         console.error("Error:", xhr.status);
@@ -46,12 +46,16 @@ document.getElementById("check_answer_btn").addEventListener("click", function (
 
 // 페이지 로드 시 비밀번호 입력 폼 비활성화
 window.onload = function () {
-  document.getElementById("password_hash").setAttribute("disabled", "disabled");
-  document.getElementById("password_hash_check").setAttribute("disabled", "disabled");
-  document.getElementsByClassName("change_pwd_btn")[0].setAttribute("disabled", "disabled");
+  document.getElementById("password_hash").setAttribute("disabled", true);
+  document.getElementById("password_hash_check").setAttribute("disabled", true);
+  document.getElementsByClassName("change_pwd_btn")[0].setAttribute("disabled", true);
 };
 
 //* pwd 확인 시 일치, 불일치 텍스트 표출 로직
+/**
+ * todo 필요한 추가 로직
+ * ? 비밀번호 이중 체크 만족 시 다음 절차를 진행하게끔(이중 체크 만족 시 비밀번호 변경 가능)
+ */
 const passwordInput = document.getElementById("password_hash");
 const confirmPwdInput = document.getElementById("password_hash_check");
 const passwordStatusDiv = document.getElementById("password_status");
