@@ -50,3 +50,26 @@ window.onload = function () {
   document.getElementById("password_hash_check").setAttribute("disabled", "disabled");
   document.getElementsByClassName("change_pwd_btn")[0].setAttribute("disabled", "disabled");
 };
+
+//* pwd 확인 시 일치, 불일치 텍스트 표출 로직
+const passwordInput = document.getElementById("password_hash");
+const confirmPwdInput = document.getElementById("password_hash_check");
+const passwordStatusDiv = document.getElementById("password_status");
+
+function checkPasswords() {
+  const password = passwordInput.value;
+  const confirmPassword = confirmPwdInput.value;
+
+  if (confirmPassword === "") {
+    passwordStatusDiv.textContent = ""; // 비어있을 경우 아무런 텍스트가 없도록 설정
+  } else if (password === confirmPassword) {
+    passwordStatusDiv.textContent = "비밀번호가 일치합니다.";
+    passwordStatusDiv.style.color = "green"; // 일치할 경우 초록색 텍스트로 설정
+  } else {
+    passwordStatusDiv.textContent = "비밀번호가 일치하지 않습니다.";
+    passwordStatusDiv.style.color = "red"; // 불일치할 경우 빨간색 텍스트로 설정
+  }
+}
+
+// 비밀번호 확인 입력란에 입력이 발생할 때마다 함수 호출
+confirmPwdInput.addEventListener("input", checkPasswords);

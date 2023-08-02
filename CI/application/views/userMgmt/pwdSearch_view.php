@@ -53,7 +53,7 @@
           <input type="password" name="password_check" id="password_hash_check" placeholder="새로운 비밀번호 확인"
             class="new_pwd_input_check" required>
           <!-- 질문의 답이 일치하지 않습니다. 표시할 부분 -->
-          
+          <div id="password_status"></div>
         </div>
 
       </div>
