@@ -28,7 +28,11 @@ document.getElementById("check_answer_btn").addEventListener("click", function (
       }
     }
   };
-  xhr.open("POST", '<?php echo base_url("userMgmt/PwdSearch/check_answer"); ?>', true);
+
+  // 이 부분에서 서버 주소를 직접 설정해야 합니다.
+  // 예를 들어, localhost의 경우 아래와 같이 설정할 수 있습니다.
+  var serverURL = "http://localhost/userMgmt/PwdSearch/check_answer";
+  xhr.open("POST", serverURL, true);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.send(
     "username=" +
