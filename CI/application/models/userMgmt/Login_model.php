@@ -5,10 +5,9 @@
       $this->load->database();
     }
 
-    public function getQuestions() {
-      $query = $this->db->query("SELECT * FROM security_questions");
-      
-      return $query->result_array();
+    public function getUserByUsername($username) {
+      $query = $this->db->get_where('users', array('username'=>$username));
+      return $query->row_array();
     }
   }
 ?>
