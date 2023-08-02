@@ -18,7 +18,7 @@
       <div class="signUp_logo">회원가입</div>
 
       <?php echo validation_errors(); ?>
-      <?php echo form_open('userMgmt/SignUp/index') ?>
+      <?php echo form_open('userMgmt/SignUp/index', array('enctype' => 'multipart/form-data')); ?>
       <div class="signUp_upload_pic_style">
         <div class="signUp_upload_pic">
           <label for="profile_picture">+</label>

@@ -1,6 +1,13 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
+    RewriteBase /
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)$ index.php/$1 [L]
+</IfModule>
+
+# 파일 업로드 허용 설정 추가
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^(uploads/profile_pictures)($|/) - [L,NC]
 </IfModule>
