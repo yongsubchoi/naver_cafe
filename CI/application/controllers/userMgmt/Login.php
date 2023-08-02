@@ -26,10 +26,10 @@
         echo "폼 유효성 검사 성공";
 
         $username = $this->input->post('username');
-        $password_hash = $this->input->post('password_hash');
+        $password = $this->input->post('password_hash');
         $user = $this->Login_model->getUserByUsername($username);
 
-        if ($user && password_verify($password_hash, $user['password_hash'])) {
+        if ($user && password_verify($password, $user['password_hash'])) {
           // form의 input 데이터가 DB의 데이터와 일치할 시
           echo "폼 유효성 검사 성공 및 form의 input이 DB와 일치할 시";
           // 세션 발급 및 메인으로 리디렉션

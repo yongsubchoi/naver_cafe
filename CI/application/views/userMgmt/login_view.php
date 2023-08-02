@@ -45,6 +45,6 @@
   </div>
 </body>
 
-<script src="<?php echo base_url('public/views/userMgmt/js/login.js'); ?>"></script>
+<script src="<?php echo base_url('public/views/userMgmt/js/backBtn.js'); ?>"></script>
 
 </html>

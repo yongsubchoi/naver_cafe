@@ -16,7 +16,7 @@ div {
 /** 컨테이너 부분 */
 .container {
   width: 458px;
-  height: 800px;
+  height: 700px;
   background-color: #B3B3B3;
   display: flex;
   flex-direction: column;
@@ -36,8 +36,8 @@ div {
   margin: 0;
   padding: 0;
 }
-/** 회원가입 폼 부분 */
-.signUp_form {
+/** 비밀번호 찾기 폼 부분 */
+.pwdSearch_form {
   width: 100%;
   height: 100%;
   display: flex;
@@ -45,11 +45,11 @@ div {
   justify-content: space-around;
   align-items: center;
 }
-.signUp_form input {
+.pwdSearch_form input {
   border: 0;
 }
-/* 회원가입 상단 텍스트 */
-.signUp_logo {
+/* 로그인 상단 텍스트 */
+.pwdSearch_logo {
   color: #FFF;
   font-family: Inter;
   font-size: 30px;
@@ -57,52 +57,11 @@ div {
   font-weight: 400;
   line-height: normal;
 }
-/* 회원가입 업로드 사진 */
-.signUp_upload_pic {
-  width: 170px;
-  height: 170px;
-  border-radius: 100px;
-  background: #D9D9D9;
-  position: relative;
-  overflow: hidden;
+.input_form{
+  margin-bottom: 200px;
 }
-/* 회원가입 업로드 사진 + 부분 */
-.signUp_upload_pic label {
-  position: absolute;
-  top: 0px;
-  left: 43px;
-  padding: 8px;
-  background-color: #D9D9D9;
-  cursor: pointer;
-  color: #A7A4A4;
-  font-family: Inter;
-  font-size: 100px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  border-radius: 100px;
-}
-.signUp_upload_pic_style {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 60px;
-}
-/* 회원가입 사진 업로드 미리보기 */
-#preview_image {
-  width: 100%;
-  height: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-
-}
-#profile_picture {
-  display: none;
-}
-/* 회원가입 id 입력란 */
-.signUp_input_id {
+/* 로그인 id 입력란 */
+.login_input_id {
   width: 344px;
   height: 48px;
   border-radius: 5px;
@@ -113,23 +72,8 @@ div {
   font-weight: 400;
   line-height: normal;
 }
-#check_username_btn {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: auto;
-  height: 40px;
-  font-family: Inter;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  background-color: #B3B3B3;
-  border-radius: 5px;
-}
-/* 회원가입 pwd 입력란 */
-.signUp_input_pwd {
+/* 새로운 pwd 입력란 */
+.new_pwd_input {
   width: 344px;
   height: 48px;
   border-radius: 5px;
@@ -141,8 +85,21 @@ div {
   line-height: normal;
   margin-top: 7px;
 }
-/* 회원가입 pwd 확인 입력란 */
-.signUp_input_pwd_check {
+/* 분실 시 확인을 위한 질문 */
+.signUp_input_question {
+  width: 349px;
+  height: 48px;
+  border-radius: 5px;
+  background: #D9D9D9;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 7px;
+}
+/* 질문 답변 입력란 */
+.signUp_input_answer {
   width: 344px;
   height: 48px;
   border-radius: 5px;
@@ -154,20 +111,8 @@ div {
   line-height: normal;
   margin-top: 7px;
 }
-/* 회원가입 이메일 입력란 */
-.signUp_input_email {
-  width: 344px;
-  height: 48px;
-  border-radius: 5px;
-  background: #D9D9D9;
-  font-family: Inter;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  margin-top: 7px;
-}
-#check_userEmail_btn {
+/* 질문 답변 확인 버튼 */
+#check_answer_btn {
   position: absolute;
   right: 0;
   top: 55%;
@@ -182,20 +127,8 @@ div {
   background-color: #B3B3B3;
   border-radius: 5px;
 }
-.signUp_input_question {
-  width: 349px;
-  height: 48px;
-  border-radius: 5px;
-  background: #D9D9D9;
-  font-family: Inter;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  margin-top: 7px;
-}
-/* 회원가입 질문 답변 입력란 */
-.signUp_input_answer {
+/* 새로운 비밀번호 확인 입력란 */
+.new_pwd_input_check {
   width: 344px;
   height: 48px;
   border-radius: 5px;
@@ -207,8 +140,9 @@ div {
   line-height: normal;
   margin-top: 7px;
 }
-/* 회원가입 버튼 */
-.signUp_btn {
+
+/* 비밀번호 변경 버튼 */
+.change_pwd_btn {
   width: 154px;
   height: 48px;
   border-radius: 5px;
@@ -217,14 +151,14 @@ div {
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
-.signUp_btn:hover{
+.change_pwd_btn:hover{
   background-color: #A7A7A7;
 }
-/* 회원가입 버튼박스 */
-.signUp_btn_style {
+/* 비밀번호 변경 버튼박스 */
+.change_pwd_btn_style {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 18px;
+  margin-bottom: 30px;
 }
