@@ -66,12 +66,15 @@ function checkPasswords() {
 
   if (confirmPassword === "") {
     passwordStatusDiv.textContent = ""; // 비어있을 경우 아무런 텍스트가 없도록 설정
+    document.getElementsByClassName("change_pwd_btn")[0].setAttribute("disabled", true);
   } else if (password === confirmPassword) {
     passwordStatusDiv.textContent = "비밀번호가 일치합니다.";
     passwordStatusDiv.style.color = "green"; // 일치할 경우 초록색 텍스트로 설정
+    document.getElementsByClassName("change_pwd_btn")[0].removeAttribute("disabled");
   } else {
     passwordStatusDiv.textContent = "비밀번호가 일치하지 않습니다.";
     passwordStatusDiv.style.color = "red"; // 불일치할 경우 빨간색 텍스트로 설정
+    document.getElementsByClassName("change_pwd_btn")[0].setAttribute("disabled", true);
   }
 }
 
