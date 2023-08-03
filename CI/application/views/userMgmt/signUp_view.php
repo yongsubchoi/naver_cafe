@@ -60,7 +60,7 @@
         </select>
       </div>
       <div>
-        <input type="text" name="security_answer" placeholder="질문 답변" class="signUp_input_answer" required>
+        <input type="text" name="security_answer" id="security_answer" placeholder="질문 답변" class="signUp_input_answer" required>
       </div>
       <div class="signUp_btn_style">
         <button type="submit" class="signUp_btn">회원가입</button>

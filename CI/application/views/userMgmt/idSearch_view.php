@@ -32,7 +32,6 @@
         </div>
 
         <div>
-          <!-- <input type="text" name="username" id="username" placeholder="가입 아이디" class="login_input_id" required> -->
           <div id="searched_id"></div>
         </div>
       </div>
@@ -49,5 +48,6 @@
 </body>
 
 <script src="<?php echo base_url('public/views/userMgmt/js/backBtn.js'); ?>"></script>
+<script src="<?php echo base_url('public/views/userMgmt/js/idSearch.js'); ?>"></script>
 
 </html>

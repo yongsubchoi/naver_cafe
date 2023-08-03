@@ -150,6 +150,12 @@ div {
   border: 0;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  color: #A7A4A4;
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 .change_pwd_btn:hover{
   background-color: #A7A7A7;

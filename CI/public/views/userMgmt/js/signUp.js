@@ -21,19 +21,21 @@ function checkPasswords() {
   const confirmPassword = confirmPwdInput.value;
 
   if (confirmPassword === "") {
-    // 비어있을 경우 아무런 텍스트가 없도록 설정
+    //* 비어있을 경우 아무런 텍스트가 없도록 설정
     passwordStatusDiv.textContent = ""; 
     // 회원가입 버튼 비활성화
     document.getElementsByClassName("signUp_btn")[0].setAttribute("disabled", true);
   } else if (password === confirmPassword) {
+    //* 일치할 경우 초록색 텍스트로 설정
     passwordStatusDiv.textContent = "비밀번호가 일치합니다.";
-    // 일치할 경우 초록색 텍스트로 설정
     passwordStatusDiv.style.color = "green"; 
     // 회원가입 버튼 활성화
     document.getElementsByClassName("signUp_btn")[0].removeAttribute("disabled");
+    // email 입력 활성화
+    document.getElementById('email').removeAttribute("disabled");
   } else {
+    //* 불일치할 경우 빨간색 텍스트로 설정
     passwordStatusDiv.textContent = "비밀번호가 일치하지 않습니다.";
-    // 불일치할 경우 빨간색 텍스트로 설정
     passwordStatusDiv.style.color = "red"; 
     // 회원가입 버튼 비활성화
     document.getElementsByClassName("signUp_btn")[0].setAttribute("disabled", true);
@@ -51,6 +53,10 @@ window.onload = function () {
   document.getElementById("password_check").setAttribute("disabled", true);
   // 비밀번호 변경 버튼 비활성화
   document.getElementsByClassName("signUp_btn")[0].setAttribute("disabled", true);
+  // email 입력칸 비활성화
+  document.getElementById('email').setAttribute("disabled", true);
+  // 
+  document.getElementById('security_answer').setAttribute("disabled", true);
 };
 
 // 뒤로가기 버튼 누를 시 브라우저의 이전 페이지로 돌아가는 기능

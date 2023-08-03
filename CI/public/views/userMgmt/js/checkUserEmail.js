@@ -28,6 +28,8 @@ document.addEventListener('DOMContentLoaded', function () {
           userEmailStatus.style.color = 'green';
           // 회원가입 버튼 활성화
           document.getElementsByClassName("signUp_btn")[0].removeAttribute("disabled");
+          // 질문 답변 활성화
+          document.getElementById('security_answer').removeAttribute("disabled");
         }
       }
     };

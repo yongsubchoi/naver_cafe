@@ -104,6 +104,9 @@ div {
   background-color: #B3B3B3;
   border-radius: 5px;
 }
+#email_status {
+  color: red;
+}
 /* 로그인으로 이동 버튼 */
 .change_pwd_btn {
   width: 154px;
@@ -113,6 +116,12 @@ div {
   border: 0;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  color: #A7A4A4;
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 .change_pwd_btn:hover{
   background-color: #A7A7A7;
