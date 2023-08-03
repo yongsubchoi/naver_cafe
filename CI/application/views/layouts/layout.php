@@ -26,12 +26,9 @@
   <!-- 검색 창 부분 -->
   <div class="search_section">
     <div></div>
-    <!-- 검색 창 -->
-    <div class="search_bar">
-      <div></div>
-      <div class="search_btn">
-        <p>검색</p>
-      </div>
+    <div>
+      <input type="text" name="search_input" id="search_input" placeholder="게시글 검색" class="search_posts">
+      <button type="button" id="search_posts_btn">검색</button>
     </div>
   </div>
 
@@ -41,13 +38,35 @@
     <div class="side_bar_section">
       <!-- 사이드바 -->
       <div class="side_bar">
-        <div class="cafe_info">카페정보/나의활동</div>
-        <div class="write_btn">게시글작성</div>
+        <!-- 카페 정보 / 나의 활동 부분 -->
+        <div class="cafe_info">
+          <div class="cafe_info_h">카페정보 나의활동</div>
+          <div class="hr_stick"></div>
+          <div class="cafe_info_m">
+            <div class="cafe_info_m_style">
+              <div class="cafe_info_pic"></div>
+              <div class="cafe_info_info">
+                <span>주인: nowkwon97</span>
+                <span>since 2023.07.13</span>
+              </div>
+            </div>
+            <div class="cafe_info_pr">카페소개: 라라라라라</div>
+          </div>
+          <div class="hr_stick"></div>
+          <div class="cafe_info_f">
+            <div>회원 수 154,312</div>
+            <div>전체 글 수 8,912</div>
+          </div>
+        </div>
+        <!-- 게시글 작성 부분 -->
+        <a href="posts/CreatePosts" class="write_btn">게시글작성</a>
+        <!-- 게시글 분류 부분 -->
         <div class="board_category">게시판분류</div>
+        <!-- 최신댓닷글 부분 -->
         <div class="lastest_posts">최근댓닷글</div>
       </div>
     </div>
-    
+
     <?= $content ?>
   </main>
 
