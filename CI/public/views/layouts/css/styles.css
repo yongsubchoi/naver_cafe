@@ -182,10 +182,12 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  margin-left: 20px;
+  align-items: center;
+  
 }
 .cafe_info_pr {
+  width: 100%;
+  height: 100%;
   color: #FFF;
   font-family: Inter;
   font-size: 16px;
@@ -193,12 +195,27 @@ header {
   font-weight: 400;
   line-height: normal;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  margin-top: 20px;
 }
 .hr_stick {
   width: 187px;
   height: 2px;
   background-color: #B3B3B3;
+}
+.logOut_btn {
+  width: 148px;
+  height: 30px;
+  border-radius: 5px;
+  background: #B3B3B3;
+  color: #000;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 .write_btn {
   width: 191px;
