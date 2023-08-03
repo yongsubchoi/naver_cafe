@@ -20,10 +20,14 @@ document.addEventListener('DOMContentLoaded', function () {
           // 이미 존재하는 이메일일 경우
           userEmailStatus.textContent = '이미 존재하는 이메일입니다.';
           userEmailStatus.style.color = 'red';
+          // 회원가입 버튼 비활성화
+          document.getElementsByClassName("signUp_btn")[0].setAttribute("disabled", true);
         } else {
           // 사용 가능한 이메일일 경우
           userEmailStatus.textContent = '사용 가능한 이메일입니다.';
           userEmailStatus.style.color = 'green';
+          // 회원가입 버튼 활성화
+          document.getElementsByClassName("signUp_btn")[0].removeAttribute("disabled");
         }
       }
     };

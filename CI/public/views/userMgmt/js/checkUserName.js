@@ -24,6 +24,12 @@ document.addEventListener('DOMContentLoaded', function () {
           // 사용 가능한 아이디일 경우
           usernameStatus.textContent = '사용 가능한 아이디입니다.';
           usernameStatus.style.color = 'green';
+          // 회원가입 버튼 활성화
+          document.getElementsByClassName("signUp_btn")[0].removeAttribute("disabled");
+          // 비밀번호 입력 활성화
+          document.getElementById("password_hash").removeAttribute("disabled");
+          // 비밀번호 확인 입력 활성화
+          document.getElementById("password_check").removeAttribute("disabled");
         }
       }
     };
