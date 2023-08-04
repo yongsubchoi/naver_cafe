@@ -11,8 +11,8 @@ class Index extends CI_Controller
   public function index()
   {
     //* 현재 접속한 계정 -> 추후 나의 활동으로 정보 이동 예정
-    $username = $this->session->userdata('username');
-    echo "<strong>현재 접속한 계정: " . $username . "</strong>";
+    $data['username'] = $this->session->userdata('username');
+    echo "<strong>현재 접속한 계정: " . $data['username'] . "</strong>";
 
     $data['content'] = 'main sector';
     // $this->load->view('posts/index_view', $data);
@@ -26,7 +26,10 @@ class Index extends CI_Controller
 
   public function load_myActivity()
   {
-    $this->load->view('sidebar/myActivity_view');
+    $data['username'] = $this->session->userdata('username');
+    $data['created_at'] = $this->session->userdata('created_at');
+    $data['profile_picture_path'] = $this->session->userdata('profile_picture_path');
+    $this->load->view('sidebar/myActivity_view', $data);
   }
 }
 ?>

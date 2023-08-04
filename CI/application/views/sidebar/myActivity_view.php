@@ -4,10 +4,12 @@
 
   <div class="cafe_info_m">
     <div class="cafe_info_m_style">
-      <div class="cafe_info_pic"></div>
+      <div class="cafe_info_pic">
+        <img src="<?php echo base_url('uploads/profile_pictures/' . $profile_picture_path); ?>" alt="프로필 사진">
+      </div>
       <div class="cafe_info_info">
-        <span>이름: nowkwon97</span>
-        <span>가입일: 23.07.14</span>
+        <span>이름: <?php echo $username; ?></span>
+        <span>가입일: <?php echo $created_at; ?></span>
       </div>
     </div>
     <div class="cafe_info_pr">
@@ -17,6 +19,6 @@
   </div>
 
   <div class="cafe_info_f">
-    <button type="button" class="logOut_btn">로그아웃</button>
+    <button type="button" id="logout_btn" class="logOut_btn">로그아웃</button>
   </div>
 <!-- </div> -->

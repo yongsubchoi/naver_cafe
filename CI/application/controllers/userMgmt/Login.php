@@ -35,6 +35,8 @@
           // 세션 발급 및 메인으로 리디렉션
           $userData = array(
             'username' => $user['username'],
+            'created_at' => $user['created_at'],
+            'profile_picture_path' => $user['profile_picture_path'],
             'logged_in' => TRUE
           );
           $this->session->set_userdata($userData);
