@@ -4,6 +4,8 @@
 <head>
   <title>title</title>
   <link rel="stylesheet" href="<?php echo base_url('public/views/posts/css/styles.css'); ?>">
+  <script src="https://cdn.tiny.cloud/1/ht73a10uxzbrth20go3bibcfmp0vwg6pqbzkt1beet30ptgm/tinymce/6/tinymce.min.js"
+    referrerpolicy="origin"></script>
 </head>
 
 <body>
@@ -21,6 +23,43 @@
 
   <!-- 메인 부분 -->
   <main class="main_section">
+    <div class="create_posts">
+      <!-- 게시글 작성 폼 -->
+      <?php echo validation_errors(); ?>
+      <?php echo form_open('posts/createPosts/index') ?>
+      <!-- 게시판 선택 드롭다운 -->
+      <div>
+        <select name="board_category" class="board_category" required>
+          <option value="">게시판을 선택해 주세요.</option>
+          <option value="freeBoard">자유게시판</option>
+          <option value="allBoard">전체게시판</option>
+        </select>
+      </div>
+
+      <!-- 제목 입력 칸 -->
+      <div>
+        <input type="text" name="title" class="post_title" placeholder="제목을 입력해 주세요." required>
+      </div>
+      <!-- 게시글 content 입력 칸 -->
+      <div class="posts_textarea">
+        <textarea placeholder="내용을 입력하세요."></textarea>
+      </div>
+
+      <!-- 취소, 등록 버튼 -->
+      <div class="btn_style">
+        <!-- 취소 버튼 -->
+        <div>
+          <button type="button" class="cancle_btn">취소</button>
+        </div>
+        <!-- 등록 버튼 -->
+        <div>
+          <button type="submit" class="reg_btn">등록</button>
+        </div>
+      </div>
+
+      </form>
+
+    </div>
     <!-- 사이드바 부분 -->
     <div class="side_bar_section">
       <!-- 사이드바 -->
