@@ -6,12 +6,12 @@ document.addEventListener('DOMContentLoaded', function () {
   checkUserEmailBtn.addEventListener('click', function () {
     const userEmail = userEmailInput.value.trim();
     if (userEmail === '') {
-      // 아무런 이메일이 입력되지 않았을 때는 아무 메시지도 보여주지 않습니다.
+      // 아무런 이메일이 입력되지 않았을 때는 아무 메시지도 보여주지 않는다.
       userEmailStatus.textContent = '';
       return;
     }
 
-    // Ajax를 사용하여 서버에 이메일이 존재하는지 확인합니다.
+    // Ajax를 사용하여 서버에 이메일이 존재하는지 확인
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4 && xhr.status === 200) {

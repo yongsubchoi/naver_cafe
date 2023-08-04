@@ -6,12 +6,12 @@ document.addEventListener('DOMContentLoaded', function () {
   checkUsernameBtn.addEventListener('click', function () {
     const username = usernameInput.value.trim();
     if (username === '') {
-      // 아무런 아이디가 입력되지 않았을 때는 아무 메시지도 보여주지 않습니다.
+      // 아무런 아이디가 입력되지 않았을 때는 아무 메시지도 보여주지 않는다.
       usernameStatus.textContent = '';
       return;
     }
 
-    // Ajax를 사용하여 서버에 아이디가 존재하는지 확인합니다.
+    // Ajax를 사용하여 서버에 아이디가 존재하는지 확인
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4 && xhr.status === 200) {
