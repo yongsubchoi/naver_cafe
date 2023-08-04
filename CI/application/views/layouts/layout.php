@@ -40,25 +40,16 @@
       <div class="side_bar">
         <!-- 카페 정보 / 나의 활동 부분 -->
         <div class="cafe_info">
-          <div class="cafe_info_h">카페정보 나의활동</div>
-          
-          <div class="cafe_info_m">
-            <div class="cafe_info_m_style">
-              <div class="cafe_info_pic"></div>
-              <div class="cafe_info_info">
-                <span>이름: nowkwon97</span>
-                <span>가입일: 23.07.14</span>
-              </div>
-            </div>
-            <div class="cafe_info_pr">
-              <div>내가 쓴 글 보기 1개</div>
-              <div>내가 쓴 댓글 보기 2개</div>
-            </div>
+          <div class="cafe_info_h">
+            <a href="#" id="cafe_info_link">카페정보</a>
+            <span>/</span>
+            <a href="#" id="my_activity_link">나의활동</a>
           </div>
-          
-          <div class="cafe_info_f">
-            <button type="button" class="logOut_btn">로그아웃</button>
+
+          <div id="content_div">
+            <?php $this->load->view('sidebar/cafeInfo_view'); // 초기에 '카페정보'를 로드 ?>
           </div>
+
         </div>
         <!-- 게시글 작성 부분 -->
         <a href="posts/CreatePosts" class="write_btn">게시글작성</a>
@@ -81,5 +72,8 @@
     </div>
   </footer>
 </body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="<?php echo base_url('public/views/layouts/js/sidebar.js'); ?>"></script>
 
 </html>

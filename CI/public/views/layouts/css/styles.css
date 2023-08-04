@@ -133,17 +133,28 @@ header {
   justify-content: flex-end;
   align-items: center;
   margin-right: 20px;
+  /* margin-bottom: 10px; */
+}
+#cafe_info_link, 
+#my_activity_link {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+#content_div {
+  width: 100%;
+  height: 90%;
 }
 .cafe_info_m {
   width: 100%;
-  height: 50%;
+  height: 60%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
 .cafe_info_f {
   width: 100%;
-  height: 20%;
+  height: 40%;
+  /* margin-top: 50px; */
 }
 .cafe_info_pic {
   width: 61px;
@@ -166,7 +177,7 @@ header {
 }
 .cafe_info_m_style {
   width: 100%;
-  height: 100%;
+  height: 50%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -183,11 +194,10 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
 }
 .cafe_info_pr {
   width: 100%;
-  height: 100%;
+  height: 50%;
   color: #FFF;
   font-family: Inter;
   font-size: 16px;
@@ -204,6 +214,7 @@ header {
   width: 187px;
   height: 2px;
   background-color: #B3B3B3;
+  margin-bottom: 5px;
 }
 .logOut_btn {
   width: 148px;

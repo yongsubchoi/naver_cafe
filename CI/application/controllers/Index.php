@@ -19,7 +19,7 @@ class Index extends CI_Controller
     $this->layouts->view('posts/index_view', $data);
   }
 
-  public function load_cafeinfo()
+  public function load_cafeInfo()
   {
     $this->load->view('sidebar/cafeInfo_view');
   }

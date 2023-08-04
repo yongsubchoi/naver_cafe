@@ -1,6 +1,6 @@
 <!-- 나의 활동 부분 -->
-<div class="cafe_info">
-  <div class="cafe_info_h">카페정보 나의활동</div>
+<!-- <div class="cafe_info"> -->
+  <!-- <div class="cafe_info_h">카페정보 나의활동</div> -->
 
   <div class="cafe_info_m">
     <div class="cafe_info_m_style">
@@ -19,4 +19,4 @@
   <div class="cafe_info_f">
     <button type="button" class="logOut_btn">로그아웃</button>
   </div>
-</div>
+<!-- </div> -->
