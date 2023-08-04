@@ -4,7 +4,9 @@
   <!-- <div class="hr_stick"></div> -->
   <div class="cafe_info_m">
     <div class="cafe_info_m_style">
-      <div class="cafe_info_pic"></div>
+      <div class="cafe_info_pic">
+        <img src="public/img/cat.jpg" alt="카페사진">
+      </div>
       <div class="cafe_info_info">
         <span>주인: nowkwon97</span>
         <span>since 23.07.13</span>
