@@ -23,65 +23,68 @@
 
   <!-- 메인 부분 -->
   <main class="main_section">
-    <div class="create_posts">
-      <!-- 게시글 작성 폼 -->
-      <?php echo validation_errors(); ?>
-      <?php echo form_open('posts/createPosts/index') ?>
-      <!-- 게시판 선택 드롭다운 -->
-      <div>
-        <select name="board_category" class="board_category" required>
-          <option value="">게시판을 선택해 주세요.</option>
-          <option value="freeBoard">자유게시판</option>
-          <option value="allBoard">전체게시판</option>
-        </select>
-      </div>
-
-      <!-- 제목 입력 칸 -->
-      <div>
-        <input type="text" name="title" class="post_title" placeholder="제목을 입력해 주세요." required>
-      </div>
-      <!-- 게시글 content 입력 칸 -->
-      <div class="posts_textarea">
-        <textarea placeholder="내용을 입력하세요."></textarea>
-      </div>
-
-      <!-- 취소, 등록 버튼 -->
-      <div class="btn_style">
-        <!-- 취소 버튼 -->
+    <!-- 게시글 작성 폼 -->
+    <?php echo validation_errors(); ?>
+    <?php echo form_open('posts/createPosts/index') ?>
+    <div class="form_style">
+      <div class="create_posts">
+        <!-- 게시판 선택 드롭다운 -->
         <div>
-          <button type="button" class="cancle_btn">취소</button>
+          <select name="board_category" class="board_category" required>
+            <option value="">게시판을 선택해 주세요.</option>
+            <option value="freeBoard">자유게시판</option>
+            <option value="allBoard">전체게시판</option>
+          </select>
         </div>
-        <!-- 등록 버튼 -->
+
+        <!-- 제목 입력 칸 -->
         <div>
-          <button type="submit" class="reg_btn">등록</button>
+          <input type="text" name="title" class="post_title" placeholder="제목을 입력해 주세요." required>
+        </div>
+        <!-- 게시글 content 입력 칸 -->
+        <div class="posts_textarea">
+          <textarea name="content" placeholder="내용을 입력하세요."></textarea>
+        </div>
+
+        <!-- 취소, 등록 버튼 -->
+        <div class="btn_style">
+          <!-- 취소 버튼 -->
+          <div>
+            <button type="button" class="cancle_btn">취소</button>
+          </div>
+          <!-- 등록 버튼 -->
+          <div>
+            <button type="submit" class="reg_btn">등록</button>
+          </div>
+        </div>
+
+
+
+      </div>
+      <!-- 사이드바 부분 -->
+      <div class="side_bar_section">
+        <!-- 사이드바 -->
+        <div class="side_bar">
+          <div class="sb_set_anmt">
+            <label>
+              <input type="checkbox" name="is_notice" id="notice_on" value="on">
+              공지로 등록
+            </label>
+          </div>
+          <div class="sb_set_scope_disclosure">
+            <label>
+              <input type="radio" name="visibility" id="forAll" value="forAll" checked>
+              전체공개
+            </label>
+            <label>
+              <input type="radio" name="visibility" id="forMember" value="forMember">
+              멤버공개
+            </label>
+          </div>
         </div>
       </div>
-
-      </form>
-
     </div>
-    <!-- 사이드바 부분 -->
-    <div class="side_bar_section">
-      <!-- 사이드바 -->
-      <div class="side_bar">
-        <div class="sb_set_anmt">
-          <label>
-            <input type="checkbox" name="is_notice" id="notice_on" value="on">
-            공지로 등록
-          </label>
-        </div>
-        <div class="sb_set_scope_disclosure">
-          <label>
-            <input type="radio" name="board_category" id="category_all" value="all" checked>
-            전체공개
-          </label>
-          <label>
-            <input type="radio" name="board_category" id="category_member" value="member">
-            멤버공개
-          </label>
-        </div>
-      </div>
-    </div>
+    </form>
 
 
   </main>
