@@ -47,8 +47,11 @@ class CreatePosts extends CI_Controller
       // 유효성 검사 성공 시
       $username = $this->session->userdata('username');
       $user_id = $this->CreatePosts_model->getUserIdByUsername($username);
+      // is_notice컬럼의 값을 0 or 1 로 설정하기 위해
       $is_notice = ($this->input->post('is_notice') === 'on') ? true : false;
       $is_notice_value = $is_notice ? 1 : 0;
+      // 시간대를 한국으로 설정
+      date_default_timezone_set('Asia/Seoul');
 
       $data = array(
         'user_id' => $user_id,

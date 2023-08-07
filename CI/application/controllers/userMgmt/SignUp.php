@@ -35,6 +35,9 @@ class SignUp extends CI_Controller
       // 폼 유효성 검사 성공 시
 
       $profile_picture_path = $this->saveProfilePicture();
+
+      date_default_timezone_set('Asia/Seoul');
+      
       // DB에 보낼 데이터
       $dbData = array(
         'username' => $username,
