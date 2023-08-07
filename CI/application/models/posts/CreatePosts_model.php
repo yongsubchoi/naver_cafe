@@ -23,6 +23,14 @@ class CreatePosts_model extends CI_Model
   {
     // $data를  posts테이블에 삽입
     $this->db->insert('posts', $data);
+
+    // 삽입된 게시글의 id를 반환
+    return $this->db->insert_id();
+  }
+
+  public function insertFileData($data)
+  {
+    $this->db->insert('files', $data);
   }
 }
 ?>

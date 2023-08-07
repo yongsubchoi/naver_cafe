@@ -43,7 +43,7 @@
         </div>
         <!-- 게시글 content 입력 칸 -->
         <div class="posts_textarea">
-          <textarea name="content" placeholder="내용을 입력하세요."></textarea>
+          <textarea name="content" id="post_content" placeholder="내용을 입력하세요."></textarea>
         </div>
 
         <!-- 취소, 등록 버튼 -->
@@ -100,5 +100,26 @@
 </body>
 
 <script src="<?php echo base_url('public/views/posts/js/createPosts.js'); ?>"></script>
+<script>
+  tinymce.init({
+    selector: '#post_content',
+    plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
+    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+    tinycomments_mode: 'embedded',
+    tinycomments_author: 'Author name',
+    mergetags_list: [
+      { value: 'First.Name', title: 'First Name' },
+      { value: 'Email', title: 'Email' },
+    ],
+    automatic_uploads: true, // 이미지 자동 업로드 활성화
+    // 이미지 업로드 처리를 위한 컨트롤러 메서드의 URL
+    images_upload_url: 'http://localhost/posts/CreatePosts/uploadImage',
+    // 파일이 저장될 경로
+    images_upload_base_path: 'C:/workspace/naver_cafe/CI/uploads/post_files'
+
+    // images_upload_credentials: true, // 크로스-도메인 인증 허용경로
+    // ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant"))
+  });
+</script>
 
 </html>

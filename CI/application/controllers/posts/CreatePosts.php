@@ -62,11 +62,84 @@ class CreatePosts extends CI_Controller
         'created_at' => date('Y-m-d H:i:s'),
         'visibility' => $this->input->post('visibility'),
       );
-      // $data를 posts 테이블에 삽입
-      $this->CreatePosts_model->createPost($data);
+      // $data를 posts 테이블에 삽입하고 생성된 post_id를 반환
+      $post_id = $this->CreatePosts_model->createPost($data);
+      // 이미지 업로드 메서드 호출
+      $this->uploadImage($post_id);
+
       // 완료 후 메인으로 리디렉션
       // ! 게시글 상세조회 페이지 구현 후 리디렉션 바꿔주기
-      redirect('');
+      // redirect('');
+    }
+  }
+
+  public function uploadImage($post_id)
+  {
+    echo "uploadImage 함수 호출";
+    echo "<br>";
+
+    // $path = 'C:/workspace/naver_cafe/CI/uploads/post_files';
+    // $filename = 'test';
+    // $allowedTypes = ['jpg', 'png'];
+    // $maxFileSize = 2048;
+
+    // $this->load->library('upload');
+    // // 업로드 경로 설정
+    // $this->upload->set_upload_path($path);
+    // // 업로드 파일 허용 타입
+    // $this->upload->set_allowed_types($allowedTypes);
+    // // 업로드 파일 최대 용량 설정
+    // $this->upload->set_max_filesize($maxFileSize);
+    // // 경로에 중복된 이름이 있을 시 파일 명 뒤에 숫자 1을 증가시켜 고유성 확보
+    // $this->upload->set_filename($path, $filename);
+
+
+    $config['upload_path'] = 'C:/workspace/naver_cafe/CI/uploads/post_files';
+    $config['allowed_types'] = 'gif|jpg|png';
+    $config['max_size'] = 2048;
+    $config['encrypt_name'] = true;
+
+    $this->load->library('upload', $config);
+
+    // $image_url = null;
+    // $upload_data = null;
+
+    if (!$this->upload->do_upload('file')) {
+      // 업로드 실패 처리
+      // !현재 이부분
+      echo "업로드 실패 처리" . "<br>";
+      $error = array('error' => $this->upload->display_errors());
+      echo json_encode(($error));
+    } else {
+      // 업로드 성공 처리
+      echo "업로드 성공 처리";
+      $upload_data = $this->upload->data();
+      $image_url = base_url('uploads/post_files/' . $upload_data['file_name']);
+
+      // 업로드된 이미지 정보를 반환
+      $response = array(
+        'location' => $image_url, // 업로드된 이미지의 URL
+      );
+
+      echo json_encode($response);
+
+      date_default_timezone_set('Asia/Seoul');
+      $username = $this->session->userdata('username');
+      $user_id = $this->CreatePosts_model->getUserIdByUsername($username);
+
+      if ($upload_data) {
+        $file_data = array(
+          'file_name' => $upload_data['file_name'],
+          'file_path' => 'uploads/post_files/' . $upload_data['file_name'],
+          'file_size' => $upload_data['file_size'],
+          'file_type' => $upload_data['file_type'],
+          'created_at' => date('Y-m-d H:i:s'),
+          'user_id' => $user_id,
+          'post_id' => $post_id,
+        );
+        // 파일 정보를 files 테이블에 삽입
+        $this->CreatePosts_model->insertFileData($file_data);
+      }
     }
   }
 }
