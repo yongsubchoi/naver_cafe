@@ -281,7 +281,7 @@ footer {
   justify-content: flex-start;
   align-items: center;
 }
-.btn_gotop {
+.btn_goTop {
 	display:none;
 	position:fixed;
 	bottom:30px;

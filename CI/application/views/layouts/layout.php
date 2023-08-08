@@ -72,7 +72,7 @@
     </div>
     <!-- 상단으로 이동하기 버튼 -->
     <div>
-      <a href="#" class="btn_gotop">
+      <a href="#" class="btn_goTop">
         <span class="glyphicon glyphicon-chevron-up">
           ^</span>
       </a>
@@ -82,18 +82,5 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="<?php echo base_url('public/views/layouts/js/sidebar.js'); ?>"></script>
-<script>
-  $(window).scroll(function () {
-    if ($(this).scrollTop() > 300) {
-      $('.btn_gotop').show();
-    } else {
-      $('.btn_gotop').hide();
-    }
-  });
-  $('.btn_gotop').click(function () {
-    $('html, body').animate({ scrollTop: 0 }, 400);
-    return false;
-  });
-</script>
-
+<script src="<?php echo base_url('public/views/layouts/js/topBtn.js'); ?>"></script>
 </html>
