@@ -37,6 +37,7 @@
             'username' => $user['username'],
             'created_at' => $user['created_at'],
             'profile_picture_path' => $user['profile_picture_path'],
+            'is_admin' => $user['is_admin'],
             'logged_in' => TRUE
           );
           $this->session->set_userdata($userData);

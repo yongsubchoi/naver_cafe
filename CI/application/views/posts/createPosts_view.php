@@ -48,7 +48,7 @@
         </div>
         <!-- 게시글 content 입력 칸 -->
         <div class="posts_textarea">
-          <textarea name="content" id="post_content" placeholder="내용을 입력하세요."></textarea>
+          <textarea name="content" id="post_content" placeholder="내용을 입력하세요." required></textarea>
         </div>
 
         <!-- 취소, 등록 버튼 -->
@@ -70,12 +70,16 @@
       <div class="side_bar_section">
         <!-- 사이드바 -->
         <div class="side_bar">
-          <div class="sb_set_anmt">
-            <label>
-              <input type="checkbox" name="is_notice" id="notice_on" value="on">
-              공지로 등록
-            </label>
-          </div>
+          <!-- 관리자만 공지등록이 보이도록 설정 -->
+          <?php if ($this->session->userdata('is_admin')) { ?>
+            <div class="sb_set_anmt">
+              <label>
+                <input type="checkbox" name="is_notice" id="notice_on" value="on">
+                공지로 등록
+              </label>
+            </div>
+          <?php } ?>
+
           <div class="sb_set_scope_disclosure">
             <label>
               <input type="radio" name="visibility" id="forAll" value="forAll" checked>
@@ -86,6 +90,7 @@
               멤버공개
             </label>
           </div>
+
         </div>
       </div>
     </div>
@@ -117,7 +122,7 @@
       { value: 'Email', title: 'Email' },
     ],
     // 이미지 자동 업로드 활성화
-    automatic_uploads: true, 
+    automatic_uploads: true,
     // 이미지 업로드 처리를 위한 컨트롤러 메서드의 URL
     images_upload_url: 'http://localhost/posts/CreatePosts/uploadImage',
     // 파일이 저장될 경로
