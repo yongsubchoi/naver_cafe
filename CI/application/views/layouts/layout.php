@@ -71,10 +71,12 @@
       <div style="margin-left: 10px">http://localhost/cafe</div>
     </div>
     <!-- 상단으로 이동하기 버튼 -->
-    <a href="#" class="btn_gotop">
-      <span class="glyphicon glyphicon-chevron-up">
-      top</span>
-    </a>
+    <div>
+      <a href="#" class="btn_gotop">
+        <span class="glyphicon glyphicon-chevron-up">
+          ^</span>
+      </a>
+    </div>
   </footer>
 </body>
 
