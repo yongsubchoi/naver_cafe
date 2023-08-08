@@ -43,7 +43,8 @@
         </div>
         <!-- 첨푸 파일 칸 -->
         <div class="add_file">
-          첨부파일: <input type="file" name="file_name">
+          <div>첨부 파일: </div>
+          <input type="file" class="add_file_input" name="file_name">
         </div>
         <!-- 게시글 content 입력 칸 -->
         <div class="posts_textarea">
