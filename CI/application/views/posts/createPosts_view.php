@@ -1,3 +1,4 @@
+<?php if ($this->session->userdata('logged_in')) { ?>
 <!DOCTYPE html>
 <html>
 
@@ -135,3 +136,9 @@
 <script src="<?php echo base_url('public/views/userMgmt/js/backBtn.js'); ?>"></script>
 
 </html>
+<?php } else { ?>
+  <script>
+    alert('로그인을 해주세요.');
+    window.location.href="/userMgmt/Login";
+  </script>
+<?php } ?>
