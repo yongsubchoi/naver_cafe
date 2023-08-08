@@ -25,7 +25,7 @@
   <main class="main_section">
     <!-- 게시글 작성 폼 -->
     <?php echo validation_errors(); ?>
-    <?php echo form_open('posts/createPosts/index') ?>
+    <?php echo form_open_multipart('posts/createPosts/index') ?>
     <div class="form_style">
       <div class="create_posts">
         <!-- 게시판 선택 드롭다운 -->
@@ -40,6 +40,10 @@
         <!-- 제목 입력 칸 -->
         <div>
           <input type="text" name="title" class="post_title" placeholder="제목을 입력해 주세요." required>
+        </div>
+        <!-- 첨푸 파일 칸 -->
+        <div class="add_file">
+          첨부파일: <input type="file" name="file_name">
         </div>
         <!-- 게시글 content 입력 칸 -->
         <div class="posts_textarea">
@@ -104,14 +108,15 @@
   tinymce.init({
     selector: '#post_content',
     plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
-    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat | image',
     tinycomments_mode: 'embedded',
     tinycomments_author: 'Author name',
     mergetags_list: [
       { value: 'First.Name', title: 'First Name' },
       { value: 'Email', title: 'Email' },
     ],
-    automatic_uploads: true, // 이미지 자동 업로드 활성화
+    // 이미지 자동 업로드 활성화
+    automatic_uploads: true, 
     // 이미지 업로드 처리를 위한 컨트롤러 메서드의 URL
     images_upload_url: 'http://localhost/posts/CreatePosts/uploadImage',
     // 파일이 저장될 경로
