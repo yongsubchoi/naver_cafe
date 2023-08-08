@@ -12,8 +12,10 @@
     <div class="login_signUp_style">
       <div></div>
       <div>
+        <?php if (!$this->session->userdata('logged_in')) { ?>
         <a href="userMgmt/Login">로그인</a>
         <a href="userMgmt/SignUp">회원가입</a>
+        <?php } ?>
       </div>
     </div>
     <!-- 카페 대문 부분 -->
