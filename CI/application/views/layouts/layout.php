@@ -70,10 +70,28 @@
       <div style="margin-left: 20px">재권의 개발 카페</div>
       <div style="margin-left: 10px">http://localhost/cafe</div>
     </div>
+    <!-- 상단으로 이동하기 버튼 -->
+    <a href="#" class="btn_gotop">
+      <span class="glyphicon glyphicon-chevron-up">
+      top</span>
+    </a>
   </footer>
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="<?php echo base_url('public/views/layouts/js/sidebar.js'); ?>"></script>
+<script>
+  $(window).scroll(function () {
+    if ($(this).scrollTop() > 300) {
+      $('.btn_gotop').show();
+    } else {
+      $('.btn_gotop').hide();
+    }
+  });
+  $('.btn_gotop').click(function () {
+    $('html, body').animate({ scrollTop: 0 }, 400);
+    return false;
+  });
+</script>
 
 </html>

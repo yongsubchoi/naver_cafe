@@ -57,7 +57,7 @@ class CreatePosts extends CI_Controller
 
       // 완료 후 메인으로 리디렉션
       // ! 게시글 상세조회 페이지 구현 후 리디렉션 바꿔주기
-      // redirect('');
+      redirect('');
     }
   }
 

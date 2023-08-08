@@ -55,7 +55,7 @@
         <div class="btn_style">
           <!-- 취소 버튼 -->
           <div>
-            <button type="button" class="cancle_btn">취소</button>
+            <button type="button" id="goBackBtn" class="cancle_btn">취소</button>
           </div>
           <!-- 등록 버튼 -->
           <div>
@@ -127,5 +127,6 @@
     // ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant"))
   });
 </script>
+<script src="<?php echo base_url('public/views/userMgmt/js/backBtn.js'); ?>"></script>
 
 </html>
