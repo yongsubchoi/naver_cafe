@@ -1,7 +1,7 @@
 <!-- 나의 활동 부분 -->
 <!-- <div class="cafe_info"> -->
   <!-- <div class="cafe_info_h">카페정보 나의활동</div> -->
-
+<?php if ($this->session->userdata('logged_in')) { ?>
   <div class="cafe_info_m">
     <div class="cafe_info_m_style">
       <div class="cafe_info_pic">
@@ -21,4 +21,10 @@
   <div class="cafe_info_f">
     <button type="button" id="logout_btn" class="logOut_btn">로그아웃</button>
   </div>
+  <?php } else { ?>
+    <script>
+      alert("로그인을 해주세요.");
+      window.location.href = "<?php echo base_url('userMgmt/Login'); ?>";
+    </script>
+  <?php }?>
 <!-- </div> -->
