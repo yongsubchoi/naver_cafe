@@ -6,6 +6,7 @@ class Index extends CI_Controller
     parent::__construct();
     $this->load->library('layouts');
     $this->load->library('session');
+    $this->load->model('posts/Index_model');
   }
 
   public function index()
@@ -14,7 +15,8 @@ class Index extends CI_Controller
     $data['username'] = $this->session->userdata('username');
     echo "<strong>현재 접속한 계정: " . $data['username'] . "</strong>";
 
-    $data['content'] = 'main sector';
+    $data['posts'] = $this->Index_model->getPosts();
+    // $data['username'] = $this->Index_model->getUsernameByUserId();
     // $this->load->view('posts/index_view', $data);
     $this->layouts->view('posts/index_view', $data);
   }

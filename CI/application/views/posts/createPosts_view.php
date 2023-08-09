@@ -1,3 +1,4 @@
+<!-- 로그인한 유저만 접근이 가능하도록 설정 -->
 <?php if ($this->session->userdata('logged_in')) { ?>
 <!DOCTYPE html>
 <html>
@@ -49,7 +50,7 @@
         </div>
         <!-- 게시글 content 입력 칸 -->
         <div class="posts_textarea">
-          <textarea name="content" id="post_content" placeholder="내용을 입력하세요." required></textarea>
+          <textarea name="content" id="post_content" placeholder="내용을 입력하세요."></textarea>
         </div>
 
         <!-- 취소, 등록 버튼 -->
@@ -136,6 +137,7 @@
 <script src="<?php echo base_url('public/views/userMgmt/js/backBtn.js'); ?>"></script>
 
 </html>
+<!-- 그렇지 않을 경우 로그인 페이지로 이동 -->
 <?php } else { ?>
   <script>
     alert('로그인을 해주세요.');
