@@ -333,11 +333,19 @@ header {
 .title_style {
   width: 475px;
 }
+.title_style a{
+  text-decoration: none;
+  color: black;
+}
 .notice_title_style {
   width: 457px;
   height: 45px;
   display: flex;
   align-items: center;
+}
+.notice_title_style a {
+  text-decoration: none;
+  color: black;
 }
 .new_label {
   color: #FF0000;

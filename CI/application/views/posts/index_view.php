@@ -21,15 +21,9 @@
 
           <!-- 게시글 제목 -->
           <div class="notice_title_style">
-            <?php
-            $timestamp_created_at = strtotime($post['created_at']);
-            $current_time = time();
-            // 게시글 작성일과 현재 날짜 비교
-            if (date('Y-m-d', $timestamp_created_at) === date('Y-m-d', $current_time)) {
-              echo '<span class="new_label">n </span>'; // 오늘 게시글이면 "New" 레이블 출력
-            }
-            echo $post['title'];
-            ?>
+            <a href="/">
+              <?php echo $post['title']; ?>
+            </a>
           </div>
 
           <!-- 게시글 작성자 -->
@@ -79,8 +73,11 @@
         if (date('Y-m-d', $timestamp_created_at) === date('Y-m-d', $current_time)) {
           echo '<span class="new_label">n </span>'; // 오늘 게시글이면 "New" 레이블 출력
         }
-        echo $post['title'];
         ?>
+        <a href="/">
+          <?php
+          echo $post['title']; ?>
+        </a>
       </div>
 
       <!-- 게시글 작성자 -->
