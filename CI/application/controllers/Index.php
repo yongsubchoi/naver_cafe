@@ -13,14 +13,19 @@ class Index extends CI_Controller
   public function index()
   {
     // $config['base_url'] = base_url() . "index/index"; // localhost
-    // $config['base_url'] = base_url()."/Index";
+    $config['base_url'] = base_url()."/Index";
     // echo "config['base_url'] is " . $config['base_url'] . "<br>";
+
+    // 토탈 게시글의 개수 설정
     $config['total_rows'] = $this->Index_model->getPostsCount();
     // echo "config['total_rows'] is " . $config['total_rows'] . "<br>";
+    
+    // 페이지에 보여질 게시글의 개수 설정
     $config['per_page'] = 25;
-    // $config['page_query_string'] = false;
+    // 쿼리스트링을 사용하기 위한 설정
     $config['enable_query_strings'] = true;
     $config['page_query_string'] = true;
+    // page number를 사용하여 url에 표현
     $config['use_page_numbers'] = true;
     $config['query_string_segment'] = "page";
     // $config['uri_segment'] = 3; // 페이지 번호가 위치한 URI 세그먼트 지정
@@ -33,7 +38,8 @@ class Index extends CI_Controller
 
     $data['notice_posts'] = $this->Index_model->getNoticePosts();
     // $this->uri->segment(2)를 통해 현재 페이지 번호를 가져옴
-    $page_number = $this->uri->segment(3) ? $this->uri->segment(3) : 1;
+    $page_number = $this->input->get('page') ? $this->input->get('page') : 1;
+
 
     $data['posts'] = $this->Index_model->getPostsPaginated($config['per_page'], ($page_number - 1) * $config['per_page']);
 
