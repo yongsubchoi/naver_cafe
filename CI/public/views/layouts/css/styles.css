@@ -395,7 +395,7 @@ header {
   align-items: center;
 }
 .pagination_links {
-  width: 8%;
+  width: 25%;
   height: 100px;
   display: flex;
   flex-direction: row;

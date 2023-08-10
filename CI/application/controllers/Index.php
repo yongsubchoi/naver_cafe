@@ -22,6 +22,12 @@ class Index extends CI_Controller
     
     // 페이지에 보여질 게시글의 개수 설정
     $config['per_page'] = 25;
+    // 페이지 번호 좌우로 몇개의 숫자 링크를 보여줄지 설정
+    $config['num_links'] = 2;
+    // 페이지네이션 링크의 '처음으로' 링크 설정
+    $config['first_link'] = "처음";
+    // 페이지네이션 링크의 '마지막으로' 링크 설정
+    $config['last_link'] = "마지막";
     // 쿼리스트링을 사용하기 위한 설정
     $config['enable_query_strings'] = true;
     $config['page_query_string'] = true;
