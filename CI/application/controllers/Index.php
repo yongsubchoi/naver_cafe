@@ -6,16 +6,40 @@ class Index extends CI_Controller
     parent::__construct();
     $this->load->library('layouts');
     $this->load->library('session');
+    $this->load->library('pagination');
     $this->load->model('posts/Index_model');
   }
 
   public function index()
   {
-    //* 현재 접속한 계정 -> 추후 나의 활동으로 정보 이동 예정
+    // $config['base_url'] = base_url() . "index/index"; // localhost
+    // $config['base_url'] = base_url()."/Index";
+    // echo "config['base_url'] is " . $config['base_url'] . "<br>";
+    $config['total_rows'] = $this->Index_model->getPostsCount();
+    // echo "config['total_rows'] is " . $config['total_rows'] . "<br>";
+    $config['per_page'] = 25;
+    // $config['page_query_string'] = false;
+    $config['enable_query_strings'] = true;
+    $config['page_query_string'] = true;
+    $config['use_page_numbers'] = true;
+    $config['query_string_segment'] = "page";
+    // $config['uri_segment'] = 3; // 페이지 번호가 위치한 URI 세그먼트 지정
+
+    $this->pagination->initialize($config);
+
+
     $data['username'] = $this->session->userdata('username');
     echo "<strong>현재 접속한 계정: " . $data['username'] . "</strong>";
 
-    $data['posts'] = $this->Index_model->getPosts();
+    $data['notice_posts'] = $this->Index_model->getNoticePosts();
+    // $this->uri->segment(2)를 통해 현재 페이지 번호를 가져옴
+    $page_number = $this->uri->segment(3) ? $this->uri->segment(3) : 1;
+
+    $data['posts'] = $this->Index_model->getPostsPaginated($config['per_page'], ($page_number - 1) * $config['per_page']);
+
+    // echo "this->uri->segment(3) is " . $this->uri->segment(3) . "<br>";
+    // echo "page_number is " . $page_number . "<br>";
+    // echo "config['uri_segment'] is " . $config['uri_segment'];
     // $data['username'] = $this->Index_model->getUsernameByUserId();
     // $this->load->view('posts/index_view', $data);
     $this->layouts->view('posts/index_view', $data);
@@ -35,12 +59,12 @@ class Index extends CI_Controller
   }
   // 로그아웃 함수
   public function logout()
-    {
-        // 세션을 종료합니다.
-        $this->session->sess_destroy();
+  {
+    // 세션을 종료합니다.
+    $this->session->sess_destroy();
 
-        // 로그아웃 처리 완료 후, 홈페이지 또는 로그인 페이지로 이동합니다.
-        redirect(''); // 홈페이지 또는 로그인 페이지 URL을 입력하세요.
-    }
+    // 로그아웃 처리 완료 후, 홈페이지 또는 로그인 페이지로 이동합니다.
+    redirect(''); // 홈페이지 또는 로그인 페이지 URL을 입력하세요.
+  }
 }
 ?>

@@ -1,12 +1,13 @@
 <!-- 메인 게시판 부분 -->
 <div class="main_posts">
+
   <div class="t_hr_line"></div>
   <!-- <?php print_r($posts); ?> -->
   <!-- 공지 게시글 -->
   <div class="notice_area">
-    <?php foreach ($posts as $post): ?>
+    <?php foreach ($notice_posts as $post): ?>
       <div class="anmt_area">
-        <?php if ($post['is_notice'] == TRUE) { ?>
+        <?php if ($post['is_notice'] == TRUE): ?>
           <!-- 공지 사항 -->
           <div class="notice_style">
             공지
@@ -51,10 +52,11 @@
             <?php echo $post['view_count']; ?>
           </div>
 
-        <?php } ?>
+        <?php endif; ?>
       </div>
     <?php endforeach; ?>
   </div>
+
   <!-- 일반 게시글 -->
   <?php foreach ($posts as $post): ?>
     <div class="posts_style">
@@ -71,7 +73,7 @@
         $current_time = time();
         // 게시글 작성일과 현재 날짜 비교
         if (date('Y-m-d', $timestamp_created_at) === date('Y-m-d', $current_time)) {
-          echo '<span class="new_label">n </span>'; // 오늘 게시글이면 "New" 레이블 출력
+          echo '<span class="new_label">new </span>'; // 오늘 게시글이면 "New" 레이블 출력
         }
         ?>
         <a href="/">
@@ -108,4 +110,10 @@
     </div>
     <div class="hr_line"></div>
   <?php endforeach; ?>
+  <!-- 페이지네이션 할 부분 -->
+  <div class="pagination_style">
+    <div class="pagination_links">
+      <?php echo $this->pagination->create_links(); ?>
+    </div>
+  </div>
 </div>

@@ -21,6 +21,7 @@
     <!-- 카페 대문 부분 -->
     <div class="cafe_door">
       <span class="overlay_text"><strong>재권의 개발 카페</strong></span>
+      <span class="overlay_text_b">http://localhost</span>
       <a href="/"><img src="public/img/naver_cafe_logo.jpg" alt="카페사진"></a>
     </div>
 
@@ -86,5 +87,4 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="<?php echo base_url('public/views/layouts/js/sidebar.js'); ?>"></script>
 <script src="<?php echo base_url('public/views/layouts/js/topBtn.js'); ?>"></script>
-
 </html>
