@@ -21,6 +21,7 @@ class Index extends CI_Controller
     // echo "config['total_rows'] is " . $config['total_rows'] . "<br>";
     
     // 페이지에 보여질 게시글의 개수 설정
+    // view에서 select로 선택한 값으로 바뀔 예정
     $config['per_page'] = 25;
     // 페이지 번호 좌우로 몇개의 숫자 링크를 보여줄지 설정
     $config['num_links'] = 2;
@@ -38,7 +39,7 @@ class Index extends CI_Controller
 
     $this->pagination->initialize($config);
 
-
+    // 개발 확인용
     $data['username'] = $this->session->userdata('username');
     echo "<strong>현재 접속한 계정: " . $data['username'] . "</strong>";
 

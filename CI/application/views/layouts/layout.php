@@ -13,8 +13,8 @@
       <div></div>
       <div>
         <?php if (!$this->session->userdata('logged_in')) { ?>
-          <a href="userMgmt/Login">로그인</a>
-          <a href="userMgmt/SignUp">회원가입</a>
+          <a href="/userMgmt/Login">로그인</a>
+          <a href="/userMgmt/SignUp">회원가입</a>
         <?php } ?>
       </div>
     </div>
@@ -22,7 +22,7 @@
     <div class="cafe_door">
       <span class="overlay_text"><strong>재권의 개발 카페</strong></span>
       <span class="overlay_text_b">http://localhost</span>
-      <a href="/"><img src="public/img/naver_cafe_logo.jpg" alt="카페사진"></a>
+      <a href="/"><img src="/public/img/naver_cafe_logo.jpg" alt="카페사진"></a>
     </div>
 
   </header>
@@ -56,7 +56,7 @@
 
         </div>
         <!-- 게시글 작성 부분 -->
-        <a href="posts/CreatePosts" class="write_btn">게시글작성</a>
+        <a href="/posts/CreatePosts" class="write_btn">게시글작성</a>
         <!-- 게시글 분류 부분 -->
         <div class="board_category">게시판분류</div>
         <!-- 최신댓닷글 부분 -->
