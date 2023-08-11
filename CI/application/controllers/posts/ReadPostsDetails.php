@@ -7,13 +7,15 @@ class ReadPostsDetails extends CI_Controller
     $this->load->library('layouts');
     $this->load->library('session');
     $this->load->library('pagination');
+    $this->load->library('form_validation');
     $this->load->model('posts/ReadPostsDetails_model');
   }
 
   public function index()
   {
 
-    $data['content'] = 'content!!';
+    $data['detail_view'] = '게시글 상세조회 부분';
+    $data['detail_view_list'] = '게시글 리스트 부분';
 
     $this->layouts->view('posts/readPostsDetails_view', $data);
   }
