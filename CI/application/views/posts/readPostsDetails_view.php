@@ -28,7 +28,8 @@
             <div class="detail_main_top_info_style">
               <div class="detail_main_top_info">
                 <div class="detail_main_top_info_picture">
-                  <img src="<?php echo base_url('uploads/profile_pictures/' . $user_info->profile_picture_path); ?>" alt="프로필 사진">
+                  <img src="<?php echo base_url('uploads/profile_pictures/' . $user_info->profile_picture_path); ?>"
+                    alt="프로필 사진">
                 </div>
                 <div class="detail_main_top_info_right">
                   <div class="flex_column_style">
@@ -70,6 +71,7 @@
                 </div>
                 <div>
                   첨부파일
+                  <?php echo $file_name[0]->file_name; ?>
                 </div>
               </div>
             </div>

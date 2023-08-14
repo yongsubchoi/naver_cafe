@@ -17,6 +17,7 @@ class ReadPostsDetails extends CI_Controller
     
     $data['posts'] = $this->ReadPostsDetails_model->getPostsByUserId($id);
     $data['user_info'] = $this->ReadPostsDetails_model->getUserInfoByPostId($id);
+    $data['file_name'] = $this->ReadPostsDetails_model->getFilePathByPostId($id);
 
     $this->layouts->view('posts/readPostsDetails_view', $data);
   }

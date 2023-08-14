@@ -33,5 +33,22 @@ class ReadPostsDetails_model extends CI_Model
       return false;
     }
   }
+
+  public function getFilePathByPostId($id)
+  {
+    $this->db->select('files.file_name');
+    $this->db->from('files');
+    $this->db->join('posts', 'posts.id = files.post_id');
+    $this->db->where('posts.id', $id);
+
+    $query = $this->db->get();
+
+    if ($query->num_rows() > 0) {
+      $rows = $query->result(); // 여러 행을 가져옴
+      return $rows;
+    } else {
+      return false;
+    }
+  }
 }
 ?>
