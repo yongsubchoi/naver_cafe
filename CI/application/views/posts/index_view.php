@@ -22,7 +22,7 @@
 
           <!-- 게시글 제목 -->
           <div class="notice_title_style">
-            <a href="/">
+            <a href="/posts/ReadPostsDetails/index/<?php echo $post['id'] ?>/">
               <?php echo $post['title']; ?>
             </a>
           </div>
@@ -76,7 +76,7 @@
           echo '<span class="new_label">new </span>'; // 오늘 게시글이면 "New" 레이블 출력
         }
         ?>
-        <a href="/">
+        <a href="/posts/ReadPostsDetails/index/<?php echo $post['id'] ?>/">
           <?php
           echo $post['title']; ?>
         </a>

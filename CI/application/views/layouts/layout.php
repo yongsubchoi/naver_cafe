@@ -45,7 +45,7 @@
         <!-- 카페 정보 / 나의 활동 부분 -->
         <div class="cafe_info">
           <div class="cafe_info_h">
-            <a href="#" id="cafe_info_link">카페정보</a>
+            <a href="" id="cafe_info_link">카페정보</a>
             <span>/</span>
             <a href="#" id="my_activity_link">나의활동</a>
           </div>
@@ -85,6 +85,17 @@
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="<?php echo base_url('public/views/layouts/js/sidebar.js'); ?>"></script>
-<script src="<?php echo base_url('public/views/layouts/js/topBtn.js'); ?>"></script>
+<?php
+// 현재 페이지에 따라 해당하는 스크립트 파일을 로드
+if (current_url() == site_url('')) {
+  echo '<script src="' . base_url('public/views/layouts/js/sidebar.js') . '"></script>';
+  echo '<script src="' . base_url('public/views/layouts/js/topBtn.js') . '"></script>';
+  echo '<script>loadContent("cafeInfo");</script>'; // '메인화면'의 초기 호출
+} elseif (current_url() == site_url('posts/ReadPostsDetails/index/' . $posts['id'])) {
+  echo '<script src="' . base_url('public/views/layouts/js/sidebar.js') . '"></script>';
+  echo '<script src="' . base_url('public/views/layouts/js/topBtn.js') . '"></script>';
+  // echo '<script>detailLoadContent("cafeInfo");</script>'; // '게시글상세조회'의 초기 호출
+}
+?>
+
 </html>

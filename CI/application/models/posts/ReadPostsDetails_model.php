@@ -1,14 +1,37 @@
 <?php
-  class ReadPostsDetails_model extends CI_Model {
-    public function __construct() {
-      parent::__construct();
-    }
+class ReadPostsDetails_model extends CI_Model
+{
+  public function __construct()
+  {
+    parent::__construct();
+    $this->load->database();
+  }
 
-    public function getPostsByUserId($id) {
-      // posts테이블에서 id 값이 $id인 값을 조회
-      $query = $this->db->get_where('posts', array('id'=>$id));
-      // 쿼리 결과를 배열로 담아 반환
-      return $query->row_array();
+  // posts테이블의 id를 이용하여 해당 id의 row를 반환하는 함수
+  public function getPostsByUserId($id)
+  {
+    // posts테이블에서 id 값이 $id인 값을 조회
+    $query = $this->db->get_where('posts', array('id' => $id));
+    // 쿼리 결과를 배열로 담아 반환
+    return $query->row_array();
+  }
+
+  // post테이블의 id를 이용하여 users테이블의 정보를 반환하는 함수
+  public function getUserInfoByPostId($id)
+  {
+    $this->db->select('users.username, users.profile_picture_path');
+    $this->db->from('posts');
+    $this->db->join('users', 'posts.user_id = users.id');
+    $this->db->where('posts.id', $id);
+
+    $query = $this->db->get();
+
+    if ($query->num_rows() > 0) {
+      $row = $query->row();
+      return $row;
+    } else {
+      return false;
     }
   }
+}
 ?>

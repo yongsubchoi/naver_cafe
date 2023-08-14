@@ -19,19 +19,33 @@
         <div class="detail_main">
           <div class="detail_main_top">
             <div class="detail_main_top_title">
-              <span>제목입니다.</span>
+              <span>
+                <?php if (isset($posts['title'])): ?>
+                  <?php echo $posts['title']; ?>
+                <?php endif; ?>
+              </span>
             </div>
             <div class="detail_main_top_info_style">
               <div class="detail_main_top_info">
                 <div class="detail_main_top_info_picture">
-                  프사
+                  <img src="<?php echo base_url('uploads/profile_pictures/' . $user_info->profile_picture_path); ?>" alt="프로필 사진">
                 </div>
                 <div class="detail_main_top_info_right">
                   <div class="flex_column_style">
-                    <div>nowkwon97</div>
+                    <div>
+                      <?php echo $user_info->username; ?>
+                    </div>
                     <div class="flex_row_style">
-                      <div class="created_at_style">날짜</div>
-                      <div class="view_count_style">조회수</div>
+                      <div class="created_at_style">
+                        <?php if (isset($posts['created_at'])): ?>
+                          <?php echo $posts['created_at']; ?>
+                        <?php endif; ?>
+                      </div>
+                      <div class="view_count_style">
+                        <?php if (isset($posts['view_count'])): ?>
+                          <?php echo $posts['view_count']; ?>
+                        <?php endif; ?>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -44,9 +58,9 @@
           <div class="detail_main_content">
             <div class="flex_justify_center">
               <div class="detail_main_content_top">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta earum magnam tempora nobis eos, culpa
-                quis nostrum minus consectetur optio quam beatae asperiores quia in esse. Nobis velit laborum
-                repudiandae.
+                <?php if (isset($posts['content'])): ?>
+                  <?php echo $posts['content']; ?>
+                <?php endif; ?>
               </div>
             </div>
             <div class="flex_justify_center">
@@ -61,6 +75,7 @@
             </div>
           </div>
         </div>
+
         <div class="detail_comments_section_style">
           <div class="detail_comments_section">
             <div class="comments_tab"><span>댓글</span></div>
@@ -92,7 +107,7 @@
                 <?php echo validation_errors(); ?>
                 <?php echo form_open('posts/ReadPostsDetails/index'); ?>
                 <div class="logged_in_username">
-                  로그인한 유저네임
+                  <?php echo $username; ?>
                 </div>
                 <div class="comment_textarea">
                   <textarea name="content" class="text_area_comment" placeholder="댓글을 남겨보세요."></textarea>
@@ -111,8 +126,6 @@
   </div>
   <!-- 게시글 리스트 부분 -->
   <div class="posts_list">
-    <?php
-    echo $detail_view_list;
-    ?>
+    게시글 리스트 부분
   </div>
 </div>

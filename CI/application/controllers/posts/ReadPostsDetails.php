@@ -11,11 +11,12 @@ class ReadPostsDetails extends CI_Controller
     $this->load->model('posts/ReadPostsDetails_model');
   }
 
-  public function index()
+  public function index($id)
   {
-
-    $data['detail_view'] = '게시글 상세조회 부분';
-    $data['detail_view_list'] = '게시글 리스트 부분';
+    $data['username'] = $this->session->userdata('username');
+    
+    $data['posts'] = $this->ReadPostsDetails_model->getPostsByUserId($id);
+    $data['user_info'] = $this->ReadPostsDetails_model->getUserInfoByPostId($id);
 
     $this->layouts->view('posts/readPostsDetails_view', $data);
   }
