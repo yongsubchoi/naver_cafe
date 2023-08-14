@@ -45,7 +45,7 @@
         <!-- 카페 정보 / 나의 활동 부분 -->
         <div class="cafe_info">
           <div class="cafe_info_h">
-            <a href="" id="cafe_info_link">카페정보</a>
+            <a href="#" id="cafe_info_link">카페정보</a>
             <span>/</span>
             <a href="#" id="my_activity_link">나의활동</a>
           </div>

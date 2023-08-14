@@ -42,7 +42,7 @@ function loadContent(view) {
 // readPostsDetails 처리
 function detailLoadContent(view) {
   jQuery.ajax({
-    url: 'ReadPostsDetails/load_' + view,
+    url: '/posts/ReadPostsDetails/load_' + view,
     type: 'GET',
     success: function (data) {
       jQuery('#content_div').html(data);
