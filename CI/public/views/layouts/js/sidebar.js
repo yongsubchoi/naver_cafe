@@ -58,7 +58,7 @@ jQuery(document).on('click', '#logout_btn', function () {
   var currentPath = window.location.pathname;
 
   // 현재 경로에 따라 로그아웃을 처리하는 URL을 설정
-  var logoutUrl = currentPath === '/' ? 'Index/logout' : 'posts/ReadPostsDetails/logout';
+  var logoutUrl = currentPath === '/' ? 'Index/logout' : '/posts/ReadPostsDetails/logout';
   
   // AJAX 요청을 보냄
   jQuery.ajax({
