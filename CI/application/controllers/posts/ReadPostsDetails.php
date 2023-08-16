@@ -43,5 +43,17 @@ class ReadPostsDetails extends CI_Controller
     // 로그아웃 처리 완료 후, 홈페이지 또는 로그인 페이지로 이동합니다.
     redirect(''); // 홈페이지 또는 로그인 페이지 URL을 입력하세요.
   }
+
+  public function download_file($file_name) {
+    $file_path = '/uploads/files/' . $file_name;
+
+    if (file_exists($file_path)) {
+      header('Content-Type: application/octet-stream');
+      header('Content-Disposition: attachment; filename="' . $file_name . '"');
+      readfile($file_path);
+    } else {
+      echo "파일을 찾을 수 없습니다.";
+    }
+  }
 }
 ?>

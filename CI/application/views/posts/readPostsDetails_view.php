@@ -72,7 +72,9 @@
                 <div>
                   첨부파일:
                   <?php if (isset($file_name[0]->file_name)): ?>
-                    <?php echo $file_name[0]->file_name; ?>
+                    <a href="<?php echo base_url('uploads/post_files/' . $file_name[0]->file_name); ?>" download>
+                      <?php echo $file_name[0]->file_name; ?>
+                    </a>
                   <?php endif; ?>
                 </div>
               </div>
