@@ -380,10 +380,10 @@ header {
   margin-right: -20px;
 }
 .view_count_style {
-  width: 30px;
+  width: 70px;
 }
 .notice_view_count_style {
-  width: 20px;
+  width: 60px;
   margin-right: -8px;
 }
 .hr_line {
@@ -588,6 +588,14 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.flex_direction_row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100px;
+  height: auto;
 }
 .file_style {
   display: flex;

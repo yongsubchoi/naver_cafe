@@ -58,5 +58,33 @@ class ReadPostsDetails_model extends CI_Model
     $this->db->update('posts');
   }
 
+  // public function isPostLiked($post_id, $user_id)
+  // {
+  //   $query = $this->db->get_where('likes', array(
+  //     'post_id' => $post_id,
+  //     'user_id' => $user_id
+  //   )
+  //   );
+
+  //   return $query->num_rows() > 0;
+  // }
+
+  // public function toggleLike($post_id, $user_id)
+  // {
+  //   if ($this->isPostLiked($post_id, $user_id)) {
+  //     $this->db->where('post_id', $post_id);
+  //     $this->db->where('user_id', $user_id);
+  //     $this->db->delete('likes');
+  //     return 'unliked';
+  //   } else {
+  //     $data = array(
+  //       'post_id' => $post_id,
+  //       'user_id' => $user_id,
+  //       'created_at' => date('Y-m-d H:i:s') // 현재 시간 저장
+  //     );
+  //     $this->db->insert('likes', $data);
+  //     return 'liked';
+  //   }
+  // }
 }
 ?>

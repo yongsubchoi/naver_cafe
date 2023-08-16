@@ -96,5 +96,16 @@ class ReadPostsDetails extends CI_Controller
       $this->input->set_cookie($view_cookie_name, 'true', 86400);
     }
   }
+
+  // public function toggleLike()
+  // {
+  //   $post_id = $this->input->post('post_id');
+  //   $user_id = $this->session->userdata('user_id'); // 현재 로그인한 사용자 ID
+
+  //   $this->load->model('posts/ReadPostsDetails_model');
+  //   $response = $this->ReadPostsDetails_model->toggleLike($post_id, $user_id);
+
+  //   echo $response;
+  // }
 }
 ?>

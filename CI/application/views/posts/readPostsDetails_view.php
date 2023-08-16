@@ -45,7 +45,7 @@
                         </div>
                         <div class="view_count_style">
                           <?php if (isset($posts['view_count'])): ?>
-                            <?php echo $posts['view_count']; ?>
+                            <?php echo '조회수: ' . $posts['view_count']; ?>
                           <?php endif; ?>
                         </div>
                       </div>
@@ -67,8 +67,11 @@
               </div>
               <div class="flex_justify_center">
                 <div class="detail_main_content_bottom">
-                  <div>
-                    좋아요, 댓글
+                  <div class="flex_direction_row">
+                    <div class="like_button">
+                      <span class="like_icon">&#x2661;</span>
+                    </div>
+                    <div>댓글</div>
                   </div>
                   <div class="file_style">
                     <?php if (isset($file_name[0]->file_name)): ?>
