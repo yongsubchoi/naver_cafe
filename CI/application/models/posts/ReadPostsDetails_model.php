@@ -50,5 +50,13 @@ class ReadPostsDetails_model extends CI_Model
       return false;
     }
   }
+
+  public function increaseViewCount($id)
+  {
+    $this->db->where('id', $id);
+    $this->db->set('view_count', 'view_count+1', FALSE); // view_count 컬럼 증가
+    $this->db->update('posts');
+  }
+
 }
 ?>

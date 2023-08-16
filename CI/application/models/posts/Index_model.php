@@ -6,6 +6,7 @@ class Index_model extends CI_Model
     parent::__construct();
     $this->load->database();
   }
+  // 공지글 불러오는 함수
   public function getNoticePosts()
   {
     $query = $this->db->query("SELECT p.*, u.username 
@@ -21,6 +22,7 @@ class Index_model extends CI_Model
     return $this->db->count_all('posts'); // 'posts' 테이블의 전체 레코드 수 반환
   }
 
+  // 페이지네이션될 게시글들을 불러오는 함수
   public function getPostsPaginated($limit, $offset)
   {
     $this->db->select('p.*, u.username');

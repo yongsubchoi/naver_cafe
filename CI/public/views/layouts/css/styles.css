@@ -333,20 +333,20 @@ header {
   align-items: center;
 }
 .id_style {
-  width: 40px;
+  width: 85px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .title_style {
-  width: 475px;
+  width: 430px;
 }
 .title_style a{
   text-decoration: none;
   color: black;
 }
 .notice_title_style {
-  width: 457px;
+  width: 367px;
   height: 45px;
   display: flex;
   align-items: center;
@@ -363,25 +363,28 @@ header {
 }
 .notice_username_style {
   width: 100px;
+  margin-right: -50px;
 }
 .created_at_style {
   width: 150px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   margin-right: 30px;
 }
 .notice_created_at_style {
-  width: 100px;
+  width: 180px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-right: -20px;
 }
 .view_count_style {
-  width: 20px;
+  width: 30px;
 }
 .notice_view_count_style {
   width: 20px;
+  margin-right: -8px;
 }
 .hr_line {
   width: 100%;
@@ -552,9 +555,6 @@ header {
   justify-content: center;
   align-items: center;
 }
-.view_count_style {
-  width: 100px;
-}
 .detail_main_line_style {
   display: flex;
   justify-content: center;
@@ -594,6 +594,10 @@ header {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+.file_style a {
+  text-decoration: none;
+  color: #000;
 }
 .detail_comments_section_style {
   display: flex;
