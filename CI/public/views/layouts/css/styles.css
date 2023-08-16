@@ -589,6 +589,12 @@ header {
   justify-content: space-between;
   align-items: center;
 }
+.file_style {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
 .detail_comments_section_style {
   display: flex;
   flex-direction: column;

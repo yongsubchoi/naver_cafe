@@ -69,9 +69,9 @@
                 <div>
                   좋아요, 댓글
                 </div>
-                <div>
-                  첨부파일:
+                <div class="file_style">
                   <?php if (isset($file_name[0]->file_name)): ?>
+                    <img src="<?php echo base_url('public/img/save.png'); ?>"/>
                     <a href="<?php echo base_url('uploads/post_files/' . $file_name[0]->file_name); ?>" download>
                       <?php echo $file_name[0]->file_name; ?>
                     </a>
