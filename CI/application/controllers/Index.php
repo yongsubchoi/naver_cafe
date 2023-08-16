@@ -13,7 +13,7 @@ class Index extends CI_Controller
   public function index()
   {
     // $config['base_url'] = base_url() . "index/index"; // localhost
-    $config['base_url'] = base_url()."/Index";
+    $config['base_url'] = base_url();
     // echo "config['base_url'] is " . $config['base_url'] . "<br>";
 
     // 토탈 게시글의 개수 설정

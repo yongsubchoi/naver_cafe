@@ -91,7 +91,7 @@ if (current_url() == site_url('')) {
   echo '<script src="' . base_url('public/views/layouts/js/sidebar.js') . '"></script>';
   echo '<script src="' . base_url('public/views/layouts/js/topBtn.js') . '"></script>';
   echo '<script>loadContent("cafeInfo");</script>'; // '메인화면'의 초기 호출
-} elseif (current_url() == site_url('posts/ReadPostsDetails/index/' . $posts['id'])) {
+} elseif (isset($posts['id']) && current_url() == site_url('posts/ReadPostsDetails/index/' . $posts['id'])) {
   echo '<script src="' . base_url('public/views/layouts/js/sidebar.js') . '"></script>';
   echo '<script src="' . base_url('public/views/layouts/js/topBtn.js') . '"></script>';
   // echo '<script>detailLoadContent("cafeInfo");</script>'; // '게시글상세조회'의 초기 호출
