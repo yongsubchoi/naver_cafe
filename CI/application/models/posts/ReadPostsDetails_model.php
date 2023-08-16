@@ -34,7 +34,7 @@ class ReadPostsDetails_model extends CI_Model
     }
   }
 
-  public function getFilePathByPostId($id)
+  public function getFileNameByPostId($id)
   {
     $this->db->select('files.file_name');
     $this->db->from('files');

@@ -70,8 +70,10 @@
                   좋아요, 댓글
                 </div>
                 <div>
-                  첨부파일
-                  <?php echo $file_name[0]->file_name; ?>
+                  첨부파일:
+                  <?php if (isset($file_name[0]->file_name)): ?>
+                    <?php echo $file_name[0]->file_name; ?>
+                  <?php endif; ?>
                 </div>
               </div>
             </div>
