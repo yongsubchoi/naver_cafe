@@ -130,7 +130,9 @@
                   <?php echo form_open('posts/ReadPostsDetails/comment_form/' . $posts['id']); ?>
                   <div class="logged_in_username">
                     <div class="commenter_picture">
-                      <img src="<?php echo "/uploads/profile_pictures/" . $logged_in_user_picture_path ?>">
+                      <?php if ($logged_in_user_picture_path) { ?>
+                        <img src="<?php echo "/uploads/profile_pictures/" . $logged_in_user_picture_path ?>">
+                      <?php } ?>
                     </div>
                     <?php echo $username; ?>
                   </div>
