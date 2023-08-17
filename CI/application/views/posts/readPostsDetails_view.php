@@ -1,16 +1,18 @@
+<!-- 공개범위 조건문 -->
 <?php if ($is_visible): ?>
   <div class="detail_style">
     <div class="detail_section">
       <!-- 버튼 부분 -->
       <div class="detail_button_section">
         <div class="btn_left">
-          <div>수정</div>
+          <div><a href="">수정</a></div>
           <div>삭제</div>
-          <div>답글</div>
+          <div><a href="">답글</a></div>
         </div>
         <div class="btn_right">
           <div>이전글</div>
           <div>다음글</div>
+          <!-- history.back? -->
           <div>목록</div>
         </div>
       </div>
@@ -68,8 +70,12 @@
               <div class="flex_justify_center">
                 <div class="detail_main_content_bottom">
                   <div class="flex_direction_row">
-                    <div class="like_button">
-                      <span class="like_icon">&#x2661;</span>
+                    <div class="like_button" data-post_id="<?php echo $posts['id']; ?>">
+                      <?php if ($user_liked_post): ?>
+                        <span class="liked_icon">&#x2764;</span>
+                      <?php else: ?>
+                        <span class="like_icon">&#x2661;</span>
+                      <?php endif; ?>
                     </div>
                     <div>댓글</div>
                   </div>

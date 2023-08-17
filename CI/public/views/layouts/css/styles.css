@@ -594,8 +594,11 @@ header {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 100px;
+  width: 140px;
   height: auto;
+}
+.like_button span {
+  color: #FF0000;
 }
 .file_style {
   display: flex;

@@ -51,6 +51,8 @@ class ReadPostsDetails_model extends CI_Model
     }
   }
 
+  //* 조회수 기능 관련 함수
+  // id가 $id인 view_count컬럼을 1증가시킨다.
   public function increaseViewCount($id)
   {
     $this->db->where('id', $id);
@@ -58,33 +60,42 @@ class ReadPostsDetails_model extends CI_Model
     $this->db->update('posts');
   }
 
-  // public function isPostLiked($post_id, $user_id)
-  // {
-  //   $query = $this->db->get_where('likes', array(
-  //     'post_id' => $post_id,
-  //     'user_id' => $user_id
-  //   )
-  //   );
+  //* 좋아요 기능 관련 함수들
+  public function isPostLiked($post_id, $user_id)
+  {
+    $query = $this->db->get_where(
+      'likes',
+      array(
+        'post_id' => $post_id,
+        'user_id' => $user_id
+      )
+    );
 
-  //   return $query->num_rows() > 0;
-  // }
+    return $query->num_rows() > 0;
+  }
 
-  // public function toggleLike($post_id, $user_id)
-  // {
-  //   if ($this->isPostLiked($post_id, $user_id)) {
-  //     $this->db->where('post_id', $post_id);
-  //     $this->db->where('user_id', $user_id);
-  //     $this->db->delete('likes');
-  //     return 'unliked';
-  //   } else {
-  //     $data = array(
-  //       'post_id' => $post_id,
-  //       'user_id' => $user_id,
-  //       'created_at' => date('Y-m-d H:i:s') // 현재 시간 저장
-  //     );
-  //     $this->db->insert('likes', $data);
-  //     return 'liked';
-  //   }
-  // }
+  public function toggleLike($post_id, $user_id)
+  {
+    if ($this->isPostLiked($post_id, $user_id)) {
+      $this->db->where('post_id', $post_id);
+      $this->db->where('user_id', $user_id);
+      $this->db->delete('likes');
+      return 'unliked';
+    } else {
+      $data = array(
+        'post_id' => $post_id,
+        'user_id' => $user_id,
+        'created_at' => date('Y-m-d H:i:s') // 현재 시간 저장
+      );
+      $this->db->insert('likes', $data);
+      return 'liked';
+    }
+  }
+
+  public function isPostLikedByUser($post_id, $user_id)
+  {
+    $query = $this->db->get_where('likes', array('post_id' => $post_id, 'user_id' => $user_id));
+    return $query->num_rows() > 0;
+  }
 }
 ?>

@@ -38,9 +38,11 @@
             'created_at' => $user['created_at'],
             'profile_picture_path' => $user['profile_picture_path'],
             'is_admin' => $user['is_admin'],
+            'user_id' => $user['id'],
             'logged_in' => TRUE
           );
           $this->session->set_userdata($userData);
+          // print_r($this->session->userdata());
           // localhost(메인)로 이동
           redirect('');
         } else {

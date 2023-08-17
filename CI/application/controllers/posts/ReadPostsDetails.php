@@ -14,6 +14,7 @@ class ReadPostsDetails extends CI_Controller
   public function index($id)
   {
     $data['username'] = $this->session->userdata('username');
+    $data['user_id'] = $this->session->userdata('user_id');
 
     $data['posts'] = $this->ReadPostsDetails_model->getPostsByUserId($id);
     // visibility 값을 가져옴
@@ -23,6 +24,8 @@ class ReadPostsDetails extends CI_Controller
     $data['file_name'] = $this->ReadPostsDetails_model->getFileNameByPostId($id);
 
     $data['is_visible'] = $this->check_visibility($data['visibility']);
+
+    $data['user_liked_post'] = $this->ReadPostsDetails_model->isPostLikedByUser($id, $data['user_id']); // 로그인한 사용자의 좋아요 여부
 
     $this->increase_view_count($id);
 
@@ -97,15 +100,14 @@ class ReadPostsDetails extends CI_Controller
     }
   }
 
-  // public function toggleLike()
-  // {
-  //   $post_id = $this->input->post('post_id');
-  //   $user_id = $this->session->userdata('user_id'); // 현재 로그인한 사용자 ID
+  public function toggle_like()
+  {
+    $post_id = $this->input->post('post_id');
+    $user_id = $this->session->userdata('user_id'); // 현재 로그인한 사용자 ID
 
-  //   $this->load->model('posts/ReadPostsDetails_model');
-  //   $response = $this->ReadPostsDetails_model->toggleLike($post_id, $user_id);
+    $response = $this->ReadPostsDetails_model->toggleLike($post_id, $user_id);
 
-  //   echo $response;
-  // }
+    echo $response;
+  }
 }
 ?>
