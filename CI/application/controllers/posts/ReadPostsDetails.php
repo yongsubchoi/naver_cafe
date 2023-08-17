@@ -9,6 +9,7 @@ class ReadPostsDetails extends CI_Controller
     $this->load->library('pagination');
     $this->load->library('form_validation');
     $this->load->model('posts/ReadPostsDetails_model');
+    date_default_timezone_set('Asia/Seoul');
   }
 
   public function index($id)
@@ -23,11 +24,16 @@ class ReadPostsDetails extends CI_Controller
     $data['user_info'] = $this->ReadPostsDetails_model->getUserInfoByPostId($id);
     $data['file_name'] = $this->ReadPostsDetails_model->getFileNameByPostId($id);
 
+    $user_id = $this->session->userdata('user_id');
+    $data['logged_in_user_picture_path'] = $this->ReadPostsDetails_model->getProfilePicturePath($user_id);
+
     $data['is_visible'] = $this->check_visibility($data['visibility']);
 
     $data['user_liked_post'] = $this->ReadPostsDetails_model->isPostLikedByUser($id, $data['user_id']); // 로그인한 사용자의 좋아요 여부
 
     $data['like_count'] = $this->ReadPostsDetails_model->countLike($id);
+
+    $data['comment_count'] = $this->ReadPostsDetails_model->countComment($id);
 
     $this->increase_view_count($id);
 
@@ -117,6 +123,9 @@ class ReadPostsDetails extends CI_Controller
     echo $like_count;
   }
 
+  /**
+   * @param string $id // posts테이블의 id
+   */
   public function comment_form($id) {
     /**
      * view의 username을 user_id로 바꿔서 comments 테이블로 전달하는 로직이 필요

@@ -34,6 +34,24 @@ class ReadPostsDetails_model extends CI_Model
     }
   }
 
+  // user_id에 해당하는 프로필 사진 경로를 반환하는 함수
+  public function getProfilePicturePath($user_id)
+  {
+    $this->db->select('profile_picture_path');
+    $this->db->from('users');
+    $this->db->where('id', $user_id);
+
+    $query = $this->db->get();
+
+    if ($query->num_rows() > 0) {
+      $row = $query->row();
+      return $row->profile_picture_path;
+    } else {
+      return null; // 사용자 ID에 해당하는 프로필 사진이 없는 경우
+    }
+  }
+
+
   public function getFileNameByPostId($id)
   {
     $this->db->select('files.file_name');
@@ -100,20 +118,27 @@ class ReadPostsDetails_model extends CI_Model
 
   public function countLike($post_id)
   {
-    //! likes테이블에서 해당 post_id의 row수를 반환하는 로직
+    // likes테이블에서 해당 post_id의 row수를 반환하는 로직
     $this->db->where('post_id', $post_id);
     $query = $this->db->get('likes');
     return $query->num_rows();
   }
 
-    // 테이블에 $data를 삽입하는 함수
-    public function createComment($data)
-    {
-      // $data를  posts테이블에 삽입
-      $this->db->insert('comments', $data);
-  
-      // 삽입된 댓글의 id를 반환
-      return $this->db->insert_id();
-    }
+  public function countComment($post_id)
+  {
+    $this->db->where('post_id', $post_id);
+    $query = $this->db->get('comments');
+    return $query->num_rows();
+  }
+
+  // 테이블에 $data를 삽입하는 함수
+  public function createComment($data)
+  {
+    // $data를  posts테이블에 삽입
+    $this->db->insert('comments', $data);
+
+    // 삽입된 댓글의 id를 반환
+    return $this->db->insert_id();
+  }
 }
 ?>

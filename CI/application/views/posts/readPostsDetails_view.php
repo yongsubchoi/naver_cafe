@@ -80,7 +80,10 @@
                     <div class="like_count" data-post_id="<?php echo $posts['id']; ?>">
                       <?php echo $like_count; ?>
                     </div>
-                    <div>댓글</div>
+                    <div>
+                      댓글
+                      <?php echo $comment_count ?>
+                    </div>
                   </div>
                   <div class="file_style">
                     <?php if (isset($file_name[0]->file_name)): ?>
@@ -126,6 +129,9 @@
                   <?php echo validation_errors(); ?>
                   <?php echo form_open('posts/ReadPostsDetails/comment_form/' . $posts['id']); ?>
                   <div class="logged_in_username">
+                    <div class="commenter_picture">
+                      <img src="<?php echo "/uploads/profile_pictures/" . $logged_in_user_picture_path ?>">
+                    </div>
                     <?php echo $username; ?>
                   </div>
                   <div class="comment_textarea">

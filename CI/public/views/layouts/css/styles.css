@@ -604,7 +604,7 @@ header {
   color: #FF0000;
 }
 .like_count {
-  margin-left: -20px;
+  margin-left: -5px;
 }
 .file_style {
   display: flex;
@@ -713,8 +713,22 @@ header {
   justify-content: flex-start;
   align-items: center;
   margin-left: 10px;
-  margin-top: 5px;
+  margin-top: 10px;
   margin-bottom: 5px;
+}
+.commenter_picture {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  /* border: 1px solid black; */
+  margin-top: 15px;
+  margin-right: 10px;
+}
+.commenter_picture img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
 }
 .comment_textarea {
   display: flex;
@@ -734,6 +748,7 @@ header {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  margin-top: 20px;
 }
 .submit_btn {
   width: 820px;
