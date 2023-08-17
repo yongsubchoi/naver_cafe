@@ -600,6 +600,9 @@ header {
 .like_button span {
   color: #FF0000;
 }
+.like_count {
+  margin-left: -20px;
+}
 .file_style {
   display: flex;
   flex-direction: row;
