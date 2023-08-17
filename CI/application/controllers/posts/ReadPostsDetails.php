@@ -12,6 +12,9 @@ class ReadPostsDetails extends CI_Controller
     date_default_timezone_set('Asia/Seoul');
   }
 
+  /**
+   * @param string $id // 게시글의 post_id이다.
+   */
   public function index($id)
   {
     $data['username'] = $this->session->userdata('username');
@@ -24,7 +27,9 @@ class ReadPostsDetails extends CI_Controller
     $data['user_info'] = $this->ReadPostsDetails_model->getUserInfoByPostId($id);
     $data['file_name'] = $this->ReadPostsDetails_model->getFileNameByPostId($id);
 
+    // 로그인한 사용자의 user_id
     $user_id = $this->session->userdata('user_id');
+    // 로그인한 사용자의 프로필 사진 경로
     $data['logged_in_user_picture_path'] = $this->ReadPostsDetails_model->getProfilePicturePath($user_id);
 
     $data['is_visible'] = $this->check_visibility($data['visibility']);
@@ -36,6 +41,8 @@ class ReadPostsDetails extends CI_Controller
     $data['comment_count'] = $this->ReadPostsDetails_model->countComment($id);
 
     $this->increase_view_count($id);
+
+    $data['comments'] = $this->ReadPostsDetails_model->getCommentsByPostId($id);
 
     $this->layouts->view('posts/readPostsDetails_view', $data);
   }

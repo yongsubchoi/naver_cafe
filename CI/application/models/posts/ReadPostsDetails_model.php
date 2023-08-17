@@ -140,5 +140,24 @@ class ReadPostsDetails_model extends CI_Model
     // 삽입된 댓글의 id를 반환
     return $this->db->insert_id();
   }
+
+  // post_id를 이용하여 comments 데이터를 반환하는 함수
+  public function getCommentsByPostId($post_id)
+  {
+    $this->db->select('comments.*, users.username, users.profile_picture_path');
+    $this->db->from('comments');
+    $this->db->join('users', 'comments.user_id = users.id');
+    $this->db->where('comments.post_id', $post_id);
+    $this->db->order_by('comments.created_at', 'asc'); // 댓글 작성 시간 순으로 정렬
+
+    $query = $this->db->get();
+
+    if ($query->num_rows() > 0) {
+      return $query->result_array();
+    } else {
+      return array(); // 댓글이 없는 경우 빈 배열 반환
+    }
+  }
+
 }
 ?>

@@ -97,33 +97,42 @@
               </div>
             </div>
           </div>
-          <!-- 댓글 부분 -->
+          <!-- 댓글 목록 부분 -->
           <div class="detail_comments_section_style">
             <div class="detail_comments_section">
               <div class="comments_tab"><span>댓글</span></div>
               <div class="flex_justify_center">
-                <div class="comment_form">
-                  <div class="comment_picture">사진</div>
-                  <div>
-                    <div class="comment_user_created_at">
-                      <div>작성자</div>
-                      <div>작성시간</div>
+                <?php foreach ($comments as $comment): ?>
+                  <div class="comment_form">
+                    <div class="comment_picture">
+                      <?php if ($comment['profile_picture_path']) { ?>
+                        <img src="<?php echo "/uploads/profile_pictures/" . $comment['profile_picture_path'] ?>">
+                      <?php } ?>
                     </div>
-                    <div class="comment_content">
-                      <div class="comment_comtent_main">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus voluptates fuga consectetur
-                        quaerat saepe nemo eos sed itaque fugiat nam, accusamus facilis fugit porro error quibusdam
-                        commodi
-                        et, doloremque a!
+                    <div>
+                      <div class="comment_user_created_at">
+                        <div>
+                          <?php echo $comment['username']; ?>
+                        </div>
+                        <div>
+                          <?php echo $comment['created_at']; ?>
+                        </div>
                       </div>
-                      <div class="co_comment">
-                        답글쓰기
+                      <div class="comment_content">
+                        <div class="comment_comtent_main">
+                          <?php echo $comment['content']; ?>
+                        </div>
+                        <div class="co_comment">
+                          답글쓰기
+                        </div>
                       </div>
                     </div>
+                    <div>케밥</div>
                   </div>
-                  <div>케밥</div>
-                </div>
+                  <div class="comment_line"></div>
+                <?php endforeach; ?>
               </div>
+              <!-- 댓글 작성 부분 -->
               <div class="flex_justify_center">
                 <div class="comment_input_area">
                   <?php echo validation_errors(); ?>
