@@ -40,7 +40,7 @@ class Index extends CI_Controller
     $this->pagination->initialize($config);
 
     // 개발 확인용
-    print_r($this->session->userdata());
+    // print_r($this->session->userdata());
     $data['username'] = $this->session->userdata('username');
     echo "<strong>현재 접속한 계정: " . $data['username'] . "</strong>";
 

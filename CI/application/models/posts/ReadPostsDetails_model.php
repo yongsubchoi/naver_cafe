@@ -97,5 +97,13 @@ class ReadPostsDetails_model extends CI_Model
     $query = $this->db->get_where('likes', array('post_id' => $post_id, 'user_id' => $user_id));
     return $query->num_rows() > 0;
   }
+
+  public function countLike($post_id)
+  {
+    //! likes테이블에서 해당 post_id의 row수를 반환하는 로직
+    $this->db->where('post_id', $post_id);
+    $query = $this->db->get('likes');
+    return $query->num_rows();
+  }
 }
 ?>

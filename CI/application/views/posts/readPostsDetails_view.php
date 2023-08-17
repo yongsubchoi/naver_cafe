@@ -72,10 +72,13 @@
                   <div class="flex_direction_row">
                     <div class="like_button" data-post_id="<?php echo $posts['id']; ?>">
                       <?php if ($user_liked_post): ?>
-                        <span class="liked_icon">&#x2764;</span>
+                        <span class="liked_icon">&#x2764;</span> 좋아요
                       <?php else: ?>
-                        <span class="like_icon">&#x2661;</span>
+                        <span class="like_icon">&#x2661;</span> 좋아요
                       <?php endif; ?>
+                    </div>
+                    <div class="like_count" data-post_id="<?php echo $posts['id']; ?>">
+                      <?php echo $like_count; ?>
                     </div>
                     <div>댓글</div>
                   </div>

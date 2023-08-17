@@ -27,6 +27,8 @@ class ReadPostsDetails extends CI_Controller
 
     $data['user_liked_post'] = $this->ReadPostsDetails_model->isPostLikedByUser($id, $data['user_id']); // 로그인한 사용자의 좋아요 여부
 
+    $data['like_count'] = $this->ReadPostsDetails_model->countLike($id);
+
     $this->increase_view_count($id);
 
     $this->layouts->view('posts/readPostsDetails_view', $data);
@@ -109,5 +111,11 @@ class ReadPostsDetails extends CI_Controller
 
     echo $response;
   }
+  public function get_like_count($post_id)
+  {
+    $like_count = $this->ReadPostsDetails_model->countLike($post_id);
+    echo $like_count;
+  }
+
 }
 ?>
