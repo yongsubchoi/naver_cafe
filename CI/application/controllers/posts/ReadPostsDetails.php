@@ -117,5 +117,42 @@ class ReadPostsDetails extends CI_Controller
     echo $like_count;
   }
 
+  public function comment_form($id) {
+    /**
+     * view의 username을 user_id로 바꿔서 comments 테이블로 전달하는 로직이 필요
+      * username으로 폼 검증하고, username에 맞는 user_id를 찾는 로직? 그렇게 구한 user_id를 comments로 전달하는 data에 넣어주기?
+     * textarea인 name=comtent를 comments테이블로 전달하는 로직이 필요
+     * created_at, parent_comment_id, level, display_order, path를 comments테이블에 전달하는 로직이 필요
+     * comments테이블에 보낼 $data 배열 만든 후에 ReadPostsDetails_model->createComment($data)로 보내주기
+     * post_id는 어떻게 data배열에 넣어줄까?
+     * 현재 post_id는 게시글 상세조회시 index 메서드의 파라메타를 통해 받고있다.
+     * post_id를 받으려면 comment_form이라는 함수를 따로 파는게 아니라 index에서 로직을 작성해야하나?
+     * => 뷰에서 현재 $posts['id']를 갖고있으므로 form_open경로에 붙여주어 comment_form의 파라메터로 이용하자.
+     */
+
+    // 폼 유효성 검사
+    $this->form_validation->set_rules('content', '', 'required');
+
+    if ($this->form_validation->run()===FALSE) {
+      echo "유효성 검사 실패";
+    } else {
+      $user_id = $this->session->userdata('user_id');
+      $post_id = $id;
+      $content = $this->input->post('content');
+      
+      // 시간대를 한국으로 설정
+      date_default_timezone_set('Asia/Seoul');
+
+      $data = array(
+        'user_id' => $user_id,
+        'post_id' => $post_id,
+        'content' => $content,
+        'created_at' => date('Y-m-d H:i:s')
+      );
+      $this->ReadPostsDetails_model->createComment($data);
+      redirect('/posts/ReadPostsDetails/index/' . $id);
+    }
+  }
+
 }
 ?>

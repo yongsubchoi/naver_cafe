@@ -94,7 +94,7 @@
               </div>
             </div>
           </div>
-
+          <!-- 댓글 부분 -->
           <div class="detail_comments_section_style">
             <div class="detail_comments_section">
               <div class="comments_tab"><span>댓글</span></div>
@@ -124,12 +124,12 @@
               <div class="flex_justify_center">
                 <div class="comment_input_area">
                   <?php echo validation_errors(); ?>
-                  <?php echo form_open('posts/ReadPostsDetails/index'); ?>
+                  <?php echo form_open('posts/ReadPostsDetails/comment_form/' . $posts['id']); ?>
                   <div class="logged_in_username">
                     <?php echo $username; ?>
                   </div>
                   <div class="comment_textarea">
-                    <textarea name="content" class="text_area_comment" placeholder="댓글을 남겨보세요."></textarea>
+                    <textarea name="content" class="text_area_comment" placeholder="댓글을 남겨보세요." required></textarea>
                   </div>
                   <div class="submit_btn">
                     <button type="submit" class="submit_button">등록</button>

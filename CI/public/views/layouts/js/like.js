@@ -1,6 +1,5 @@
 $(document).ready(function () {
 	$(".like_button").on("click", function () {
-		console.log("click");
 		var $button = $(this); // 현재 클릭한 버튼
 		var postId = $button.data("post_id");
 		var likeCountElement = $(".like_count[data-post_id='" + postId + "']");

@@ -380,10 +380,10 @@ header {
   margin-right: -20px;
 }
 .view_count_style {
-  width: 70px;
+  width: 80px;
 }
 .notice_view_count_style {
-  width: 60px;
+  width: 70px;
   margin-right: -8px;
 }
 .hr_line {
@@ -596,6 +596,9 @@ header {
   align-items: center;
   width: 140px;
   height: auto;
+}
+.like_button {
+  cursor: pointer;
 }
 .like_button span {
   color: #FF0000;

@@ -105,5 +105,15 @@ class ReadPostsDetails_model extends CI_Model
     $query = $this->db->get('likes');
     return $query->num_rows();
   }
+
+    // 테이블에 $data를 삽입하는 함수
+    public function createComment($data)
+    {
+      // $data를  posts테이블에 삽입
+      $this->db->insert('comments', $data);
+  
+      // 삽입된 댓글의 id를 반환
+      return $this->db->insert_id();
+    }
 }
 ?>
