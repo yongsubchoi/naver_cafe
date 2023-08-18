@@ -19,7 +19,7 @@ class Index extends CI_Controller
     // 토탈 게시글의 개수 설정
     $config['total_rows'] = $this->Index_model->getPostsCount();
     // echo "config['total_rows'] is " . $config['total_rows'] . "<br>";
-    
+
     // 페이지에 보여질 게시글의 개수 설정
     // view에서 select로 선택한 값으로 바뀔 예정
     $config['per_page'] = 25;
@@ -50,6 +50,16 @@ class Index extends CI_Controller
 
 
     $data['posts'] = $this->Index_model->getPostsPaginated($config['per_page'], ($page_number - 1) * $config['per_page']);
+
+    foreach ($data['notice_posts'] as &$post) {
+      $post_id = $post['id'];
+      $post['notice_comment_count'] = $this->Index_model->countComment($post_id);
+    }
+
+    foreach ($data['posts'] as &$post) {
+      $post_id = $post['id'];
+      $post['comment_count'] = $this->Index_model->countComment($post_id);
+    }
 
     // echo "this->uri->segment(3) is " . $this->uri->segment(3) . "<br>";
     // echo "page_number is " . $page_number . "<br>";

@@ -35,5 +35,12 @@ class Index_model extends CI_Model
     return $query->result_array();
   }
 
+  // 댓글의 개수를 카운트하는 함수
+  public function countComment($post_id)
+  {
+    $this->db->where('post_id', $post_id);
+    $query = $this->db->get('comments');
+    return $query->num_rows();
+  }
 }
 ?>

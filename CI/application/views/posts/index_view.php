@@ -2,7 +2,7 @@
 <div class="main_posts">
 
   <div class="t_hr_line"></div>
-  <!-- <?php print_r($posts); ?> -->
+  <!-- <?php print_r($comment_count); ?> -->
   <!-- 공지 게시글 -->
   <div class="notice_area">
     <?php foreach ($notice_posts as $post): ?>
@@ -25,6 +25,12 @@
             <a href="/posts/ReadPostsDetails/index/<?php echo $post['id'] ?>/">
               <?php echo $post['title']; ?>
             </a>
+            <?php if ($post['notice_comment_count'] > 0) { ?>
+              <span class="comment_count">
+                <strong>[<?php echo $post['notice_comment_count']; ?>]
+                </strong>
+              </span>
+            <?php } ?>
           </div>
 
           <!-- 게시글 작성자 -->
@@ -80,6 +86,13 @@
           <?php
           echo $post['title']; ?>
         </a>
+        <!-- 댓글 개수 표시 -->
+        <?php if ($post['comment_count'] > 0) { ?>
+          <span class="comment_count">
+            <strong>[<?php echo $post['comment_count']; ?>]
+            </strong>
+          </span>
+        <?php } ?>
       </div>
 
       <!-- 게시글 작성자 -->

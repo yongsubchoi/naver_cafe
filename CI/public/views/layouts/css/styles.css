@@ -2,7 +2,7 @@ body {
   box-sizing: border-box;
   margin: 0;
   width: 100vw;
-  height: 150vh;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -344,6 +344,9 @@ header {
 .title_style a{
   text-decoration: none;
   color: black;
+}
+.comment_count {
+  color: #FF0000;
 }
 .notice_title_style {
   width: 367px;
