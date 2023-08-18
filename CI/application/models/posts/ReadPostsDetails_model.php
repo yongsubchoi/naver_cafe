@@ -158,6 +158,5 @@ class ReadPostsDetails_model extends CI_Model
       return array(); // 댓글이 없는 경우 빈 배열 반환
     }
   }
-
 }
 ?>

@@ -79,7 +79,7 @@
         $current_time = time();
         // 게시글 작성일과 현재 날짜 비교
         if (date('Y-m-d', $timestamp_created_at) === date('Y-m-d', $current_time)) {
-          echo '<span class="new_label">new </span>'; // 오늘 게시글이면 "New" 레이블 출력
+          echo '<span class="new_label">' ?><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="-4 -4 20 20" x="281" y="179"><g fill="none" fill-rule="evenodd"><rect width="12" height="12" fill="#FF4947" rx="6"/><path fill="#FFF" d="M4 8.479h.815V4.614h.022l2.25 3.865H8V3.35h-.815v3.619h-.022L5.032 3.35H4z"/></g></svg><?php '</span>'; // 오늘 게시글이면 "New" 레이블 출력
         }
         ?>
         <a href="/posts/ReadPostsDetails/index/<?php echo $post['id'] ?>/">

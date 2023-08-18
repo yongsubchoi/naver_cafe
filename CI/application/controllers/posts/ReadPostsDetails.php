@@ -133,10 +133,11 @@ class ReadPostsDetails extends CI_Controller
   /**
    * @param string $id // posts테이블의 id
    */
-  public function comment_form($id) {
+  public function comment_form($id)
+  {
     /**
      * view의 username을 user_id로 바꿔서 comments 테이블로 전달하는 로직이 필요
-      * username으로 폼 검증하고, username에 맞는 user_id를 찾는 로직? 그렇게 구한 user_id를 comments로 전달하는 data에 넣어주기?
+     * username으로 폼 검증하고, username에 맞는 user_id를 찾는 로직? 그렇게 구한 user_id를 comments로 전달하는 data에 넣어주기?
      * textarea인 name=comtent를 comments테이블로 전달하는 로직이 필요
      * created_at, parent_comment_id, level, display_order, path를 comments테이블에 전달하는 로직이 필요
      * comments테이블에 보낼 $data 배열 만든 후에 ReadPostsDetails_model->createComment($data)로 보내주기
@@ -149,13 +150,13 @@ class ReadPostsDetails extends CI_Controller
     // 폼 유효성 검사
     $this->form_validation->set_rules('content', '', 'required');
 
-    if ($this->form_validation->run()===FALSE) {
+    if ($this->form_validation->run() === FALSE) {
       echo "유효성 검사 실패";
     } else {
       $user_id = $this->session->userdata('user_id');
       $post_id = $id;
       $content = $this->input->post('content');
-      
+
       // 시간대를 한국으로 설정
       date_default_timezone_set('Asia/Seoul');
 

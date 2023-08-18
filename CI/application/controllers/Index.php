@@ -12,13 +12,10 @@ class Index extends CI_Controller
 
   public function index()
   {
-    // $config['base_url'] = base_url() . "index/index"; // localhost
     $config['base_url'] = base_url();
-    // echo "config['base_url'] is " . $config['base_url'] . "<br>";
-
+    
     // 토탈 게시글의 개수 설정
     $config['total_rows'] = $this->Index_model->getPostsCount();
-    // echo "config['total_rows'] is " . $config['total_rows'] . "<br>";
 
     // 페이지에 보여질 게시글의 개수 설정
     // view에서 select로 선택한 값으로 바뀔 예정
@@ -35,7 +32,6 @@ class Index extends CI_Controller
     // page number를 사용하여 url에 표현
     $config['use_page_numbers'] = true;
     $config['query_string_segment'] = "page";
-    // $config['uri_segment'] = 3; // 페이지 번호가 위치한 URI 세그먼트 지정
 
     $this->pagination->initialize($config);
 
@@ -62,11 +58,6 @@ class Index extends CI_Controller
       $post['comment_count'] = $this->Index_model->countComment($post_id);
     }
 
-    // echo "this->uri->segment(3) is " . $this->uri->segment(3) . "<br>";
-    // echo "page_number is " . $page_number . "<br>";
-    // echo "config['uri_segment'] is " . $config['uri_segment'];
-    // $data['username'] = $this->Index_model->getUsernameByUserId();
-    // $this->load->view('posts/index_view', $data);
     $this->layouts->view('posts/index_view', $data);
   }
   // 사이드바>카페정보 불러오는 함수

@@ -131,7 +131,7 @@
                         </div>
                       </div>
                     </div>
-                    <div>케밥</div>
+                    <div><svg xmlns="http://www.w3.org/2000/svg" width="22" height="36" viewBox="-4 -4 22 36" x="203"><path d="M7.5 16a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3M6 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0zM7.5 23a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3" fill="#D9D9D9" fill-rule="evenodd"/></svg></div>
                   </div>
                   <div class="comment_line"></div>
                 <?php endforeach; ?>
