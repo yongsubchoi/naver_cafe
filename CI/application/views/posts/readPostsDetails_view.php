@@ -131,7 +131,12 @@
                         </div>
                       </div>
                     </div>
-                    <div><svg xmlns="http://www.w3.org/2000/svg" width="22" height="36" viewBox="-4 -4 22 36" x="203"><path d="M7.5 16a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3M6 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0zM7.5 23a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3" fill="#D9D9D9" fill-rule="evenodd"/></svg></div>
+                    <div class="comment_kebab"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="36"
+                        viewBox="-4 -4 22 36" x="203">
+                        <path
+                          d="M7.5 16a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3M6 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0zM7.5 23a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"
+                          fill="#D9D9D9" fill-rule="evenodd" />
+                      </svg></div>
                   </div>
                   <div class="comment_line"></div>
                 <?php endforeach; ?>
@@ -166,7 +171,69 @@
     </div>
     <!-- 게시글 리스트 부분 -->
     <div class="posts_list">
-      게시글 리스트 부분
+      <h2>전체글</h2>
+      <div class="small_posts_line_style">
+        <div class="small_posts_line"></div>
+      </div>
+      <?php foreach ($posts_list as $post): ?>
+        <div class="small_posts_list">
+          <!-- 게시글 제목 -->
+          <div class="small_posts_title">
+            <a href="/posts/ReadPostsDetails/index/<?php echo $post['id'] ?>/">
+              <?php
+              echo $post['title']; ?>
+            </a>
+            <!-- 댓글 개수 표시 -->
+            <?php if ($post['comment_count'] > 0) { ?>
+              <span class="comment_count">
+                <strong>[<?php echo $post['comment_count']; ?>]
+                </strong>
+              </span>
+            <?php } ?>
+            <?php
+            $timestamp_created_at = strtotime($post['created_at']);
+            $current_time = time();
+            // 게시글 작성일과 현재 날짜 비교
+            if (date('Y-m-d', $timestamp_created_at) === date('Y-m-d', $current_time)) {
+              echo '<span class="new_label">' ?><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                viewBox="-4 -4 20 20" x="281" y="179">
+                <g fill="none" fill-rule="evenodd">
+                  <rect width="12" height="12" fill="#FF4947" rx="6" />
+                  <path fill="#FFF" d="M4 8.479h.815V4.614h.022l2.25 3.865H8V3.35h-.815v3.619h-.022L5.032 3.35H4z" />
+                </g>
+              </svg>
+              <?php '</span>'; // 오늘 게시글이면 "New" 레이블 출력
+            }
+            ?>
+          </div>
+          <!-- 게시글 작성자 -->
+          <div class="small_posts_writer">
+            <?php echo $post['username']; ?>
+          </div>
+          <!-- 게시글 작성시간 -->
+          <div class="small_posts_created_at">
+            <?php // 날짜 변환 로직 적용
+                $timestamp_created_at = strtotime($post['created_at']);
+                $current_time = time();
+                // 오늘 날짜라면 H:i 형식
+                if (date('Y-m-d', $timestamp_created_at) === date('Y-m-d', $current_time)) {
+                  $formatted_date = date('H:i', $timestamp_created_at);
+                  // 오늘 날짜가 아니라면 Y.m.d형식
+                } else {
+                  $formatted_date = date('Y. m. d', $timestamp_created_at);
+                }
+                echo $formatted_date; ?>
+          </div>
+        </div>
+        <div class="small_posts_line_style">
+          <div class="small_posts_line"></div>
+        </div>
+      <?php endforeach; ?>
+      <div class="small_posts_pagination_style">
+        <div class="small_posts_pagination_links">
+          <?php echo $this->pagination->create_links(); ?>
+        </div>
+      </div>
     </div>
   </div>
 <?php else: ?>

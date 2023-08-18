@@ -158,5 +158,21 @@ class ReadPostsDetails_model extends CI_Model
       return array(); // 댓글이 없는 경우 빈 배열 반환
     }
   }
+
+  // posts테이블의 전체 레코드 수를 반환하는 함수
+  public function getTotalPostsCount() {
+    return $this->db->count_all('posts');
+  }
+
+  public function getPostsPaginated($limit, $offset) {
+    $this->db->select('p.*, u.username');
+    $this->db->from('posts p');
+    $this->db->join('users u', 'p.user_id = u.id');
+    $this->db->order_by('p.created_at', 'DESC');
+    $this->db->limit($limit, $offset);
+
+    $query = $this->db->get();
+    return $query->result_array();
+  }
 }
 ?>

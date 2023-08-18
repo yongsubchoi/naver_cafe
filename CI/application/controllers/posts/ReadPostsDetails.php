@@ -44,6 +44,33 @@ class ReadPostsDetails extends CI_Controller
 
     $data['comments'] = $this->ReadPostsDetails_model->getCommentsByPostId($id);
 
+    // 게시글 리스트 부분
+    $config['base_url'] = base_url('posts/ReadPostsDetails/index/' . $id);
+    $config['total_rows'] = $this->ReadPostsDetails_model->getTotalPostsCount();
+    $config['per_page'] = 5;
+    $config['num_links'] = 2;
+    // 페이지네이션 링크의 '처음으로' 링크 설정
+    $config['first_link'] = "처음";
+    // 페이지네이션 링크의 '마지막으로' 링크 설정
+    $config['last_link'] = "마지막";
+    // 쿼리스트링을 사용하기 위한 설정
+    $config['enable_query_strings'] = true;
+    $config['page_query_string'] = true;
+    // page number를 사용하여 url에 표현
+    $config['use_page_numbers'] = true;
+    $config['query_string_segment'] = "page";
+
+    $this->pagination->initialize($config);
+
+    $page_number = $this->input->get('page') ? $this->input->get('page') : 1;
+
+    $data['posts_list'] = $this->ReadPostsDetails_model->getPostsPaginated($config['per_page'], ($page_number - 1) * $config['per_page']);
+
+    foreach ($data['posts_list'] as &$post) {
+      $post_id = $post['id'];
+      $post['comment_count'] = $this->ReadPostsDetails_model->countComment($post_id);
+    }
+
     $this->layouts->view('posts/readPostsDetails_view', $data);
   }
 
