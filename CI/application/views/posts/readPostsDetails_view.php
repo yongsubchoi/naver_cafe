@@ -113,6 +113,10 @@
                       <div class="comment_user_created_at">
                         <div>
                           <?php echo $comment['username']; ?>
+                          <!-- 로그인한 세션의 이름과 댓글의 이름이 같을 시 작성자 표시하기 -->
+                          <?php if ($user_info->username == $comment['username']) { ?>
+                            <span class="post_writer"><strong>작성자</strong></span>
+                          <?php } ?>
                         </div>
                         <div>
                           <?php echo $comment['created_at']; ?>

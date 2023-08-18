@@ -51,11 +51,12 @@ class Index extends CI_Controller
 
     $data['posts'] = $this->Index_model->getPostsPaginated($config['per_page'], ($page_number - 1) * $config['per_page']);
 
+    // $post 앞에 &를 붙여 참조할당을 통해 $data['notice_posts']배열의 해당 항목 변경
     foreach ($data['notice_posts'] as &$post) {
       $post_id = $post['id'];
       $post['notice_comment_count'] = $this->Index_model->countComment($post_id);
     }
-
+    // $post 앞에 &를 붙여 참조할당을 통해 $data['posts']배열의 해당 항목 변경
     foreach ($data['posts'] as &$post) {
       $post_id = $post['id'];
       $post['comment_count'] = $this->Index_model->countComment($post_id);

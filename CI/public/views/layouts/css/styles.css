@@ -690,6 +690,18 @@ header {
   justify-content: space-between;
   align-items: center;
 }
+.post_writer {
+  width: 50;
+  height: 20px;
+  border-radius: 8px;
+  border: 1px solid #F00;
+  color: #D32121;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
 .comment_content {
   width: 700px;
   height: auto;
