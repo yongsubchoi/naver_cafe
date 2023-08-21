@@ -97,6 +97,7 @@ if (current_url() == site_url('')) {
   // echo '<script>detailLoadContent("cafeInfo");</script>'; // '게시글상세조회'의 초기 호출
   echo '<script src="' . base_url('public/views/layouts/js/like.js') . '"></script>';
   echo '<script src="' . base_url('public/views/layouts/js/kebab.js') . '"></script>';
+  echo '<script src="' . base_url('public/views/layouts/js/commentEdit.js') . '"></script>';
 }
 ?>
 

@@ -157,13 +157,14 @@
                           d="M7.5 16a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3M6 7.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0zM7.5 23a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"
                           fill="#D9D9D9" fill-rule="evenodd" />
                       </svg>
-                      <?php if ($comment['username'] == $username): ?>
+                      <!-- 본인 댓글만 수정, 삭제가 가능하도록 설정 -->
+                      <?php if ($comment['username'] == $username || $is_admin == TRUE): ?>
                         <div class="options">
                           <div class="edit_option">
-                            수정
+                            <a href="#" class="editCommentButton" data-comment-id="<?php echo $comment['id']; ?>">수정</a>
                           </div>
                           <div class="delete_option">
-                            삭제
+                            <a href="#">삭제</a>
                           </div>
                         </div>
                       <?php endif; ?>

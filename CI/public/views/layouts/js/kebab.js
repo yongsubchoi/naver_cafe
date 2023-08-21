@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
       if (options) {
         options.classList.toggle("show_options");
       } else {
+        console.log("본인 댓글이 아닙니다.");
         return;
       }
     });
