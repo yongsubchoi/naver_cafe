@@ -725,6 +725,28 @@ header {
 .comment_kebab {
   cursor: pointer;
 }
+.options {
+  display: none;
+}
+.show_options {
+  width: 80px;
+  height: 50px;
+  display: block;
+  position: absolute;
+  background-color: #efefef;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 5px;
+  font-size: 13px;
+}
+.edit_option {
+
+}
+.delete_option {
+
+}
 .comment_line {
   width: 100%;
   height: 2px;
