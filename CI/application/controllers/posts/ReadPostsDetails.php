@@ -17,17 +17,22 @@ class ReadPostsDetails extends CI_Controller
    */
   public function index($id)
   {
+    // 세션데이터
     $data['username'] = $this->session->userdata('username');
     $data['user_id'] = $this->session->userdata('user_id');
     $data['logged_in'] = $this->session->userdata('logged_in');
     $data['is_admin'] = $this->session->userdata('is_admin');
 
+    // post_id 값
     $data['post_id'] = $id;
+    // post_id값으로 posts테이블의 데이터 가져오기
     $data['posts'] = $this->ReadPostsDetails_model->getPostsByUserId($id);
     // visibility 값을 가져옴
     $data['visibility'] = $data['posts']['visibility'];
 
+    // 사용자 정보
     $data['user_info'] = $this->ReadPostsDetails_model->getUserInfoByPostId($id);
+    // 파일 이름
     $data['file_name'] = $this->ReadPostsDetails_model->getFileNameByPostId($id);
 
     // 로그인한 사용자의 user_id
@@ -35,19 +40,24 @@ class ReadPostsDetails extends CI_Controller
     // 로그인한 사용자의 프로필 사진 경로
     $data['logged_in_user_picture_path'] = $this->ReadPostsDetails_model->getProfilePicturePath($user_id);
 
+    // 공개범위
     $data['is_visible'] = $this->check_visibility($data['visibility']);
 
+    // 사용자가 게시물을 좋아요 했는지 안했는지
     $data['user_liked_post'] = $this->ReadPostsDetails_model->isPostLikedByUser($id, $data['user_id']); // 로그인한 사용자의 좋아요 여부
 
+    // 좋아요 수 조회
     $data['like_count'] = $this->ReadPostsDetails_model->countLike($id);
 
+    // 댓글 수 조회
     $data['comment_count'] = $this->ReadPostsDetails_model->countComment($id);
 
     $this->increase_view_count($id);
 
+    // post_id로 comments테이블 조회
     $data['comments'] = $this->ReadPostsDetails_model->getCommentsByPostId($id);
 
-    // 게시글 리스트 부분
+    // 게시글 리스트 부분(페이지네이션)
     $config['base_url'] = base_url('posts/ReadPostsDetails/index/' . $id);
     $config['total_rows'] = $this->ReadPostsDetails_model->getTotalPostsCount();
     $config['per_page'] = 5;

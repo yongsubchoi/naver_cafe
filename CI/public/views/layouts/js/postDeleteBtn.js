@@ -13,7 +13,7 @@ if (deleteBtn) {
 		}
 	});
 }
-
+// 목록으로 가기 버튼
 document.getElementById("post_list_btn").addEventListener("click", function() {
   window.location.href = "/";
 })

@@ -5,11 +5,13 @@
       <!-- 버튼 부분 -->
       <div class="detail_button_section">
         <div class="btn_left">
-          <?php if ($username == $user_info->username): ?>
+          <!-- 세션의 username이 게시글의 username과 같을 시 or 관리자 권한 계정일 시-->
+          <?php if ($username == $user_info->username || $is_admin==TRUE): ?>
             <div><a href="">수정</a></div>
             <div id="post_delete_btn"><a href="<?php echo base_url('posts/ReadPostsDetails/deletePosts/' . $post_id); ?>">삭제</a></div>
           <?php endif; ?>
           <script>
+            // js파일에서 $post_id값을 받기위해 변수 초기화
               var deletePostUrl = "<?php echo base_url('posts/ReadPostsDetails/deletePosts/' . $post_id); ?>";
           </script>
           <div><a href="">답글</a></div>
@@ -17,7 +19,6 @@
         <div class="btn_right">
           <div>이전글</div>
           <div>다음글</div>
-          <!-- history.back? -->
           <div id="post_list_btn">목록</div>
         </div>
       </div>

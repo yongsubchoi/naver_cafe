@@ -52,7 +52,9 @@
           </div>
           <!-- 게시글 content 입력 칸 -->
           <div class="posts_textarea">
-            <textarea name="content" id="post_content" placeholder="내용을 입력하세요."></textarea>
+            <textarea name="content" id="post_content" placeholder="내용을 입력하세요.">
+              <!-- 수정 시 기존의 값이 들어가는 부분 -->
+            </textarea>
           </div>
 
           <!-- 취소, 등록 버튼 -->
