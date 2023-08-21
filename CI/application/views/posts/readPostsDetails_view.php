@@ -37,7 +37,9 @@
                   <div class="detail_main_top_info_right">
                     <div class="flex_column_style">
                       <div>
-                        <?php echo $user_info->username; ?>
+                        <strong>
+                          <?php echo $user_info->username; ?>
+                        </strong>
                       </div>
                       <div class="flex_row_style">
                         <div class="created_at_style">
@@ -72,16 +74,32 @@
                   <div class="flex_direction_row">
                     <div class="like_button" data-post_id="<?php echo $posts['id']; ?>">
                       <?php if ($user_liked_post): ?>
-                        <span class="liked_icon">&#x2764;</span> 좋아요
+                        <span class="liked_icon">&#x2764;</span> <strong>좋아요</strong>
                       <?php else: ?>
-                        <span class="like_icon">&#x2661;</span> 좋아요
+                        <span class="like_icon">&#x2661;</span> <strong>좋아요</strong>
                       <?php endif; ?>
                     </div>
+                    <!-- 비로그인 시 좋아요 못누르게 처리 -->
+                    <script>
+                      document.addEventListener("DOMContentLoaded", function () {
+                        const likeButton = document.querySelector(".like_button");
+
+                        if (likeButton) {
+                          likeButton.addEventListener("click", function () {
+                            <?php if (!$logged_in): ?>
+                              alert("로그인을 해주세요.");
+                              window.location.href = "<?php echo base_url('userMgmt/Login'); ?>";
+                              return;
+                            <?php endif; ?>
+                          });
+                        }
+                      });
+                    </script>
                     <div class="like_count" data-post_id="<?php echo $posts['id']; ?>">
                       <?php echo $like_count; ?>
                     </div>
                     <div>
-                      댓글
+                      <strong>댓글</strong>
                       <?php echo $comment_count ?>
                     </div>
                   </div>
@@ -112,13 +130,15 @@
                     <div>
                       <div class="comment_user_created_at">
                         <div>
-                          <?php echo $comment['username']; ?>
+                          <strong>
+                            <?php echo $comment['username']; ?>
+                          </strong>
                           <!-- 로그인한 세션의 이름과 댓글의 이름이 같을 시 작성자 표시하기 -->
                           <?php if ($user_info->username == $comment['username']) { ?>
                             <span class="post_writer"><strong>작성자</strong></span>
                           <?php } ?>
                         </div>
-                        <div>
+                        <div class="comment_font_style">
                           <?php echo $comment['created_at']; ?>
                         </div>
                       </div>
@@ -146,21 +166,29 @@
                 <div class="comment_input_area">
                   <?php echo validation_errors(); ?>
                   <?php echo form_open('posts/ReadPostsDetails/comment_form/' . $posts['id']); ?>
-                  <div class="logged_in_username">
-                    <div class="commenter_picture">
-                      <?php if ($logged_in_user_picture_path) { ?>
-                        <img src="<?php echo "/uploads/profile_pictures/" . $logged_in_user_picture_path ?>">
-                      <?php } ?>
+                  <?php if ($logged_in): ?>
+                    <div class="logged_in_username">
+                      <div class="commenter_picture">
+                        <?php if ($logged_in_user_picture_path) { ?>
+                          <img src="<?php echo "/uploads/profile_pictures/" . $logged_in_user_picture_path ?>">
+                        <?php } ?>
+                      </div>
+                      <strong>
+                        <?php echo $username; ?>
+                      </strong>
                     </div>
-                    <?php echo $username; ?>
-                  </div>
-                  <div class="comment_textarea">
-                    <textarea name="content" class="text_area_comment" placeholder="댓글을 남겨보세요." required></textarea>
-                  </div>
-                  <div class="submit_btn">
-                    <button type="submit" class="submit_button">등록</button>
-                  </div>
-                  </form>
+                    <div class="comment_textarea">
+                      <textarea name="content" class="text_area_comment" placeholder="댓글을 남겨보세요." required></textarea>
+                    </div>
+                    <div class="submit_btn">
+                      <button type="submit" class="submit_button">등록</button>
+                    </div>
+                    </form>
+                  <?php else: ?>
+                    <div class="none_logged_in_comment">
+                      댓글을 작성하려면 로그인을 해주세요.
+                    </div>
+                  <?php endif; ?>
                 </div>
               </div>
             </div>
@@ -180,13 +208,16 @@
           <!-- 게시글 제목 -->
           <div class="small_posts_title">
             <a href="/posts/ReadPostsDetails/index/<?php echo $post['id'] ?>/">
-              <?php
-              echo $post['title']; ?>
+              <span>
+                <?php
+                echo $post['title']; ?>
+              </span>
             </a>
             <!-- 댓글 개수 표시 -->
             <?php if ($post['comment_count'] > 0) { ?>
               <span class="comment_count">
-                <strong>[<?php echo $post['comment_count']; ?>]
+                <strong>[
+                  <?php echo $post['comment_count']; ?>]
                 </strong>
               </span>
             <?php } ?>

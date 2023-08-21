@@ -19,6 +19,7 @@ class ReadPostsDetails extends CI_Controller
   {
     $data['username'] = $this->session->userdata('username');
     $data['user_id'] = $this->session->userdata('user_id');
+    $data['logged_in'] = $this->session->userdata('logged_in');
 
     $data['posts'] = $this->ReadPostsDetails_model->getPostsByUserId($id);
     // visibility 값을 가져옴
