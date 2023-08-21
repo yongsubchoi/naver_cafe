@@ -6,6 +6,7 @@
   <!-- 공지 게시글 -->
   <div class="notice_area">
     <?php foreach ($notice_posts as $post): ?>
+      <?php if (!$post['is_deleted']): ?>
       <div class="anmt_area">
         <?php if ($post['is_notice'] == TRUE): ?>
           <!-- 공지 사항 -->
@@ -60,11 +61,13 @@
 
         <?php endif; ?>
       </div>
+      <?php endif; ?>
     <?php endforeach; ?>
   </div>
 
   <!-- 일반 게시글 -->
   <?php foreach ($posts as $post): ?>
+    <?php if (!$post['is_deleted']): ?>
     <div class="posts_style">
 
       <!-- 게시글 id -->
@@ -122,6 +125,7 @@
 
     </div>
     <div class="hr_line"></div>
+    <?php endif; ?>
   <?php endforeach; ?>
   <!-- 페이지네이션 할 부분 -->
   <div class="pagination_style">

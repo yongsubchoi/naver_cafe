@@ -443,7 +443,7 @@ header {
   align-items: center;
 }
 .btn_left {
-  width: 240px;
+  width: auto;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -457,6 +457,7 @@ header {
   justify-content: center;
   align-items: center;
   border-radius: 5px;
+  margin-left: 8px;
 }
 .btn_right {
   width: 240px;
@@ -473,6 +474,7 @@ header {
   justify-content: center;
   align-items: center;
   border-radius: 5px;
+  cursor: pointer;
 }
 .detail_main_section_style {
   display: flex;

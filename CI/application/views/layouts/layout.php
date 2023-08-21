@@ -98,6 +98,7 @@ if (current_url() == site_url('')) {
   echo '<script src="' . base_url('public/views/layouts/js/like.js') . '"></script>';
   echo '<script src="' . base_url('public/views/layouts/js/kebab.js') . '"></script>';
   echo '<script src="' . base_url('public/views/layouts/js/commentEdit.js') . '"></script>';
+  echo '<script src="' . base_url('public/views/layouts/js/postDeleteBtn.js') . '"></script>';
 }
 ?>
 

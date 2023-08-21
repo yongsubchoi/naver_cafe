@@ -174,5 +174,23 @@ class ReadPostsDetails_model extends CI_Model
     $query = $this->db->get();
     return $query->result_array();
   }
+
+  // comment_id를 이용하여 해당 댓글 정보를 가져오는 함수
+  public function getCommentById($comment_id) {
+    $this->db->where('id', $comment_id);
+    $query = $this->db->get('comments');
+    return $query->row_array();
+  }
+
+  // 댓글 업데이트를 위한 함수
+  public function updateComment($comment_id, $data) {
+    $this->db->where('id', $comment_id);
+    $this->db->update('comments', $data);
+  }
+
+  public function deletePosts($id) {
+    // posts 테이블에서 id=$id인 데이터 삭제
+    $this->db->update('posts', array('is_deleted' => 1), array('id' => $id));
+  }  
 }
 ?>

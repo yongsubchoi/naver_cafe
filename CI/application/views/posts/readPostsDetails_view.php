@@ -5,15 +5,20 @@
       <!-- 버튼 부분 -->
       <div class="detail_button_section">
         <div class="btn_left">
-          <div><a href="">수정</a></div>
-          <div>삭제</div>
+          <?php if ($username == $user_info->username): ?>
+            <div><a href="">수정</a></div>
+            <div id="post_delete_btn"><a href="<?php echo base_url('posts/ReadPostsDetails/deletePosts/' . $post_id); ?>">삭제</a></div>
+          <?php endif; ?>
+          <script>
+              var deletePostUrl = "<?php echo base_url('posts/ReadPostsDetails/deletePosts/' . $post_id); ?>";
+          </script>
           <div><a href="">답글</a></div>
         </div>
         <div class="btn_right">
           <div>이전글</div>
           <div>다음글</div>
           <!-- history.back? -->
-          <div>목록</div>
+          <div id="post_list_btn">목록</div>
         </div>
       </div>
       <!-- 상세 게시글 조회 및 댓글 작성 부분 -->
@@ -228,8 +233,7 @@
             <!-- 댓글 개수 표시 -->
             <?php if ($post['comment_count'] > 0) { ?>
               <span class="comment_count">
-                <strong>[
-                  <?php echo $post['comment_count']; ?>]
+                <strong>[<?php echo $post['comment_count']; ?>]
                 </strong>
               </span>
             <?php } ?>

@@ -22,6 +22,7 @@ class ReadPostsDetails extends CI_Controller
     $data['logged_in'] = $this->session->userdata('logged_in');
     $data['is_admin'] = $this->session->userdata('is_admin');
 
+    $data['post_id'] = $id;
     $data['posts'] = $this->ReadPostsDetails_model->getPostsByUserId($id);
     // visibility 값을 가져옴
     $data['visibility'] = $data['posts']['visibility'];
@@ -200,5 +201,9 @@ class ReadPostsDetails extends CI_Controller
     }
   }
 
+  public function deletePosts($id) {
+    $this->ReadPostsDetails_model->deletePosts($id);
+    redirect('');
+  }
 }
 ?>
