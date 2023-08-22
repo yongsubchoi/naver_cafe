@@ -234,19 +234,25 @@ class ReadPostsDetails extends CI_Controller
     redirect('posts/ReadPostsDetails/index/' . $post_id);
   }
 
+  // 게시글 삭제하는 메서드
   public function deletePosts($id)
   {
     $this->ReadPostsDetails_model->deletePosts($id);
     redirect('');
   }
 
-  // public function deleteComment($id) {
-  //   // 함수의 파라메터인 post_id를 이용하여 comments테이블의 id 값을 반환하여
-  //   // 해당 comments 테이블의 id값을 삭제하는 로직 필요
-  //   $comment_id = $this->
+  // 댓글 삭제하는 메서드
+  public function delete_comment($comment_id)
+  {
+    if (!$this->session->userdata('logged_in')) {
+      redirect('userMgmt/Login');
+    }
 
-  //   $this->ReadPostsDetails_model->deleteComment($comment_id);
-  //   redirect('');
-  // }
+    // 댓글 삭제 로직 수행
+    $this->ReadPostsDetails_model->deleteComment($comment_id);
+
+    // 삭제가 성공했을 경우 응답 반환
+    echo json_encode(array('success' => true));
+  }
 }
 ?>

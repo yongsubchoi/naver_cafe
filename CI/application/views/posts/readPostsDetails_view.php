@@ -129,6 +129,7 @@
               <div class="comments_tab"><span>댓글</span></div>
               <div class="flex_justify_center">
                 <?php foreach ($comments as $comment): ?>
+                  <?php if (!$comment['is_deleted']==1): ?>
                   <div class="comment_form">
                     <div class="comment_picture">
                       <?php if ($comment['profile_picture_path']) { ?>
@@ -172,7 +173,7 @@
                             <a href="#" class="editCommentButton" data-comment-id="<?php echo $comment['id']; ?>">수정</a>
                           </div>
                           <div class="delete_option">
-                            <a href="#">삭제</a>
+                            <a href="#" class="deleteCommentButton" data-comment-id="<?php echo $comment['id']; ?>">삭제</a>
                           </div>
                         </div>
                       <?php endif; ?>
@@ -195,8 +196,8 @@
                         </strong>
                       </div>
                       <div class="comment_textarea">
-                        <textarea name="edited_content" class="text_area_comment"
-                          required placeholder="수정할 내용을 입력하세요."><?php echo $comment['content']; ?></textarea>
+                        <textarea name="edited_content" class="text_area_comment" required
+                          placeholder="<?php echo $comment['content']; ?>"></textarea>
                       </div>
                       <div class="submit_btn">
                         <button type="submit" class="submit_button">수정 완료</button>
@@ -207,6 +208,7 @@
                   </div>
 
                   <div class="comment_line"></div>
+                  <?php endif; ?>
                 <?php endforeach; ?>
               </div>
               <!-- 댓글 작성 부분 -->
