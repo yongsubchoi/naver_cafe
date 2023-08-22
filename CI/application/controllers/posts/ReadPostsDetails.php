@@ -50,7 +50,7 @@ class ReadPostsDetails extends CI_Controller
     $data['like_count'] = $this->ReadPostsDetails_model->countLike($id);
 
     // 댓글 수 조회
-    $data['comment_count'] = $this->ReadPostsDetails_model->countComment($id);
+    $data['comment_count'] = $this->ReadPostsDetails_model->countNotDeletedComment($id);
 
     $this->increase_view_count($id);
 

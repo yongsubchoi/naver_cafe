@@ -131,6 +131,14 @@ class ReadPostsDetails_model extends CI_Model
     return $query->num_rows();
   }
 
+  public function countNotDeletedComment($post_id)
+  {
+    $this->db->where('post_id', $post_id);
+    $this->db->where('is_deleted', 0);
+    $query = $this->db->get('comments');
+    return $query->num_rows();
+  }
+
   // 테이블에 $data를 삽입하는 함수
   public function createComment($data)
   {
