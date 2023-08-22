@@ -65,7 +65,7 @@ class CreatePosts extends CI_Controller
   {
     echo "uploadAttachment 함수 호출" . "<br>";
     // 파일 업로드 처리 로직
-    // 업로드 성공 시 파일 정보를 files 테이블에 저장하고, 사입된 파일의 id를 반환
+    // 업로드 성공 시 파일 정보를 files 테이블에 저장하고, 삽입된 파일의 id를 반환
     $imageFolder = "C:/workspace/naver_cafe/CI/uploads/post_files/";
 
     if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
