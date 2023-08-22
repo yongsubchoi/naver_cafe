@@ -7,6 +7,7 @@
         <div class="btn_left">
           <!-- 세션의 username이 게시글의 username과 같을 시 or 관리자 권한 계정일 시-->
           <?php if ($username == $user_info->username || $is_admin==TRUE): ?>
+            <!-- 경로에 CreatePosts컨트롤러와 메서드 연결? -->
             <div><a href="">수정</a></div>
             <div id="post_delete_btn"><a href="<?php echo base_url('posts/ReadPostsDetails/deletePosts/' . $post_id); ?>">삭제</a></div>
           <?php endif; ?>
