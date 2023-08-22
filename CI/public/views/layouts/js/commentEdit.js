@@ -6,7 +6,6 @@ $(document).ready(function () {
 
 		// 토글하여 수정 폼 보이게/숨기게 처리
 		editForm.toggle();
-
 	});
 
 	// 취소 버튼 클릭 시 수정 폼 숨기기
@@ -21,15 +20,21 @@ $(document).ready(function () {
 	// 삭제 버튼 클릭 시 동작
 	$(".deleteCommentButton").click(function (event) {
 		event.preventDefault(); // 기본 동작 막기
-    const commentId = $(this).data("comment-id");
+		const commentId = $(this).data("comment-id");
 
-		// 서버로 삭제 요청 보내기
-		$.post(
-			`/posts/ReadPostsDetails/delete_comment/${commentId}`,
-			function (response) {
-        console.log("댓글이 삭제되었습니다.");
-        window.location.reload();
-			}
-		);
+		var deleteComment = confirm("댓글을 삭제하시겠습니까?");
+
+		if (deleteComment) {
+			// 서버로 삭제 요청 보내기
+			$.post(
+				`/posts/ReadPostsDetails/delete_comment/${commentId}`,
+				function (response) {
+					console.log("댓글이 삭제되었습니다.");
+					window.location.reload();
+				}
+			);
+		} else {
+			
+		}
 	});
 });

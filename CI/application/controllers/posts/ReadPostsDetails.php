@@ -122,6 +122,9 @@ class ReadPostsDetails extends CI_Controller
     }
   }
 
+  /**
+   * @param string $visibility // 'forAll','forMember' 의 값만 들어올 수 있다.
+   */
   // $visibility를 체크하는 함수
   public function check_visibility($visibility)
   {
@@ -234,6 +237,9 @@ class ReadPostsDetails extends CI_Controller
     redirect('posts/ReadPostsDetails/index/' . $post_id);
   }
 
+  /**
+   * @param string $id // post_id이다.
+   */
   // 게시글 삭제하는 메서드
   public function deletePosts($id)
   {
