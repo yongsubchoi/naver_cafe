@@ -160,11 +160,13 @@ class ReadPostsDetails_model extends CI_Model
   }
 
   // posts테이블의 전체 레코드 수를 반환하는 함수
-  public function getTotalPostsCount() {
+  public function getTotalPostsCount()
+  {
     return $this->db->count_all('posts');
   }
 
-  public function getPostsPaginated($limit, $offset) {
+  public function getPostsPaginated($limit, $offset)
+  {
     $this->db->select('p.*, u.username');
     $this->db->from('posts p');
     $this->db->join('users u', 'p.user_id = u.id');
@@ -176,21 +178,45 @@ class ReadPostsDetails_model extends CI_Model
   }
 
   // comment_id를 이용하여 해당 댓글 정보를 가져오는 함수
-  public function getCommentById($comment_id) {
+  public function getCommentById($comment_id)
+  {
     $this->db->where('id', $comment_id);
     $query = $this->db->get('comments');
     return $query->row_array();
   }
 
   // 댓글 업데이트를 위한 함수
-  public function updateComment($comment_id, $data) {
+  public function updateComment($comment_id, $data)
+  {
     $this->db->where('id', $comment_id);
     $this->db->update('comments', $data);
   }
 
-  public function deletePosts($id) {
+  public function deletePosts($id)
+  {
     // posts 테이블에서 id=$id인 데이터 삭제
     $this->db->update('posts', array('is_deleted' => 1), array('id' => $id));
-  }  
+  }
+
+  // 댓글의 ID를 사용하여 해당 댓글이 속한 게시물의 ID를 가져오는 메서드
+  public function getPostIdByCommentId($comment_id)
+  {
+    $this->db->select('post_id');
+    $this->db->where('id', $comment_id);
+    $query = $this->db->get('comments');
+
+    if ($query->num_rows() > 0) {
+      $row = $query->row();
+      return $row->post_id;
+    }
+
+    return null;
+  }
+
+  public function deleteComment($comment_id)
+  {
+    // comments 테이블에서 id=$id인 데이터 삭제
+    $this->db->update('comments', array('is_deleted' => 1), array('id' => $comment_id));
+  }
 }
 ?>

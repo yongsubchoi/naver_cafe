@@ -211,9 +211,42 @@ class ReadPostsDetails extends CI_Controller
     }
   }
 
-  public function deletePosts($id) {
+  public function edit_comment($comment_id)
+  {
+    if (!$this->session->userdata('logged_in')) {
+      redirect('userMgmt/Login');
+    }
+    $edited_content = $this->input->post('edited_content');
+    $user_id = $this->session->userdata('user_id');
+
+    // 수정하려는 댓글의 작성자인지 확인
+    $comment = $this->ReadPostsDetails_model->getCommentById($comment_id);
+    // if ($comment['user_id']!= $user_id) {
+    //   // 본인 댓글이 아닌 경우 처리
+    //   // 이 부분은 알맞게 에러 처리 or 리디렉션 처리
+    // }
+    // 수정할 댓글 내용 업데이트
+    $data = array('content' => $edited_content);
+    $this->ReadPostsDetails_model->updateComment($comment_id, $data);
+
+    // 댓글 수정 완료 후 해당 게시글로 리디렉션
+    $post_id = $this->ReadPostsDetails_model->getPostIdByCommentId($comment_id);
+    redirect('posts/ReadPostsDetails/index/' . $post_id);
+  }
+
+  public function deletePosts($id)
+  {
     $this->ReadPostsDetails_model->deletePosts($id);
     redirect('');
   }
+
+  // public function deleteComment($id) {
+  //   // 함수의 파라메터인 post_id를 이용하여 comments테이블의 id 값을 반환하여
+  //   // 해당 comments 테이블의 id값을 삭제하는 로직 필요
+  //   $comment_id = $this->
+
+  //   $this->ReadPostsDetails_model->deleteComment($comment_id);
+  //   redirect('');
+  // }
 }
 ?>

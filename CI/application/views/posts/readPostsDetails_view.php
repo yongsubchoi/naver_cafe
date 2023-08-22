@@ -6,14 +6,15 @@
       <div class="detail_button_section">
         <div class="btn_left">
           <!-- 세션의 username이 게시글의 username과 같을 시 or 관리자 권한 계정일 시-->
-          <?php if ($username == $user_info->username || $is_admin==TRUE): ?>
+          <?php if ($username == $user_info->username || $is_admin == TRUE): ?>
             <!-- a태그 경로 마지막에 해당 게시글의 id 값을 넣어줘야한다. -->
             <div><a href="<?php echo base_url('posts/EditPosts/index/' . $post_id); ?>">수정</a></div>
-            <div id="post_delete_btn"><a href="<?php echo base_url('posts/ReadPostsDetails/deletePosts/' . $post_id); ?>">삭제</a></div>
+            <div id="post_delete_btn"><a
+                href="<?php echo base_url('posts/ReadPostsDetails/deletePosts/' . $post_id); ?>">삭제</a></div>
           <?php endif; ?>
           <script>
             // js파일에서 $post_id값을 받기위해 변수 초기화
-              var deletePostUrl = "<?php echo base_url('posts/ReadPostsDetails/deletePosts/' . $post_id); ?>";
+            var deletePostUrl = "<?php echo base_url('posts/ReadPostsDetails/deletePosts/' . $post_id); ?>";
           </script>
           <div><a href="">답글</a></div>
         </div>
@@ -177,6 +178,34 @@
                       <?php endif; ?>
                     </div>
                   </div>
+                  <!-- 댓글 수정 폼 -->
+                  <div class="comment_input_area" id="edit-comment-form-<?php echo $comment['id']; ?>"
+                    style="display: none;">
+                    <?php echo validation_errors(); ?>
+                    <?php echo form_open('posts/ReadPostsDetails/edit_comment/' . $comment['id']); ?>
+                    <?php if ($logged_in): ?>
+                      <div class="logged_in_username">
+                        <div class="commenter_picture">
+                          <?php if ($logged_in_user_picture_path) { ?>
+                            <img src="<?php echo "/uploads/profile_pictures/" . $logged_in_user_picture_path ?>">
+                          <?php } ?>
+                        </div>
+                        <strong>
+                          <?php echo $username; ?>
+                        </strong>
+                      </div>
+                      <div class="comment_textarea">
+                        <textarea name="edited_content" class="text_area_comment"
+                          required placeholder="수정할 내용을 입력하세요."><?php echo $comment['content']; ?></textarea>
+                      </div>
+                      <div class="submit_btn">
+                        <button type="submit" class="submit_button">수정 완료</button>
+                        <button type="button" class="cancel_button">취소</button>
+                      </div>
+                      </form>
+                    <?php endif; ?>
+                  </div>
+
                   <div class="comment_line"></div>
                 <?php endforeach; ?>
               </div>
@@ -235,7 +264,8 @@
             <!-- 댓글 개수 표시 -->
             <?php if ($post['comment_count'] > 0) { ?>
               <span class="comment_count">
-                <strong>[<?php echo $post['comment_count']; ?>]
+                <strong>[
+                  <?php echo $post['comment_count']; ?>]
                 </strong>
               </span>
             <?php } ?>

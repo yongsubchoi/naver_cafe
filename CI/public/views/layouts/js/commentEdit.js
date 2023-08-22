@@ -1,25 +1,22 @@
-// document.addEventListener("DOMContentLoaded", function () {
-//   const editButtons = document.querySelectorAll(".editCommentButton");
-//   const commentForm = document.querySelector(".comment_input_area"); // 폼을 감싸는 컨테이너 선택
-//   const commentTextArea = commentForm.querySelector(".text_area_comment");
-//   const formAction = commentForm.querySelector("form").action; // 폼의 action URL 가져오기
+$(document).ready(function() {
+  $(".editCommentButton").click(function(event) {
+    event.preventDefault(); // 기본 동작 막기
+    const commentId = $(this).data("comment-id");
+    const editForm = $(`#edit-comment-form-${commentId}`);
 
-//   editButtons.forEach((button) => {
-//     button.addEventListener("click", function (event) {
-//       event.preventDefault();
+    // 토글하여 수정 폼 보이게/숨기게 처리
+    editForm.toggle();
 
-//       // 데이터 속성에서 댓글 ID 가져오기
-//       const commentId = button.getAttribute("data-comment-id");
-//       const commentContent = getCommentContentById(commentId); // 이 함수를 구현합니다
+    // 수정 버튼 클릭 시 해당 댓글의 내용으로 폼 필드를 채움
+    if (editForm.is(":visible")) {
+      const commentContent = $(`p[data-comment-id="${commentId}"]`).text();
+      editForm.find("textarea[name='edited_content']").val(commentContent);
+    }
+  });
 
-//       // 폼의 action URL 변경하여 해당 댓글 ID 전달
-//       commentForm.querySelector("form").action = formAction + '/' + commentId;
-
-//       // 텍스트 영역에 기존 댓글 내용 채우기
-//       commentTextArea.value = commentContent;
-
-//       // 댓글 폼 표시
-//       commentForm.style.display = "block";
-//     });
-//   });
-// });
+  // 취소 버튼 클릭 시 수정 폼 숨기기
+  $(".cancel_button").click(function() {
+    const commentId = $(this).closest(".comment_input_area").attr("id").split("-")[3];
+    $(`#edit-comment-form-${commentId}`).hide();
+  });
+});
