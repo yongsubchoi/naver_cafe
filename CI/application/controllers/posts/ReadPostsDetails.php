@@ -81,7 +81,7 @@ class ReadPostsDetails extends CI_Controller
 
     foreach ($data['posts_list'] as &$post) {
       $post_id = $post['id'];
-      $post['comment_count'] = $this->ReadPostsDetails_model->countComment($post_id);
+      $post['comment_count'] = $this->ReadPostsDetails_model->countNotDeletedComment($post_id);
     }
 
     $this->layouts->view('posts/readPostsDetails_view', $data);

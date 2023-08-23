@@ -1,3 +1,6 @@
+/**
+ * 게시글 상세조회 페이지 댓글 수정, 삭제 js
+ */
 $(document).ready(function () {
 	$(".editCommentButton").click(function (event) {
 		event.preventDefault(); // 기본 동작 막기
@@ -34,7 +37,7 @@ $(document).ready(function () {
 				}
 			);
 		} else {
-			
+
 		}
 	});
 });

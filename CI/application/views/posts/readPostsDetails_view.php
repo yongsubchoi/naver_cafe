@@ -19,8 +19,8 @@
           <div><a href="">답글</a></div>
         </div>
         <div class="btn_right">
-          <div>이전글</div>
-          <div>다음글</div>
+          <div id="prev_post_btn">이전글</div>
+          <div id="next_post_btn">다음글</div>
           <div id="post_list_btn">목록</div>
         </div>
       </div>
@@ -126,7 +126,7 @@
           <!-- 댓글 목록 부분 -->
           <div class="detail_comments_section_style">
             <div class="detail_comments_section">
-              <div class="comments_tab"><span>댓글</span></div>
+              <div class="comments_tab"><span><strong>댓글</strong></span></div>
               <div class="flex_justify_center">
                 <?php foreach ($comments as $comment): ?>
                   <?php if (!$comment['is_deleted']==1): ?>
@@ -266,8 +266,7 @@
             <!-- 댓글 개수 표시 -->
             <?php if ($post['comment_count'] > 0) { ?>
               <span class="comment_count">
-                <strong>[
-                  <?php echo $post['comment_count']; ?>]
+                <strong>[<?php echo $post['comment_count']; ?>]
                 </strong>
               </span>
             <?php } ?>

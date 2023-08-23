@@ -1,3 +1,7 @@
+/**
+ * 게시글 상세조회 상단 버튼 관련 js
+ * 삭제, 이전글, 다음글, 목록
+ */
 const deleteBtn = document.getElementById("post_delete_btn");
 
 if (deleteBtn) {
