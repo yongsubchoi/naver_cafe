@@ -1,5 +1,6 @@
 <!-- 공개범위 조건문 -->
 <?php if ($is_visible): ?>
+  <?php if ($is_deleted): ?>
   <div class="detail_style">
     <div class="detail_section">
       <!-- 버튼 부분 -->
@@ -19,8 +20,18 @@
           <div><a href="">답글</a></div>
         </div>
         <div class="btn_right">
-          <div id="prev_post_btn">이전글</div>
-          <div id="next_post_btn">다음글</div>
+          <!-- 이전글이 있는 경우  -->
+          <?php if ($prev_post !== null): ?>
+          <div id="prev_post_btn">
+            <a href="/posts/ReadPostsDetails/index/<?php echo $prev_post; ?>/" class="prev_btn_style">이전글</a>
+          </div>
+          <?php endif; ?>
+          <!-- 다음글이 있는 경우 -->
+          <?php if ($next_post !== null): ?>
+          <div id="next_post_btn">
+            <a href="/posts/ReadPostsDetails/index/<?php echo $next_post; ?>/" class="next_btn_style">다음글</a>
+          </div>
+          <?php endif; ?>
           <div id="post_list_btn">목록</div>
         </div>
       </div>
@@ -316,6 +327,14 @@
       </div>
     </div>
   </div>
+  <?php else: ?>
+    <script>
+      // alert('삭제된 게시글입니다.');
+      // 예외 처리를 어떤식으로 할 것인가?
+      // alert를 나오게 하지 않고 바로 db의 다음 post_id로 넘어가게 하는 로직이 필요하다.
+      // 위와같이 이전글, 다음글을 눌렀을 때 삭제된 게시글인 경우 $post_id에 +1, -1 처리를 해주는 로직이 필요하다.
+    </script>
+  <?php endif; ?>
 <?php else: ?>
   <script>
     alert('멤버공개 게시글입니다.');

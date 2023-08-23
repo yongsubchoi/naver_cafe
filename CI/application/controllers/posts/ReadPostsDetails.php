@@ -29,6 +29,7 @@ class ReadPostsDetails extends CI_Controller
     $data['posts'] = $this->ReadPostsDetails_model->getPostsByUserId($id);
     // visibility 값을 가져옴
     $data['visibility'] = $data['posts']['visibility'];
+    $data['is_deleted'] = $data['posts']['is_deleted'];
 
     // 사용자 정보
     $data['user_info'] = $this->ReadPostsDetails_model->getUserInfoByPostId($id);
@@ -42,6 +43,8 @@ class ReadPostsDetails extends CI_Controller
 
     // 공개범위
     $data['is_visible'] = $this->check_visibility($data['visibility']);
+    // 삭제여부
+    $data['is_deleted'] = $this->check_is_deleted($data['is_deleted']);
 
     // 사용자가 게시물을 좋아요 했는지 안했는지
     $data['user_liked_post'] = $this->ReadPostsDetails_model->isPostLikedByUser($id, $data['user_id']); // 로그인한 사용자의 좋아요 여부
@@ -83,6 +86,13 @@ class ReadPostsDetails extends CI_Controller
       $post_id = $post['id'];
       $post['comment_count'] = $this->ReadPostsDetails_model->countNotDeletedComment($post_id);
     }
+
+    // 이전글, 다음글 버튼 처리
+    $prev_post = $this->ReadPostsDetails_model->getPrevPostId($id);
+    $next_post = $this->ReadPostsDetails_model->getNextPostId($id);
+
+    $data['prev_post'] = $prev_post;
+    $data['next_post'] = $next_post;
 
     $this->layouts->view('posts/readPostsDetails_view', $data);
   }
@@ -135,6 +145,14 @@ class ReadPostsDetails extends CI_Controller
       return true;
       // 멤버공개 및 로그인을 한 경우
     } elseif ($visibility === 'forMember' && $username) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public function check_is_deleted($is_deleted) {
+    if ($is_deleted == false) {
       return true;
     } else {
       return false;

@@ -226,5 +226,39 @@ class ReadPostsDetails_model extends CI_Model
     // comments 테이블에서 id=$id인 데이터 삭제
     $this->db->update('comments', array('is_deleted' => 1), array('id' => $comment_id));
   }
+
+  // 현재 post_id 이전의 post_id들을 가져오는 함수
+  public function getPrevPostId($post_id) {
+    $this->db->select('id');
+    $this->db->where('id <', $post_id);
+    $this->db->where('is_deleted', 0); // is_deleted가 0인 레코드만 선택
+    $this->db->order_by('id', 'desc');
+    $this->db->limit(1);
+    $query = $this->db->get('posts');
+
+    if ($query->num_rows()>0) {
+      $row = $query->row();
+      return $row->id;
+    } else {
+      return null;
+    }
+  }
+
+  // 현재 post_id 이후의 post_id들을 가져오는 함수
+  public function getNextPostId($post_id) {
+    $this->db->select('id');
+    $this->db->where('id >', $post_id);
+    $this->db->where('is_deleted', 0); // is_deleted가 0인 레코드만 선택
+    $this->db->order_by('id', 'asc');
+    $this->db->limit(1);
+    $query = $this->db->get('posts');
+
+    if ($query->num_rows()>0) {
+      $row = $query->row();
+      return $row->id;
+    } else {
+      return null;
+    }
+  }
 }
 ?>
