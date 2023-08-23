@@ -265,6 +265,7 @@
         <div class="small_posts_line"></div>
       </div>
       <?php foreach ($posts_list as $post): ?>
+        <?php if (!$post['is_deleted']): ?>
         <div class="small_posts_list">
           <!-- 게시글 제목 -->
           <div class="small_posts_title">
@@ -319,6 +320,7 @@
         <div class="small_posts_line_style">
           <div class="small_posts_line"></div>
         </div>
+        <?php endif; ?>
       <?php endforeach; ?>
       <div class="small_posts_pagination_style">
         <div class="small_posts_pagination_links">
