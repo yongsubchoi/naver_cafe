@@ -142,12 +142,18 @@
                   <?php foreach ($comments as $comment): ?>
                     <?php if (!$comment['is_deleted'] == 1): ?>
                       <div class="comment_form">
+                        <!-- 댓글의 level에 따른 들여쓰기 반복 -->
+                        <?php if ($comment['level']): ?>
+                          <?php for ($i = 0; $i < $comment['level']; $i++): ?>
+                          <div class="comment_level"></div>
+                          <?php endfor; ?>
+                        <?php endif; ?>
                         <div class="comment_picture">
                           <?php if ($comment['profile_picture_path']) { ?>
                             <img src="<?php echo "/uploads/profile_pictures/" . $comment['profile_picture_path'] ?>">
                           <?php } ?>
                         </div>
-                        <div>
+                        <div class="comment_box">
                           <div class="comment_user_created_at">
                             <div>
                               <strong>

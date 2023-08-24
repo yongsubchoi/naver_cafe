@@ -276,8 +276,15 @@ class ReadPostsDetails extends CI_Controller
 
     $post_id = $this->input->post('post_id');
 
+    // parent_comment_id에 해당하는 댓글 정보 가져오기
+    $parent_comment = $this->ReadPostsDetails_model->getCommentById($parent_comment_id);
+
+    // parent_comment가 존재하면서 level이 설정되어 있는 경우, 해당 댓글의 level + 1
+    $level = ($parent_comment && isset($parent_comment['level'])) ? $parent_comment['level'] + 1 : 1;
+
+
     // 답글을 데이터베이스에 저장하는 모델 메서드 호출
-    $this->ReadPostsDetails_model->addCoComment($parent_comment_id, $cocomment_content, $post_id);
+    $this->ReadPostsDetails_model->addCoComment($parent_comment_id, $cocomment_content, $post_id, $level);
 
     // 답글 작성 후 원래 페이지로 리디렉션
     redirect('posts/ReadPostsDetails/index/' . $post_id);

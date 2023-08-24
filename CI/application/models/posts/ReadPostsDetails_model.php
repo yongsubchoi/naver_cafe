@@ -264,7 +264,7 @@ class ReadPostsDetails_model extends CI_Model
   }
 
   // 답글을 추가하는 함수
-  public function addCoComment($parent_comment_id, $cocomment_content, $post_id)
+  public function addCoComment($parent_comment_id, $cocomment_content, $post_id, $level)
   {
     $user_id = $this->session->userdata('user_id');
 
@@ -274,11 +274,53 @@ class ReadPostsDetails_model extends CI_Model
       'content' => $cocomment_content,
       'created_at' => date('Y-m-d H:i:s'),
       'parent_comment_id' => $parent_comment_id,
-      'level' => 1, // 답글의 레벨은 1로 설정
+      'level' => $level, // 답글의 레벨은 1로 설정
     );
 
     $this->db->insert('comments', $data);
   }
 
+  // 계층형 구조를 표현하기 위한 재귀 쿼리문
+  public function getCommentHierarchy($post_id)
+  {
+    $sql = "
+            WITH RECURSIVE comment_cte AS (
+                SELECT
+                    id,
+                    post_id,
+                    user_id,
+                    parent_comment_id,
+                    content,
+                    created_at,
+                    LEVEL,
+                    display_order,
+                    CAST(id AS CHAR(200)) AS path
+                FROM comments
+                WHERE post_id = ? AND parent_comment_id IS NULL -- 특정 게시물의 최상위 댓글 선택
+                
+                UNION ALL
+                
+                SELECT
+                    c.id,
+                    c.post_id,
+                    c.user_id,
+                    c.parent_comment_id,
+                    c.content,
+                    c.created_at,
+                    c.level,
+                    c.display_order,
+                    CONCAT(cte.path, '-', c.id) AS path
+                FROM comments c
+                INNER JOIN comment_cte cte ON cte.id = c.parent_comment_id
+            )
+            SELECT 
+                id, post_id, user_id, parent_comment_id, content, created_at,
+                REPEAT('    ', LEVEL) AS indent, path, LEVEL, display_order
+            FROM comment_cte
+            ORDER BY path, display_order;
+        ";
+
+    return $this->db->query($sql, [$post_id])->result_array();
+  }
 }
 ?>
