@@ -272,22 +272,16 @@ class ReadPostsDetails extends CI_Controller
     }
 
     // 사용자가 입력한 답글 내용
-    $cocomment_content = $this->input->post('cocomment_content');
+    $cocomment_content = $this->input->post('co_comment_content');
+
+    $post_id = $this->input->post('post_id');
 
     // 답글을 데이터베이스에 저장하는 모델 메서드 호출
-    $this->ReadPostsDetails_model->addCoComment($parent_comment_id, $cocomment_content);
+    $this->ReadPostsDetails_model->addCoComment($parent_comment_id, $cocomment_content, $post_id);
 
     // 답글 작성 후 원래 페이지로 리디렉션
-    redirect('posts/ReadPostsDetails/index/' . $this->input->post('post_id'));
-  }
-
-  public function cancel_cocomment($post_id)
-  {
-    // 답글 작성 취소 후 원래 페이지로 리디렉션
     redirect('posts/ReadPostsDetails/index/' . $post_id);
   }
-
-
 
   /**
    * @param string $id // post_id이다.

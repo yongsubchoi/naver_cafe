@@ -188,6 +188,8 @@
                                   </div>
                                   <textarea name="co_comment_content" class="cocomment_text_area" placeholder="답글을 작성하세요."
                                     required></textarea>
+                                    <!-- 히든으로 post_id의 값을 post로 넘겨줌 -->
+                                  <input type="hidden" name="post_id" value="<?php echo $post_id; ?>">
                                   <div class="cocomment_submit_btn">
                                     <button type="submit" class="submit_button">등록</button>
                                     <button type="button" class="coco_cancel_button">취소</button>
@@ -358,10 +360,10 @@
     </div>
   <?php else: ?>
     <script>
-              // alert('삭제된 게시글입니다.');
-              // 예외 처리를 어떤식으로 할 것인가?
-              // alert를 나오게 하지 않고 바로 db의 다음 post_id로 넘어가게 하는 로직이 필요하다.
-              // 위와같이 이전글, 다음글을 눌렀을 때 삭제된 게시글인 경우 $post_id에 +1, -1 처리를 해주는 로직이 필요하다.
+                  // alert('삭제된 게시글입니다.');
+                  // 예외 처리를 어떤식으로 할 것인가?
+                  // alert를 나오게 하지 않고 바로 db의 다음 post_id로 넘어가게 하는 로직이 필요하다.
+                  // 위와같이 이전글, 다음글을 눌렀을 때 삭제된 게시글인 경우 $post_id에 +1, -1 처리를 해주는 로직이 필요하다.
     </script>
   <?php endif; ?>
 <?php else: ?>

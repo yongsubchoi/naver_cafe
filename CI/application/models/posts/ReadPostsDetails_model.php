@@ -264,10 +264,9 @@ class ReadPostsDetails_model extends CI_Model
   }
 
   // 답글을 추가하는 함수
-  public function addCoComment($parent_comment_id, $cocomment_content)
+  public function addCoComment($parent_comment_id, $cocomment_content, $post_id)
   {
     $user_id = $this->session->userdata('user_id');
-    $post_id = $this->input->post('post_id');
 
     $data = array(
       'user_id' => $user_id,
@@ -276,7 +275,6 @@ class ReadPostsDetails_model extends CI_Model
       'created_at' => date('Y-m-d H:i:s'),
       'parent_comment_id' => $parent_comment_id,
       'level' => 1, // 답글의 레벨은 1로 설정
-      // 다른 필드들의 기본값 설정 등...
     );
 
     $this->db->insert('comments', $data);
