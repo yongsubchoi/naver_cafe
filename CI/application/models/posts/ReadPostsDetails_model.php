@@ -228,7 +228,8 @@ class ReadPostsDetails_model extends CI_Model
   }
 
   // 현재 post_id 이전의 post_id들을 가져오는 함수
-  public function getPrevPostId($post_id) {
+  public function getPrevPostId($post_id)
+  {
     $this->db->select('id');
     $this->db->where('id <', $post_id);
     $this->db->where('is_deleted', 0); // is_deleted가 0인 레코드만 선택
@@ -236,7 +237,7 @@ class ReadPostsDetails_model extends CI_Model
     $this->db->limit(1);
     $query = $this->db->get('posts');
 
-    if ($query->num_rows()>0) {
+    if ($query->num_rows() > 0) {
       $row = $query->row();
       return $row->id;
     } else {
@@ -245,7 +246,8 @@ class ReadPostsDetails_model extends CI_Model
   }
 
   // 현재 post_id 이후의 post_id들을 가져오는 함수
-  public function getNextPostId($post_id) {
+  public function getNextPostId($post_id)
+  {
     $this->db->select('id');
     $this->db->where('id >', $post_id);
     $this->db->where('is_deleted', 0); // is_deleted가 0인 레코드만 선택
@@ -253,12 +255,32 @@ class ReadPostsDetails_model extends CI_Model
     $this->db->limit(1);
     $query = $this->db->get('posts');
 
-    if ($query->num_rows()>0) {
+    if ($query->num_rows() > 0) {
       $row = $query->row();
       return $row->id;
     } else {
       return null;
     }
   }
+
+  // 답글을 추가하는 함수
+  public function addCoComment($parent_comment_id, $cocomment_content)
+  {
+    $user_id = $this->session->userdata('user_id');
+    $post_id = $this->input->post('post_id');
+
+    $data = array(
+      'user_id' => $user_id,
+      'post_id' => $post_id,
+      'content' => $cocomment_content,
+      'created_at' => date('Y-m-d H:i:s'),
+      'parent_comment_id' => $parent_comment_id,
+      'level' => 1, // 답글의 레벨은 1로 설정
+      // 다른 필드들의 기본값 설정 등...
+    );
+
+    $this->db->insert('comments', $data);
+  }
+
 }
 ?>

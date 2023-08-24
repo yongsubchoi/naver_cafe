@@ -151,7 +151,8 @@ class ReadPostsDetails extends CI_Controller
     }
   }
 
-  public function check_is_deleted($is_deleted) {
+  public function check_is_deleted($is_deleted)
+  {
     if ($is_deleted == false) {
       return true;
     } else {
@@ -254,6 +255,39 @@ class ReadPostsDetails extends CI_Controller
     $post_id = $this->ReadPostsDetails_model->getPostIdByCommentId($comment_id);
     redirect('posts/ReadPostsDetails/index/' . $post_id);
   }
+
+  /**
+   * ? kebab.js와 commentEdit.js를 참고하자.
+   * todo 답글쓰기에 필요한 로직
+   * 폼으로부터 받아온 데이터를 변수에 저장
+   * 해당 변수를 $data 배열의 키값으로 넣기
+   * 모델의 함수를 불러와 comments테이블에 삽입
+   * 계층형 표현을 위해 parent_comment_id, level, display_order, path를 설정해주는 로직이 필요
+   * 마지막에 해당 페이지로 다시 리디렉션
+   */
+  public function add_cocomment($parent_comment_id)
+  {
+    if (!$this->session->userdata('logged_in')) {
+      redirect('userMgmt/Login');
+    }
+
+    // 사용자가 입력한 답글 내용
+    $cocomment_content = $this->input->post('cocomment_content');
+
+    // 답글을 데이터베이스에 저장하는 모델 메서드 호출
+    $this->ReadPostsDetails_model->addCoComment($parent_comment_id, $cocomment_content);
+
+    // 답글 작성 후 원래 페이지로 리디렉션
+    redirect('posts/ReadPostsDetails/index/' . $this->input->post('post_id'));
+  }
+
+  public function cancel_cocomment($post_id)
+  {
+    // 답글 작성 취소 후 원래 페이지로 리디렉션
+    redirect('posts/ReadPostsDetails/index/' . $post_id);
+  }
+
+
 
   /**
    * @param string $id // post_id이다.

@@ -470,6 +470,7 @@ header {
   width: 100%;
   height: 100%;
   text-decoration: none;
+  font-weight: 700;
   color: black;
 }
 .btn_right {
@@ -489,6 +490,7 @@ header {
   align-items: center;
   border-radius: 5px;
   cursor: pointer;
+  font-weight: 700;
 }
 .prev_btn_style,
 .next_btn_style {
@@ -743,16 +745,31 @@ header {
   margin-top: 10px;
 }
 .co_comment {
+  width: auto;
   margin-bottom: 20px;
   margin-top: 10px;
   display: flex;
   justify-content: end;
+  /* cursor: pointer; */
+}
+.write_co_comment {
+  width: auto;
+  height: auto;
+  cursor: pointer;
 }
 .comment_kebab {
   cursor: pointer;
 }
 .options {
   display: none;
+}
+.co_comment_form {
+  display: none;
+  width: 750px;
+  margin-left: -40px;
+  margin-bottom: 20px;
+  background: #D9D9D9;
+  border-radius: 5px;
 }
 .show_options {
   width: 100px;
@@ -821,12 +838,40 @@ header {
   min-height: 100px;
   background-color: #D9D9D9;
   border-radius: 5px;
+  margin-bottom: 30px;
+  /* margin-top: 20px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+.cocomment_input_area {
+  width: 750px;
+  height: auto;
+  min-height: 100px;
+  background-color: #D9D9D9;
+  border-radius: 5px;
   margin-bottom: 10px;
   margin-top: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: flex-start;
+}
+.cocomment_text_area {
+  width: auto;
+  height: auto;
+  min-height: 50px;
+  border: none;
+  background-color: #D9D9D9;
+  resize: none;
+  outline: none;
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 20px;
 }
 .logged_in_username {
   width: 800px;
@@ -872,8 +917,30 @@ header {
   line-height: normal;
   margin-top: 20px;
 }
+.cocomment_text_area {
+  width: 746px;
+  height: auto;
+  min-height: 50px;
+  border: none;
+  background-color: #D9D9D9;
+  resize: none;
+  outline: none;
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 20px;
+}
 .submit_btn {
   width: 820px;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.cocomment_submit_btn {
+  width: 740px;
   display: flex;
   justify-content: flex-end;
   margin-top: 10px;
