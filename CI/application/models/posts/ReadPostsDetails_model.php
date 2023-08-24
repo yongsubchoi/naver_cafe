@@ -268,57 +268,99 @@ class ReadPostsDetails_model extends CI_Model
   {
     $user_id = $this->session->userdata('user_id');
 
+    // 새 댓글의 display_order 값 계산
+    $display_order = $this->getNextDisplayOrder($parent_comment_id);
+
+    // 새 댓글의 path 값 계산
+    $path = $this->getParentPath($parent_comment_id);
+
     $data = array(
       'user_id' => $user_id,
       'post_id' => $post_id,
       'content' => $cocomment_content,
       'created_at' => date('Y-m-d H:i:s'),
       'parent_comment_id' => $parent_comment_id,
-      'level' => $level, // 답글의 레벨은 1로 설정
+      'level' => $level,
+      'display_order' => $display_order,
+      'path' => $path,
     );
 
     $this->db->insert('comments', $data);
+  }
+
+  // 새 댓글의 display_order 값을 계산하는 함수
+  private function getNextDisplayOrder($parent_comment_id)
+  {
+    $this->db->select_max('display_order');
+    $this->db->where('parent_comment_id', $parent_comment_id);
+    $query = $this->db->get('comments');
+
+    $row = $query->row();
+    if ($row->display_order !== null) {
+      return $row->display_order + 1;
+    } else {
+      return 1;
+    }
+  }
+
+  // 새 댓글의 path 값을 계산하는 함수
+  private function getParentPath($parent_comment_id)
+  {
+    if (!$parent_comment_id) {
+      return '';
+    }
+
+    $this->db->select('path');
+    $this->db->where('id', $parent_comment_id);
+    $query = $this->db->get('comments');
+
+    $row = $query->row();
+    if ($row->path !== null) {
+      return $row->path . '-' . $parent_comment_id;
+    } else {
+      return $parent_comment_id;
+    }
   }
 
   // 계층형 구조를 표현하기 위한 재귀 쿼리문
   public function getCommentHierarchy($post_id)
   {
     $sql = "
-            WITH RECURSIVE comment_cte AS (
-                SELECT
-                    id,
-                    post_id,
-                    user_id,
-                    parent_comment_id,
-                    content,
-                    created_at,
-                    LEVEL,
-                    display_order,
-                    CAST(id AS CHAR(200)) AS path
-                FROM comments
-                WHERE post_id = ? AND parent_comment_id IS NULL -- 특정 게시물의 최상위 댓글 선택
-                
-                UNION ALL
-                
-                SELECT
-                    c.id,
-                    c.post_id,
-                    c.user_id,
-                    c.parent_comment_id,
-                    c.content,
-                    c.created_at,
-                    c.level,
-                    c.display_order,
-                    CONCAT(cte.path, '-', c.id) AS path
-                FROM comments c
-                INNER JOIN comment_cte cte ON cte.id = c.parent_comment_id
-            )
-            SELECT 
-                id, post_id, user_id, parent_comment_id, content, created_at,
-                REPEAT('    ', LEVEL) AS indent, path, LEVEL, display_order
-            FROM comment_cte
-            ORDER BY path, display_order;
-        ";
+        WITH RECURSIVE comment_cte AS (
+            SELECT
+                id,
+                post_id,
+                user_id,
+                parent_comment_id,
+                content,
+                created_at,
+                LEVEL,
+                display_order,
+                path
+            FROM comments
+            WHERE post_id = ? AND parent_comment_id IS NULL -- 특정 게시물의 최상위 댓글 선택
+            
+            UNION ALL
+            
+            SELECT
+                c.id,
+                c.post_id,
+                c.user_id,
+                c.parent_comment_id,
+                c.content,
+                c.created_at,
+                c.level,
+                c.display_order,
+                CONCAT(cte.path, '-', c.id) AS path
+            FROM comments c
+            INNER JOIN comment_cte cte ON cte.id = c.parent_comment_id
+        )
+        SELECT 
+            id, post_id, user_id, parent_comment_id, content, created_at,
+            REPEAT('    ', LEVEL) AS indent, path, LEVEL, display_order
+        FROM comment_cte
+        ORDER BY path, display_order;
+    ";
 
     return $this->db->query($sql, [$post_id])->result_array();
   }
