@@ -75,10 +75,15 @@ class Index_model extends CI_Model
       $this->db->like('c.content', $search_input);
     } elseif ($search_type === 'comment_username') {
       $this->db->join('comments c', 'p.id = c.post_id', 'left');
-      $this->db->join('users cu', 'c.user_id = cu.id', 'left'); // 댓글 작성자 정보 조인
-      $this->db->like('cu.username', $search_input); // username으로 검색
+      $this->db->join('users', 'c.user_id = users.id', 'left'); // 댓글 작성자 정보 조인
+      $this->db->like('users.username', $search_input); // username으로 검색
     } elseif ($search_type === 'all') {
-      //! 게시글+댓글 검색 쿼리
+      // '게시글+댓글' 검색 로직 추가
+      $this->db->join('comments c', 'p.id = c.post_id', 'left');
+      $this->db->join('users', 'p.user_id = users.id', 'left'); // 사용자 정보 조인
+      $this->db->like('p.title', $search_input);
+      $this->db->or_like('users.username', $search_input);
+      $this->db->or_like('c.content', $search_input);
     }
 
     $this->db->limit($limit, $offset);
