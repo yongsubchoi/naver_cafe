@@ -59,6 +59,8 @@ class ReadPostsDetails extends CI_Controller
 
     // post_id로 comments테이블 조회
     $data['comments'] = $this->ReadPostsDetails_model->getCommentsByPostId($id);
+    // 계층적으로 정렬된 댓글들의 배열
+    $data['hierarchy_comments'] = $this->ReadPostsDetails_model->getHierarchicalCommentsByPostId($id);
 
     // 게시글 리스트 부분(페이지네이션)
     $config['base_url'] = base_url('posts/ReadPostsDetails/index/' . $id);

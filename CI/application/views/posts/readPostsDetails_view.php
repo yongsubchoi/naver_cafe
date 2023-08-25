@@ -135,6 +135,8 @@
               </div>
             </div>
             <!-- 댓글 목록 부분 -->
+            <!-- //! 이중 foreach문을 사용하여 계층정렬된 댓글을 표현해보자. -->
+            <!-- //! getCommentsByPostId의 함수 쿼리문과 합쳐보자. -->
             <div class="detail_comments_section_style">
               <div class="detail_comments_section">
                 <div class="comments_tab"><span><strong>댓글</strong></span></div>
@@ -312,8 +314,7 @@
                 <!-- 댓글 개수 표시 -->
                 <?php if ($post['comment_count'] > 0) { ?>
                   <span class="comment_count">
-                    <strong>[
-                      <?php echo $post['comment_count']; ?>]
+                    <strong>[<?php echo $post['comment_count']; ?>]
                     </strong>
                   </span>
                 <?php } ?>

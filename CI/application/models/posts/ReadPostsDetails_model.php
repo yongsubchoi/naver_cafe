@@ -322,8 +322,7 @@ class ReadPostsDetails_model extends CI_Model
     }
   }
 
-  // 계층형 구조를 표현하기 위한 재귀 쿼리문
-  public function getCommentHierarchy($post_id)
+  public function getHierarchicalCommentsByPostId($post_id)
   {
     $sql = "
         WITH RECURSIVE comment_cte AS (
@@ -336,9 +335,10 @@ class ReadPostsDetails_model extends CI_Model
                 created_at,
                 LEVEL,
                 display_order,
-                path
+                is_deleted,
+                CAST(id AS CHAR(200)) AS path
             FROM comments
-            WHERE post_id = ? AND parent_comment_id IS NULL -- 특정 게시물의 최상위 댓글 선택
+            WHERE parent_comment_id IS NULL
             
             UNION ALL
             
@@ -351,18 +351,26 @@ class ReadPostsDetails_model extends CI_Model
                 c.created_at,
                 c.level,
                 c.display_order,
+                c.is_deleted,
                 CONCAT(cte.path, '-', c.id) AS path
             FROM comments c
             INNER JOIN comment_cte cte ON cte.id = c.parent_comment_id
         )
         SELECT 
             id, post_id, user_id, parent_comment_id, content, created_at,
-            REPEAT('    ', LEVEL) AS indent, path, LEVEL, display_order
+            is_deleted, path, LEVEL, display_order
         FROM comment_cte
+        WHERE post_id = ? AND is_deleted = 0
         ORDER BY path, display_order;
     ";
 
-    return $this->db->query($sql, [$post_id])->result_array();
+    $query = $this->db->query($sql, array($post_id));
+
+    if ($query->num_rows() > 0) {
+      return $query->result_array();
+    } else {
+      return array(); // 댓글이 없는 경우 빈 배열 반환
+    }
   }
 }
 ?>
