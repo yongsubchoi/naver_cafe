@@ -3,6 +3,7 @@
   <?php if ($is_deleted): ?>
     <div class="detail_style">
       <div class="detail_section">
+        <?php print_r($hierarchy_comments); ?>
         <!-- 버튼 부분 -->
         <div class="detail_button_section">
           <div class="btn_left">
@@ -135,13 +136,12 @@
               </div>
             </div>
             <!-- 댓글 목록 부분 -->
-            <!-- //! 이중 foreach문을 사용하여 계층정렬된 댓글을 표현해보자. -->
             <!-- //! getCommentsByPostId의 함수 쿼리문과 합쳐보자. -->
             <div class="detail_comments_section_style">
               <div class="detail_comments_section">
                 <div class="comments_tab"><span><strong>댓글</strong></span></div>
                 <div class="flex_justify_center">
-                  <?php foreach ($comments as $comment): ?>
+                  <?php foreach ($hierarchy_comments as $comment): ?>
                     <?php if (!$comment['is_deleted'] == 1): ?>
                       <div class="comment_form">
                         <!-- 댓글의 level에 따른 들여쓰기 반복 -->
@@ -151,9 +151,9 @@
                           <?php endfor; ?>
                         <?php endif; ?>
                         <div class="comment_picture">
-                          <?php if ($comment['profile_picture_path']) { ?>
+                          <?php if (isset($comment['profile_picture_path'])): ?>
                             <img src="<?php echo "/uploads/profile_pictures/" . $comment['profile_picture_path'] ?>">
-                          <?php } ?>
+                          <?php endif; ?>
                         </div>
                         <div class="comment_box">
                           <div class="comment_user_created_at">

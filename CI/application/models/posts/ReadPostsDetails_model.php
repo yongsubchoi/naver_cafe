@@ -333,7 +333,7 @@ class ReadPostsDetails_model extends CI_Model
                 parent_comment_id,
                 content,
                 created_at,
-                LEVEL,
+                level,
                 display_order,
                 is_deleted,
                 CAST(id AS CHAR(200)) AS path
@@ -358,7 +358,7 @@ class ReadPostsDetails_model extends CI_Model
         )
         SELECT 
             id, post_id, user_id, parent_comment_id, content, created_at,
-            is_deleted, path, LEVEL, display_order
+            is_deleted, path, level, display_order
         FROM comment_cte
         WHERE post_id = ? AND is_deleted = 0
         ORDER BY path, display_order;
@@ -372,5 +372,25 @@ class ReadPostsDetails_model extends CI_Model
       return array(); // 댓글이 없는 경우 빈 배열 반환
     }
   }
+
+  public function getCommentUserInfo($user_id)
+  {
+    $this->db->select('username, profile_picture_path');
+    $this->db->from('users');
+    $this->db->where('id', $user_id);
+
+    $query = $this->db->get();
+
+    if ($query->num_rows() > 0) {
+      $row = $query->row();
+      return array(
+        'username' => $row->username,
+        'profile_picture_path' => $row->profile_picture_path
+      );
+    } else {
+      return null; // 해당 유저 정보가 없는 경우
+    }
+  }
+
 }
 ?>

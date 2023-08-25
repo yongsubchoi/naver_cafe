@@ -61,6 +61,16 @@ class ReadPostsDetails extends CI_Controller
     $data['comments'] = $this->ReadPostsDetails_model->getCommentsByPostId($id);
     // 계층적으로 정렬된 댓글들의 배열
     $data['hierarchy_comments'] = $this->ReadPostsDetails_model->getHierarchicalCommentsByPostId($id);
+    
+    foreach ($data['hierarchy_comments'] as &$comment) {
+      if (isset($comment['user_id'])) {
+        $comment_user_info = $this->ReadPostsDetails_model->getCommentUserInfo($comment['user_id']);
+        if ($comment_user_info) {
+          $comment['username'] = $comment_user_info['username'];
+          $comment['profile_picture_path'] = $comment_user_info['profile_picture_path'];
+        }
+      }
+    }
 
     // 게시글 리스트 부분(페이지네이션)
     $config['base_url'] = base_url('posts/ReadPostsDetails/index/' . $id);
