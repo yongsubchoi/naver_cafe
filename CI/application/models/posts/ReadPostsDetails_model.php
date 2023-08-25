@@ -361,7 +361,7 @@ class ReadPostsDetails_model extends CI_Model
             is_deleted, path, level, display_order
         FROM comment_cte
         WHERE post_id = ? AND is_deleted = 0
-        ORDER BY path, display_order;
+        ORDER BY CAST(path AS SIGNED), display_order;
     ";
 
     $query = $this->db->query($sql, array($post_id));
@@ -391,6 +391,5 @@ class ReadPostsDetails_model extends CI_Model
       return null; // 해당 유저 정보가 없는 경우
     }
   }
-
 }
 ?>

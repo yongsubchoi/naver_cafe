@@ -3,7 +3,7 @@
   <?php if ($is_deleted): ?>
     <div class="detail_style">
       <div class="detail_section">
-        <?php print_r($hierarchy_comments); ?>
+        <!-- <?php print_r($hierarchy_comments); ?> -->
         <!-- 버튼 부분 -->
         <div class="detail_button_section">
           <div class="btn_left">

@@ -4,6 +4,7 @@ class Index extends CI_Controller
   public function __construct()
   {
     parent::__construct();
+    $this->load->library('form_validation');
     $this->load->library('layouts');
     $this->load->library('session');
     $this->load->library('pagination');
@@ -81,6 +82,18 @@ class Index extends CI_Controller
 
     // 로그아웃 처리 완료 후, 홈페이지 또는 로그인 페이지로 이동합니다.
     redirect(''); // 홈페이지 또는 로그인 페이지 URL을 입력하세요.
+  }
+
+  // 검색 함수
+  //! 페이지네이션 기능을 구현해야 한다.
+  public function search() {
+    $search_period = $this->input->post('search_period');
+    $search_type = $this->input->post('search_type');
+    $search_input = $this->input->post('serach_input');
+
+    $data['posts'] = $this->Index_model->searchPosts($search_period, $search_type, $search_input);
+
+
   }
 }
 ?>

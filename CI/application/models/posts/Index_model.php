@@ -43,5 +43,19 @@ class Index_model extends CI_Model
     $query = $this->db->get('comments');
     return $query->num_rows();
   }
+
+  //! getPostsPaginated 함수를 참고하여 페이지네이션 기능을 고려해야한다.
+  // 게시글 검색 함수
+  public function searchPosts($search_period, $search_type, $search_input) {
+    /**
+     * todo 필요한 로직
+     * 검색기간, 검색타입, 검색어를 이용하여 해당 조건에 맞는 게시글들을 반환해주어야 한다.
+     * ? 검색 기간
+     * 전체기간, 1주, 1달, 6달, 1년
+     * ? 검색 타입
+     * 게시글+댓글, 제목, 글작성자, 댓글내용, 댓글작성자
+     * 
+     */
+  }
 }
 ?>
