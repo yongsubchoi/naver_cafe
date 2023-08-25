@@ -44,18 +44,47 @@ class Index_model extends CI_Model
     return $query->num_rows();
   }
 
-  //! getPostsPaginated 함수를 참고하여 페이지네이션 기능을 고려해야한다.
   // 게시글 검색 함수
-  public function searchPosts($search_period, $search_type, $search_input) {
-    /**
-     * todo 필요한 로직
-     * 검색기간, 검색타입, 검색어를 이용하여 해당 조건에 맞는 게시글들을 반환해주어야 한다.
-     * ? 검색 기간
-     * 전체기간, 1주, 1달, 6달, 1년
-     * ? 검색 타입
-     * 게시글+댓글, 제목, 글작성자, 댓글내용, 댓글작성자
-     * 
-     */
+  //! 게시글 + 댓글 로직 추가 필요
+  public function getSearchPostsPaginated($search_period, $search_type, $search_input, $limit, $offset)
+  {
+    $this->db->select('p.*, u.username');
+    $this->db->from('posts p');
+    $this->db->join('users u', 'p.user_id = u.id');
+    $this->db->order_by('p.created_at', 'DESC');
+
+    if ($search_period === '1week') {
+      $this->db->where('p.created_at >= DATE_SUB(NOW(), INTERVAL 1 WEEK)');
+    } elseif ($search_period === '1month') {
+      $this->db->where('p.created_at >= DATE_SUB(NOW(), INTERVAL 1 MONTH)');
+    } elseif ($search_period === '6month') {
+      $this->db->where('p.created_at >= DATE_SUB(NOW(), INTERVAL 6 MONTH)');
+    } elseif ($search_period === '1year') {
+      $this->db->where('p.created_at >= DATE_SUB(NOW(), INTERVAL 1 YEAR)');
+    }
+
+    // 중복된 게시글은 나오지 않게하기 위해 설정
+    $this->db->distinct();
+
+    if ($search_type === 'title') {
+      $this->db->like('p.title', $search_input);
+    } elseif ($search_type === 'post_username') {
+      $this->db->like('u.username', $search_input);
+    } elseif ($search_type === 'comment_content') {
+      $this->db->join('comments c', 'p.id = c.post_id', 'left');
+      $this->db->like('c.content', $search_input);
+    } elseif ($search_type === 'comment_username') {
+      $this->db->join('comments c', 'p.id = c.post_id', 'left');
+      $this->db->join('users cu', 'c.user_id = cu.id', 'left'); // 댓글 작성자 정보 조인
+      $this->db->like('cu.username', $search_input); // username으로 검색
+    } elseif ($search_type === 'all') {
+      //! 게시글+댓글 검색 쿼리
+    }
+
+    $this->db->limit($limit, $offset);
+
+    $query = $this->db->get();
+    return $query->result_array();
   }
 }
 ?>

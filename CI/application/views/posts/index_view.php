@@ -5,6 +5,7 @@
   <!-- <?php print_r($comment_count); ?> -->
   <!-- 공지 게시글 -->
   <div class="notice_area">
+    <? if (isset($notice_posts)): ?>
     <?php foreach ($notice_posts as $post): ?>
       <?php if (!$post['is_deleted']): ?>
         <div class="anmt_area">
@@ -63,6 +64,7 @@
         </div>
       <?php endif; ?>
     <?php endforeach; ?>
+    <?php endif; ?>
   </div>
 
   <!-- 일반 게시글 -->
@@ -142,30 +144,30 @@
   </div>
   <!-- 검색 부분 -->
   <?php echo validation_errors(); ?>
-  <?php echo form_open('posts/Index/search'); ?>
+  <?php echo form_open('Index/search'); ?>
   <div class="index_search_section">
     <div class="index_search_period">
       <select class="search_period_select" name="search_period">
-        <option>전체기간</option>
-        <option>1주</option>
-        <option>1달</option>
-        <option>6달</option>
-        <option>1년</option>
+        <option value="all">전체기간</option>
+        <option value="1week">1주</option>
+        <option value="1month">1달</option>
+        <option value="6month">6달</option>
+        <option value="1year">1년</option>
       </select>
     </div>
     <div class="index_serach_type">
       <select class="search_type_select" name="search_type">
-        <option>게시글+댓글</option>
-        <option>제목만</option>
-        <option>글작성자</option>
-        <option>댓글내용</option>
-        <option>댓글작성자</option>
+        <option value="all">게시글+댓글</option>
+        <option value="title">제목만</option>
+        <option value="post_username">글작성자</option>
+        <option value="comment_content">댓글내용</option>
+        <option value="comment_username">댓글작성자</option>
       </select>
     </div>
     <div class="index_search_section_style">
       <input type="text" name="search_input" id="search_input" placeholder="게시글 검색" class="index_search_posts">
-      <button type="button" id="index_search_posts_btn">검색</button>
     </div>
+    <button type="submit" id="index_search_posts_btn">검색</button>
   </div>
   </form>
 </div>
